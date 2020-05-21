@@ -19,14 +19,13 @@ class CreateNotasTable extends Migration
             $table->date('tanggal');
             $table->string('kepada', 25)->nullable();
             $table->string('attn', 25);
-            $table->string('make', 25);
-            $table->string('unit_plat_number', 25);
-            $table->integer('unit_kilometer');
             $table->integer('total');
             $table->integer('potongan');
             $table->string('rekening',25);
             $table->string('bank', 100);
             $table->string('atas_nama', 25);
+            $table->foreignId('daily_activity_id')->constrained('daily_activities')->onDelete('cascade')->onUpdate('cascade');
+
             $table->timestamps();
         });
     }

@@ -7,6 +7,9 @@
                 </li>
                 <li class="menu-title">Utama</li><!-- /.menu-title -->
                 <li>
+                    <a href="{{route('nota.index')}}"> <i class="menu-icon fa fa-book"></i>Dailay Activity</a>
+                </li>
+                <li>
                     <a href="{{route('nota.index')}}"> <i class="menu-icon fa fa-book"></i>Buku Nota </a>
                 </li>
                 <li class="menu-item-has-children dropdown">

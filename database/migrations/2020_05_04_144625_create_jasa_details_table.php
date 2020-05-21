@@ -14,8 +14,8 @@ class CreateJasaDetailsTable extends Migration
     public function up()
     {
         Schema::create('jasa_details', function (Blueprint $table) {
-            $table->string('nama',200);
             $table->foreignId('id')->constrained('jasas');
+            $table->string('nama',200);
             $table->timestamps();
             
         });

@@ -16,12 +16,9 @@ class CreateJasasTable extends Migration
         Schema::create('jasas', function (Blueprint $table) {
             $table->id();            
             $table->string('nama',200);
-            $table->integer('price');
-            $table->integer('qty');
-            $table->string('no_nota',25);
-
-            $table->foreign('no_nota')->references('no_nota')->on('notas')->onUpdate('cascade')->onDelete('cascade');
-
+            $table->integer('price')->nullable();
+            $table->integer('qty')->default(1);
+            $table->foreignId('daily_activity_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
