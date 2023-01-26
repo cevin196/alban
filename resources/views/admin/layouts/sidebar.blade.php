@@ -1,4 +1,4 @@
-<div class="w-full lg:w-60 opacity-0 lg:opacity-100 h-full top-0 z-0 pt-20 shadow-md bg-white fixed transition-all ease-in-out 
+<div class="w-full lg:w-1/6 opacity-0 lg:opacity-100 h-full top-0 z-0 pt-20 shadow-md bg-white fixed transition-all ease-in-out 
     duration-500 bg-bottom bg-no-repeat bg-contain"
     style="background-image: url('{{ asset('images/public/layerSidebar.png') }}')" id="sideNav">
     <ul class="relative px-1">

@@ -1,6 +1,7 @@
-@extends('layouts.admin.app')
+@extends('admin.layouts.app')
 
 @section('content')
+    @include('includes.toast')
     <div class="flex gap-1 text-xl items-center text-[#444444]">
         <a href="#" class="font-bold">User</a>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right"

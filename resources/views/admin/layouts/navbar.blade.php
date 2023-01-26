@@ -17,7 +17,12 @@
         </button>
         <ul class="dropdown-menu min-w-max absolute hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-xl mt-1 m-0 bg-clip-padding border-gray-400"
             aria-labelledby="dropdownMenuButton1">
-            <li class="p-3 font-bold">{{ auth()->user()->name }}</li>
+            <li class="p-3 font-bold capitalize">{{ auth()->user()->name }}</li>
+            <li class="p-3 flex justify-between">
+                @foreach (auth()->user()->getRoleNames() as $role)
+                    <span>{{ $role }}</span>
+                @endforeach
+            </li>
             <li>
                 <a class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
                     href="#">Profile</a>

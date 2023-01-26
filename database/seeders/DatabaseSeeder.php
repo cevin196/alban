@@ -13,7 +13,13 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        \App\Models\User::factory(50)->create();
+        User::create([
+            'name' => 'admin',
+            'email' => 'admin@mail.com',
+            'phone_number' => '0811223344',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+        ]);
+        User::factory(50)->create();
 
         // // Reset cached roles and permissions
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();

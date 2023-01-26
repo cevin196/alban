@@ -23,7 +23,7 @@
 
     {{-- p-10 absolute right-0 top-16 w-[70rem] --}}
 
-    <div class="pt-20 px-5 lg:p-10 lg:absolute lg:right-0 lg:top-10 lg:w-[70rem] ">
+    <div class="pt-20 px-4 lg:p-10 lg:absolute lg:right-0 lg:top-10 lg:w-5/6">
         @section('content')
 
         @show
