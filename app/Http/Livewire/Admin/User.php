@@ -16,20 +16,6 @@ class User extends Component
     public $sortAsc = true;
     public $selectedUser = null;
 
-    // protected $queryString = [
-    //     'search' => ['except' => ''],
-    //     'active' => ['except' => false],
-    //     'sortBy' => ['except' => 'id'],
-    //     'sortAsc' => ['except' => true],
-    // ];
-
-    // protected $rules = [
-    //     'user.name' => 'required|string|min:4',
-    //     'user.price' => 'required|numeric|between:1,100',
-    //     'user.status' => 'boolean',
-    // ];
-
-
     public function render()
     {
         $query = userModel::query();
@@ -43,7 +29,7 @@ class User extends Component
         })->get();
 
         $users = $query->paginate(10);
-        return view('livewire.user', [
+        return view('livewire.admin.user', [
             'users' => $users,
         ]);
     }

@@ -30,24 +30,27 @@
                 <td class="px-2">:</td>
                 <td>{{ $user->phone_number }}</td>
             </tr>
-            <tr class="align-top">
+            <tr class="align-top ">
                 <td>Roles </td>
                 <td class="px-2">:</td>
                 <td class="grid grid-cols-2 lg:grid-cols-3 gap-1 pb-2">
                     @foreach ($user->getRoleNames() as $role)
-                        <span class="p-1 rounded bg-green-500 text-white text-center">{{ $role }}</span>
+                        <a href="{{ route('role.show', $role) }}"
+                            class="p-1 rounded bg-green-500 text-white text-center">{{ $role }}</a>
                     @endforeach
                 </td>
             </tr>
-            <tr class="align-top">
-                <td>Permissions </td>
-                <td class="px-2">:</td>
-                <td class="grid grid-cols-2 lg:grid-cols-3 gap-1">
-                    @foreach ($user->getAllPermissions() as $permission)
-                        <span class="p-1 rounded bg-amber-500 text-white text-center">{{ $permission->name }}</span>
-                    @endforeach
-                </td>
-            </tr>
+            @if ($user->getDirectPermissions()->count() > 0)
+                <tr class="align-top">
+                    <td>Extra Permissions </td>
+                    <td class="px-2">:</td>
+                    <td class="grid grid-cols-2 lg:grid-cols-3 gap-1">
+                        @foreach ($user->getDirectPermissions() as $permission)
+                            <span class="p-1 rounded bg-amber-500 text-white text-center">{{ $permission->name }}</span>
+                        @endforeach
+                    </td>
+                </tr>
+            @endif
         </table>
     </div>
 @endsection

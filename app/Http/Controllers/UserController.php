@@ -53,8 +53,9 @@ class UserController extends Controller
         $this->authorize('user_edit');
 
         $roles = Role::all();
+        $permissions = Permission::all();
 
-        return view('admin.user.edit', compact('user', 'roles'));
+        return view('admin.user.edit', compact('user', 'roles', 'permissions'));
     }
 
     public function update(Request $request, User $user)
@@ -72,6 +73,7 @@ class UserController extends Controller
         ($request->new_password) ? $user->password = Hash::make($request->new_password) : null;
 
         $user->syncRoles($request->roles);
+        $user->syncPermissions($request->extra_permissions);
 
         $user->update();
 

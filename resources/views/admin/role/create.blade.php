@@ -13,20 +13,20 @@
             <path fill-rule="evenodd"
                 d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
         </svg>
-        <a href="#">Edit</a>
+        <a href="#">Create</a>
     </div>
 
     <div class="bg-white rounded p-5 mt-3 shadow-lg w-full">
-        <span class="text-[#444444] font-bold text-lg">Edit Role</span>
+        <span class="text-[#444444] font-bold text-lg">Create New Role</span>
 
-        <form class="mt-3" method="POST" action="{{ route('role.update', $role) }}">
-            @csrf @method('put')
+        <form class="mt-3" method="POST" action="{{ route('role.store') }}">
+            @csrf
             <div class="grid grid-cols-3 gap-x-3">
                 <div class="form-group mb-3">
                     <label for="inputName" class="form-label inline-block mb-2 text-gray-700">Name</label>
                     <input type="text" name="name"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        id="inputName" placeholder="Enter Name" value="{{ $role->name }}">
+                        id="inputName" placeholder="Enter Name">
                     @error('name')
                         <small id="emailHelp" class="block mt-1 text-xs text-red-600">{{ $message }}</small>
                     @enderror
@@ -38,8 +38,7 @@
                         class="js-example-basic-multiple form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         multiple="multiple" class="">
                         @foreach ($permissions as $permission)
-                            <option value="{{ $permission->name }}"
-                                {{ $role->hasPermissionTo($permission->name) ? 'selected' : '' }}>
+                            <option value="{{ $permission->name }}">
                                 {{ $permission->name }}
                             </option>
                         @endforeach

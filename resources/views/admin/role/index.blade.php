@@ -1,5 +1,4 @@
 @extends('admin.layouts.app')
-
 @section('content')
     <div class="flex gap-1 text-xl items-center text-[#444444]">
         <a href="#" class="font-bold">Role</a>
@@ -13,5 +12,5 @@
     </div>
     {{-- <h1 class="text-xl lg:text-2xl font-bold">Users</h1> --}}
     {{-- <span class="capitalize text-lg text-[#444444]">Manage user data</span> --}}
-    @livewire('admin.user')
+    @livewire('admin.role')
 @endsection

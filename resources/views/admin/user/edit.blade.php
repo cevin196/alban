@@ -63,7 +63,7 @@
                     @enderror
                 </div>
 
-                <div class="form-group mb-3 col-span-2">
+                <div class="form-group mb-3 col-span-3">
                     <label for="role" class="form-label inline-block mb-2 text-gray-700">Role</label>
                     <select name="roles[]"
                         class="js-example-basic-multiple form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -71,6 +71,22 @@
                         @foreach ($roles as $role)
                             <option value="{{ $role->name }}" {{ $user->hasRole($role->id) ? 'selected' : '' }}>
                                 {{ $role->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('roles')
+                        <small class="block mt-1 text-xs text-red-600">{{ $message }}</small>
+                    @enderror
+                </div>
+
+                <div class="form-group mb-3 col-span-3">
+                    <label for="role" class="form-label inline-block mb-2 text-gray-700">Extra Permission</label>
+                    <select name="extra_permissions[]"
+                        class="js-example-basic-multiple form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        multiple="multiple" class="">
+                        @foreach ($permissions as $permission)
+                            <option value="{{ $permission->name }}"
+                                {{ $user->hasPermissionTo($permission->id) ? 'selected' : '' }}>
+                                {{ $permission->name }}</option>
                         @endforeach
                     </select>
                     @error('roles')
