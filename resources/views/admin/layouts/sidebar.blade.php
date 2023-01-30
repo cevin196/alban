@@ -1,6 +1,10 @@
-<div class="w-full lg:w-1/6 opacity-0 lg:opacity-100 h-full top-0 z-0 pt-20 shadow-md bg-white fixed transition-all ease-in-out 
+<div class="w-full lg:w-1/6 hidden lg:block h-full lg:top-0 pt-10 lg:pt-5 shadow-md bg-white fixed transition-all ease-in-out 
     duration-500 bg-bottom bg-no-repeat bg-contain"
     style="background-image: url('{{ asset('images/public/layerSidebar.png') }}')" id="sideNav">
+    <a href="{{ route('dashboard') }}" class="hidden lg:flex items-center gap-3 px-6">
+        <img src="{{ asset('images/public/Logo.png') }}" alt="Company Logo" class="w-12 lg:w-16">
+
+    </a>
     <ul class="relative px-1">
         <li class="relative" id="sidenavSecEx1">
             <a class="flex items-center text-sm py-4 px-6 h-12

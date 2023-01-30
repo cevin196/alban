@@ -11,16 +11,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', [NavigationController::class, 'dashboard'])->name('dashboard');
-    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::get('/test', function () {
+    notify()->success('Laravel Notify is awesome!');
+    return view('test');
 });
 
-Route::resource('user', UserController::class);
-Route::resource('role', RoleController::class);
-Route::post('role/changePermission', [RoleController::class, 'changePermission'])->name('role.changePermission');
-Route::resource('permission', PermissionController::class);
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [NavigationController::class, 'dashboard'])->name('dashboard');
+    Route::resource('user', UserController::class);
+    Route::resource('role', RoleController::class);
+    Route::post('role/changePermission', [RoleController::class, 'changePermission'])->name('role.changePermission');
+    Route::resource('permission', PermissionController::class);
+});
+
 
 require __DIR__ . '/auth.php';

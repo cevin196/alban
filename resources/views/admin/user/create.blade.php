@@ -19,24 +19,33 @@
             <div class="grid grid-cols-3 gap-x-3">
                 <div class="form-group mb-3">
                     <label for="inputName" class="form-label inline-block mb-2 text-gray-700">Name</label>
-                    <input type="text"
+                    <input type="text" name="name"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        id="inputName" aria-describedby="emailHelp" placeholder="Enter Name">
-                    <small id="emailHelp" class="block mt-1 text-xs text-gray-600">We'll never share your email with anyone
-                        else.</small>
+                        id="inputName" placeholder="Enter Name">
+                    @error('name')
+                        <small id="emailHelp" class="block mt-1 text-xs text-red-600">{{ $message }}</small>
+                    @enderror
+
                 </div>
                 <div class="form-group mb-3">
-                    <label for="exampleInputEmail1" class="form-label inline-block mb-2 text-gray-700">Email</label>
-                    <input type="email"
+                    <label for="email" class="form-label inline-block mb-2 text-gray-700">Email</label>
+                    <input name="email" type="email"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        id="exampleInputemail1" placeholder="Email address">
+                        id="email" placeholder="Email address">
+                    @error('email')
+                        <small id="emailHelp" class="block mt-1 text-xs text-red-600">{{ $message }}</small>
+                    @enderror
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="exampleInputEmail1" class="form-label inline-block mb-2 text-gray-700">Phone Number</label>
-                    <input type="tel"
+                    <label for="phoneNumber" class="form-label inline-block mb-2 text-gray-700">Phone
+                        Number</label>
+                    <input name="phone_number" type="tel"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Phone number">
+                        id="phoneNumber" placeholder="Phone number">
+                    @error('phone_number')
+                        <small id="emailHelp" class="block mt-1 text-xs text-red-600">{{ $message }}</small>
+                    @enderror
                 </div>
 
             </div>

@@ -50,8 +50,8 @@
                                         </td>
                                         <td class="text-sm text-gray-900 font-light">
                                             <div class="flex justify-around">
-                                                <a href="{{ route('user.show', $user) }}" data-bs-toggle="tooltip"
-                                                    title="Show Detail" class="transition duration-150 ease-in-out">
+                                                <a href="{{ route('user.show', $user) }}" title="Show Detail"
+                                                    class="transition duration-150 ease-in-out">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="18"
                                                         height="18" fill="currentColor"
                                                         class="bi bi-eye text-blue-700" viewBox="0 0 16 16">
@@ -61,8 +61,7 @@
                                                             d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
                                                     </svg>
                                                 </a>
-                                                <a href="{{ route('user.edit', $user) }}" data-bs-toggle="tooltip"
-                                                    title="Edit">
+                                                <a href="{{ route('user.edit', $user) }}" title="Edit">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="18"
                                                         height="18" fill="currentColor"
                                                         class="bi bi-pencil-square text-amber-500" viewBox="0 0 16 16">

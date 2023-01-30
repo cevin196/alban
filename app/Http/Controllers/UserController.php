@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -22,6 +24,13 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone_number' => 'required|min:8|max:20',
+
+        ]);
+
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
@@ -29,18 +38,44 @@ class UserController extends Controller
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
         $user->save();
 
-        return redirect(route('user.index'))->with('success', 'User added successfully!');
+        notify()->success('User created succesfully!');
+        return redirect(route('user.index'));
     }
 
-    public function show()
+    public function show(User $user)
     {
         $this->authorize('user_show');
-        return view('admin.user.show');
+        return view('admin.user.show', compact('user'));
     }
 
     public function edit(User $user)
     {
         $this->authorize('user_edit');
-        return view('admin.user.edit', compact('user'));
+
+        $roles = Role::all();
+
+        return view('admin.user.edit', compact('user', 'roles'));
+    }
+
+    public function update(Request $request, User $user)
+    {
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone_number' => 'required|min:8|max:20',
+            'new_password' => 'nullable|min:6'
+        ]);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone_number = $request->phone_number;
+        ($request->new_password) ? $user->password = Hash::make($request->new_password) : null;
+
+        $user->syncRoles($request->roles);
+
+        $user->update();
+
+        notify()->success('User updated succesfully!');
+        return redirect(route('user.index'));
     }
 }

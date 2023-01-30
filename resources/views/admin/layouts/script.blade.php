@@ -3,19 +3,29 @@
         let navbar = document.getElementById('sideNav');
 
         // console.log(navbar);
-        e.name === 'opened' ? (e.name = "close", navbar.classList.add(
-            'opacity-100')) : (e.name = "opened", navbar.classList.remove(
-            'opacity-100'));
+        e.name === 'opened' ?
+            (e.name = "close", navbar.classList.add('block'), navbar.classList.remove('hidden')) :
+            (e.name = "opened", navbar.classList.remove('block'), navbar.classList.add('hidden'));
+    }
+
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        let navbar = document.getElementById('navbar');
+
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            // navbar.classList.remove('bg-black');
+            navbar.classList.add('shadow-[0_4px_4px_0px_rgb(0,0,0,0.1)]');
+        } else {
+            navbar.classList.remove('shadow-[0_4px_4px_0px_rgb(0,0,0,0.1)]');
+            // navbar.classList.add('bg-black');
+        }
+
     }
 </script>
 
-<!-- Required popper.js -->
-<script src="https://unpkg.com/@popperjs/core@2.9.1/dist/umd/popper.min.js" charset="utf-8"></script>
-<script type="text/javascript">
-    var tooltipTriggerList = [].slice.call(
-        document.querySelectorAll('[data-bs-toggle="tooltip"]')
-    );
-    var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
-        return new Tooltip(tooltipTriggerEl);
-    });
-</script>
+
+@section('script')
+@show
