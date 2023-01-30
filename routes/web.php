@@ -21,7 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('user', UserController::class);
     Route::resource('role', RoleController::class);
     Route::post('role/changePermission', [RoleController::class, 'changePermission'])->name('role.changePermission');
-    Route::resource('permission', PermissionController::class);
+    Route::get('permission/', [PermissionController::class, 'index'])->name('permission.index');
 });
 
 
