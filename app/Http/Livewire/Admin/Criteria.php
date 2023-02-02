@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\Admin\Criteria as AdminCriteria;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Spatie\Permission\Models\Role as ModelsRole;
 
-class Role extends Component
+class Criteria extends Component
 {
     use WithPagination;
 
@@ -14,11 +14,11 @@ class Role extends Component
     public $search = "";
     public $sortBy = 'id';
     public $sortAsc = true;
-    public $selectedRole = null;
+    public $selectedCriteria = null;
 
     public function render()
     {
-        $query = ModelsRole::query();
+        $query = AdminCriteria::query();
 
         $query->when($this->search, function ($query) {
             return $query->where(function ($query) {
@@ -27,10 +27,10 @@ class Role extends Component
             });
         })->get();
 
-        $roles = $query->paginate(10);
+        $criterias = $query->paginate(5);
 
-        return view('livewire.admin.role', [
-            'roles' => $roles,
+        return view('livewire.admin.criteria', [
+            'criterias' => $criterias,
         ]);
     }
 
@@ -39,16 +39,16 @@ class Role extends Component
         $this->resetPage();
     }
 
-    public function confirmRoleDeletion(ModelsRole $criteria)
+    public function confirmCriteriaDeletion(AdminCriteria $criteria)
     {
-        $this->selectedRole = $criteria;
+        $this->selectedCriteria = $criteria;
     }
 
 
-    public function deleteRole()
+    public function deleteCriteria()
     {
 
-        $this->selectedRole->delete();
-        $this->selectedRole = "";
+        $this->selectedCriteria->delete();
+        $this->selectedCriteria = "";
     }
 }

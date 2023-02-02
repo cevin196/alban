@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AlternativeController;
+use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\NavigationController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
@@ -22,6 +24,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('role', RoleController::class);
     Route::post('role/changePermission', [RoleController::class, 'changePermission'])->name('role.changePermission');
     Route::get('permission/', [PermissionController::class, 'index'])->name('permission.index');
+    Route::resource('criteria', CriteriaController::class)->except('show');
+    Route::resource('alternative', AlternativeController::class);
 });
 
 

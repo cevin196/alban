@@ -3,7 +3,7 @@
         <input type="search" wire:model.debounce.500ms="search"
             class="form-control block w-1/3 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             id="exampleSearch" placeholder="Search Something..." />
-        <a href="{{ route('role.create') }}" class="px-2 py-1 rounded bg-green-500 text-white hover:bg-green-600">Add
+        <a href="{{ route('criteria.create') }}" class="px-2 py-1 rounded bg-green-500 text-white hover:bg-green-600">Add
             New</a>
     </div>
     <div class="flex flex-col">
@@ -19,22 +19,34 @@
                                 <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4">
                                     Name
                                 </th>
+                                <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4">
+                                    Weight
+                                </th>
+                                <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4">
+                                    Type
+                                </th>
                                 <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4 w-2/12">
                                     Action
                                 </th>
                             </tr>
                         </thead class="border-b">
                         <tbody>
-                            @foreach ($roles as $role)
+                            @foreach ($criterias as $criteria)
                                 <tr class="bg-white border-b">
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                         {{ $loop->index + 1 }}</td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                        {{ $role->name }}
+                                        {{ $criteria->name }}
+                                    </td>
+                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                        {{ $criteria->weight }}
+                                    </td>
+                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                        {{ $criteria->type }}
                                     </td>
                                     <td class="text-sm text-gray-900 font-light">
                                         <div class="flex justify-around">
-                                            <a href="{{ route('role.show', $role->name) }}" title="Show Detail"
+                                            {{-- <a href="{{ route('criteria.show', $criteria->id) }}" title="Show Detail"
                                                 class="transition duration-150 ease-in-out">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                                     fill="currentColor" class="bi bi-eye text-blue-700"
@@ -44,8 +56,8 @@
                                                     <path
                                                         d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
                                                 </svg>
-                                            </a>
-                                            <a href="{{ route('role.edit', $role) }}" title="Edit">
+                                            </a> --}}
+                                            <a href="{{ route('criteria.edit', $criteria) }}" title="Edit">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                                     fill="currentColor" class="bi bi-pencil-square text-amber-500"
                                                     viewBox="0 0 16 16">
@@ -57,8 +69,8 @@
                                             </a>
 
                                             <a href="#" title="Delete" data-bs-toggle="modal"
-                                                wire:click="confirmRoleDeletion({{ $role }})"
-                                                data-bs-target="#deleteUserModal">
+                                                wire:click="confirmCriteriaDeletion({{ $criteria }})"
+                                                data-bs-target="#deleteCriteriaModal">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                                     fill="currentColor" class="bi bi-trash3-fill text-red-500"
                                                     viewBox="0 0 16 16">
@@ -72,7 +84,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $roles->links() }}
+                    {{ $criterias->links() }}
                 </div>
             </div>
         </div>
@@ -80,28 +92,31 @@
 
     <!-- Modal -->
     <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-        wire:key="bar" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModal" aria-hidden="true"
+        wire:key="bar" id="deleteCriteriaModal" tabindex="-1" aria-labelledby="deleteCriteriaModal" aria-hidden="true"
         wire:ignore.self>
         <div class="modal-dialog relative w-auto pointer-events-none">
             <div
                 class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
                 <div
                     class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                    <h5 class="text-xl font-medium leading-normal text-gray-800" id="deleteUserModal">Delete User</h5>
+                    <h5 class="text-xl font-medium leading-normal text-gray-800" id="deleteCriteriaModal">Delete User
+                    </h5>
                     <button type="button"
                         class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
                         data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body relative p-4">
                     Are you sure want to delete <span
-                        class="text-amber-500">{{ $selectedRole ? $selectedRole->name : '' }}</span> from Role table?
+                        class="text-amber-500">{{ $selectedCriteria ? $selectedCriteria->name : '' }}</span> from
+                    Criteria
+                    table?
                 </div>
                 <div
                     class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
                     <button type="button"
                         class="px-6 py-2.5 bg-gray-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out"
                         data-bs-dismiss="modal">Close</button>
-                    <button type="button" wire:click.prevent="deleteRole()"
+                    <button type="button" wire:click.prevent="deleteCriteria()"
                         class="px-6 py-2.5 bg-red-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1"
                         data-bs-dismiss="modal">
                         Confirm

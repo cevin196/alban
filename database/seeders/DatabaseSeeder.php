@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\admin\alternative;
+use App\Models\admin\criteria;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
@@ -44,7 +46,8 @@ class DatabaseSeeder extends Seeder
         // create permissions
         foreach ($permissions as $permission) {
             Permission::create([
-                'name' => $permission
+                'name' => $permission,
+                'description' => fake()->text(),
             ]);
         }
         // create roles and assign created permissions
@@ -76,5 +79,18 @@ class DatabaseSeeder extends Seeder
         User::find(1)->assignRole('super-admin');
         User::find(2)->assignRole('admin');
         User::find(3)->assignRole('customer');
+
+        // create alternative example
+        for ($i = 0; $i < 5; $i++) {
+            Alternative::create(['name' => 'alternative ' . $i]);
+        }
+
+        // create default criteria
+        for ($i = 0; $i < 5; $i++) {
+            Criteria::create([
+                'name' => 'criteria ' . $i,
+                'weight' => rand(1, 5),
+            ]);
+        }
     }
 }

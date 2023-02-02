@@ -11,6 +11,7 @@ class Permission extends Component
     use WithPagination;
 
     public $search = "";
+    public $selectedPermission = null;
 
     public function render()
     {
@@ -33,5 +34,10 @@ class Permission extends Component
     public function updatingSearch()
     {
         $this->resetPage();
+    }
+
+    public function permissionsDetail(ModelsPermission $permission)
+    {
+        $this->selectedPermission = $permission;
     }
 }
