@@ -12,5 +12,5 @@
     </div>
     {{-- <h1 class="text-xl lg:text-2xl font-bold">Users</h1> --}}
     {{-- <span class="capitalize text-lg text-[#444444]">Manage user data</span> --}}
-    @livewire('admin.role')
+    @livewire('admin.alternative')
 @endsection

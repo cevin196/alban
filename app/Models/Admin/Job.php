@@ -9,8 +9,8 @@ class Job extends Model
 {
     use HasFactory;
 
-    // public function alternative()
-    // {
-    //     return $this->belongsTo(Alternative::class);
-    // }
+    public function alternative()
+    {
+        return $this->hasOne(Alternative::class);
+    }
 }

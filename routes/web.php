@@ -24,8 +24,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('role', RoleController::class);
     Route::post('role/changePermission', [RoleController::class, 'changePermission'])->name('role.changePermission');
     Route::get('permission/', [PermissionController::class, 'index'])->name('permission.index');
-    Route::resource('criteria', CriteriaController::class)->except('show');
-    Route::resource('alternative', AlternativeController::class);
+    Route::resource('criteria', CriteriaController::class)->except(['show', 'destroy']);
+    Route::resource('alternative', AlternativeController::class)->except('destroy');
 });
 
 

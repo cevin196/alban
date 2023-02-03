@@ -1,13 +1,13 @@
 @extends('admin.layouts.app')
 
 @section('head')
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link rel="stylesheet" href="{{ asset('select2-4.1.0-rc.0/dist/css/select2.min.css') }}">
+    <script src="{{ asset('select2-4.1.0-rc.0/dist/js/select2.min.js') }}"></script>
 @endsection
 
 @section('content')
     <div class="flex gap-1 text-xl items-center text-[#444444]">
-        <a href="{{ route('role.index') }}" class="font-bold">Role</a>
+        <a href="{{ route('alternative.index') }}" class="font-bold">Alternative</a>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right"
             viewBox="0 0 16 16">
             <path fill-rule="evenodd"
@@ -17,30 +17,29 @@
     </div>
 
     <div class="bg-white rounded p-5 mt-3 shadow-lg w-full">
-        <span class="text-[#444444] font-bold text-lg">Edit Role</span>
+        <span class="text-[#444444] font-bold text-lg">Edit Alternative</span>
 
-        <form class="mt-3" method="POST" action="{{ route('role.update', $role) }}">
+        <form class="mt-3" method="POST" action="{{ route('alternative.update', $alternative) }}">
             @csrf @method('put')
-            <div class="grid grid-cols-3 gap-x-3">
+            <div class="grid grid-cols-2 gap-x-3">
                 <div class="form-group mb-3">
                     <label for="inputName" class="form-label inline-block mb-2 text-gray-700">Name</label>
                     <input type="text" name="name"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        id="inputName" placeholder="Enter Name" value="{{ $role->name }}">
+                        id="inputName" placeholder="Enter Name" value="{{ $alternative->name }}">
                     @error('name')
                         <small id="emailHelp" class="block mt-1 text-xs text-red-600">{{ $message }}</small>
                     @enderror
                 </div>
 
-                <div class="form-group mb-3 col-span-3">
+                <div class="form-group mb-3">
                     <label for="role" class="form-label inline-block mb-2 text-gray-700">Permission</label>
-                    <select name="permissions[]"
-                        class="js-example-basic-multiple form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        multiple="multiple" class="">
-                        @foreach ($permissions as $permission)
-                            <option value="{{ $permission->name }}"
-                                {{ $role->hasPermissionTo($permission->name) ? 'selected' : '' }}>
-                                {{ $permission->name }}
+                    <select name="job_id"
+                        class="js-example-placeholder-single  form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+                        <option value="" {{ $alternative->job_id ? '' : 'selected' }}>Please Select</option>
+                        @foreach ($jobs as $job)
+                            <option value="{{ $job->id }}" {{ $alternative->job_id == $job->id ? 'selected' : '' }}>
+                                {{ $job->unit_part_number }}
                             </option>
                         @endforeach
                     </select>
@@ -51,7 +50,7 @@
             </div>
 
             <div class="flex justify-center gap-3">
-                <a href="{{ route('role.index') }}"
+                <a href="{{ route('alternative.index') }}"
                     class="px-6 py-2.5 bg-gray-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md 
                 hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 
                 active:shadow-lg transition duration-150 ease-in-out">Back</a>
@@ -66,7 +65,10 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $('.js-example-basic-multiple').select2();
+            $('.js-example-placeholder-single').select2({
+                placeholder: "Select Job Name",
+                allowClear: true
+            });
         });
     </script>
 @endsection

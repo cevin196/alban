@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\admin\alternative;
 use App\Models\admin\criteria;
+use App\Models\Admin\Job;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
@@ -92,5 +93,7 @@ class DatabaseSeeder extends Seeder
                 'weight' => rand(1, 5),
             ]);
         }
+
+        Job::factory(15)->create();
     }
 }

@@ -9,6 +9,8 @@ class Alternative extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'job_id'];
+
     public function criterias()
     {
         return $this->hasOne(Criteria::class)->withPivot('value');

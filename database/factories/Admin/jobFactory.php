@@ -17,7 +17,7 @@ class jobFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'unit_part_number' => fake()->name(),
         ];
     }
 }
