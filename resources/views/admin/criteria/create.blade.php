@@ -16,8 +16,8 @@
 
         <form class="mt-3" method="POST" action="{{ route('criteria.store') }}">
             @csrf
-            <div class="grid grid-cols-6 gap-x-3">
-                <div class="form-group mb-3 col-span-3">
+            <div class="grid grid-cols-12 gap-x-3">
+                <div class="form-group mb-3 col-span-4">
                     <label for="inputName" class="form-label inline-block mb-2 text-gray-700">Name</label>
                     <input type="text" name="name"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -27,9 +27,9 @@
                     @enderror
                 </div>
 
-                <div class="form-group mb-3 col-span-2">
+                <div class="form-group mb-3 col-span-3">
                     <label for="inputWeight" class="form-label inline-block mb-2 text-gray-700">Weight</label>
-                    <input type="text" name="weight"
+                    <input type="number" name="weight"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         id="inputWeight" placeholder="Enter Weight">
                     <small id="emailHelp" class="block mt-1 text-xs text-gray-600">Weight must be integer between
@@ -39,8 +39,18 @@
                     @enderror
                 </div>
 
-                <div class="form-group mb-3">
-                    <label for="role" class="form-label inline-block mb-2 text-gray-700">Permission</label>
+                <div class="form-group mb-3 col-span-3">
+                    <label for="inputUnit" class="form-label inline-block mb-2 text-gray-700">Unit Measurement</label>
+                    <input type="text" name="unit"
+                        class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        id="inputUnit" placeholder="Enter Unit measurement">
+                    @error('unit')
+                        <small id="emailHelp" class="block mt-1 text-xs text-red-600">{{ $message }}</small>
+                    @enderror
+                </div>
+
+                <div class="form-group mb-3 col-span-2">
+                    <label for="role" class="form-label inline-block mb-2 text-gray-700">Type</label>
                     <select name="type"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
                         <option value="0">Cost</option>

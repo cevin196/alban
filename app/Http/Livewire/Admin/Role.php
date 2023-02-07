@@ -50,5 +50,6 @@ class Role extends Component
 
         $this->selectedRole->delete();
         $this->selectedRole = "";
+        $this->resetPage();
     }
 }

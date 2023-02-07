@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('criterias', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name', 100);
             $table->smallInteger('weight')->default(3);
+            $table->string('unit', 100);
+            $table->text('description')->nullable();
             $table->boolean('type')->default('1');
             $table->timestamps();
         });

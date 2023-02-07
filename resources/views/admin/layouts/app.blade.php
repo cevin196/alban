@@ -37,8 +37,6 @@
     @livewireScripts
     <x:notify-messages />
     @notifyJs
-
-
 </body>
 
 </html>

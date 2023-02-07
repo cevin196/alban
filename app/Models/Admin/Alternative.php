@@ -13,7 +13,7 @@ class Alternative extends Model
 
     public function criterias()
     {
-        return $this->hasOne(Criteria::class)->withPivot('value');
+        return $this->belongsToMany(Criteria::class, 'alternative_criteria')->withPivot('value')->withTimestamps();
     }
 
     public function job()

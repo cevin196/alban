@@ -6,6 +6,7 @@ use App\Http\Controllers\NavigationController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Models\Admin\Criteria;
 use Illuminate\Support\Facades\Route;
 
 
@@ -27,6 +28,5 @@ Route::middleware('auth')->group(function () {
     Route::resource('criteria', CriteriaController::class)->except(['show', 'destroy']);
     Route::resource('alternative', AlternativeController::class)->except('destroy');
 });
-
 
 require __DIR__ . '/auth.php';

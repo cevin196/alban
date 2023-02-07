@@ -23,6 +23,9 @@
                                     Weight
                                 </th>
                                 <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4">
+                                    Measurement Unit
+                                </th>
+                                <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4">
                                     Type
                                 </th>
                                 <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4 w-2/12">
@@ -40,6 +43,9 @@
                                     </td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                         {{ $criteria->weight }}
+                                    </td>
+                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                        {{ $criteria->unit }}
                                     </td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                         {{ $criteria->type }}

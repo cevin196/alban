@@ -19,14 +19,18 @@ class CriteriaController extends Controller
 
     public function store(Request $request)
     {
+
+
         $validated = $request->validate([
             'name' => 'required',
-            'weight' => 'required|integer|between:1,5'
+            'weight' => 'required|integer|between:1,5',
+            'unit' => 'required|string|max:100',
         ]);
 
         $criteria = Criteria::create([
             'name' => $request->name,
             'weight' => $request->weight,
+            'unit' => $request->unit,
             'type' => $request->type,
         ]);
 
@@ -67,4 +71,9 @@ class CriteriaController extends Controller
     {
         //
     }
+
+    // public function totalPreferenceWeightCount()
+    // {
+    //     return Criteria::all()->sum('weight');
+    // }
 }

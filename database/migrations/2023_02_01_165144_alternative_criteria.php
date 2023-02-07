@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('alternative_id')->constrained();
             $table->foreignId('criteria_id')->constrained();
-            $table->smallInteger('value')->unsigned()->nullable();
+            $table->integer('value')->unsigned()->nullable();
             $table->timestamps();
         });
     }

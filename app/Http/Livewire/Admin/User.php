@@ -48,5 +48,6 @@ class User extends Component
     {
         $this->selectedUser->delete();
         $this->selectedUser = "";
+        $this->resetPage();
     }
 }

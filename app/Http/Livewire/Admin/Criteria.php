@@ -27,7 +27,7 @@ class Criteria extends Component
             });
         })->get();
 
-        $criterias = $query->paginate(5);
+        $criterias = $query->paginate(10);
 
         return view('livewire.admin.criteria', [
             'criterias' => $criterias,
@@ -50,5 +50,6 @@ class Criteria extends Component
 
         $this->selectedCriteria->delete();
         $this->selectedCriteria = "";
+        $this->resetPage();
     }
 }

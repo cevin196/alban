@@ -50,5 +50,6 @@ class Alternative extends Component
 
         $this->selectedAlternative->delete();
         $this->selectedAlternative = "";
+        $this->resetPage();
     }
 }

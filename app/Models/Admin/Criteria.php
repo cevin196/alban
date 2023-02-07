@@ -9,7 +9,7 @@ class Criteria extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'weight', 'type'];
+    protected $fillable = ['name', 'weight', 'type', 'unit'];
 
     public function alternatives()
     {
@@ -19,5 +19,10 @@ class Criteria extends Model
     public function getTypeAttribute()
     {
         return ($this->attributes['type'] == 0) ? 'Cost' : 'Benefit';
+    }
+
+    public function totalPreferenceWeightCount()
+    {
+        return Criteria::all()->sum('weight');
     }
 }

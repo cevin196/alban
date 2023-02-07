@@ -87,12 +87,9 @@ class DatabaseSeeder extends Seeder
         }
 
         // create default criteria
-        for ($i = 0; $i < 5; $i++) {
-            Criteria::create([
-                'name' => 'criteria ' . $i,
-                'weight' => rand(1, 5),
-            ]);
-        }
+
+        Criteria::factory(7)->create();
+
 
         Job::factory(15)->create();
     }
