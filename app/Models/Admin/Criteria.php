@@ -13,7 +13,8 @@ class Criteria extends Model
 
     public function alternatives()
     {
-        return $this->belongsToMany(Alternative::class);
+        return $this->belongsToMany(Alternative::class, 'alternative_criteria')->withPivot('value')->withTimestamps();
+        // return $this->belongsToMany(Criteria::class, 'alternative_criteria');
     }
 
     public function getTypeAttribute()
@@ -24,5 +25,11 @@ class Criteria extends Model
     public function totalPreferenceWeightCount()
     {
         return Criteria::all()->sum('weight');
+    }
+
+    public function getNormalizedWeight()
+    {
+        $total = Criteria::sum('weight');
+        return $this->weight / $total;
     }
 }

@@ -81,14 +81,22 @@ class DatabaseSeeder extends Seeder
         User::find(2)->assignRole('admin');
         User::find(3)->assignRole('customer');
 
+
+
+        // create default criteria
+        $criterias = Criteria::factory(5)->create();
+
         // create alternative example
         for ($i = 0; $i < 5; $i++) {
             Alternative::create(['name' => 'alternative ' . $i]);
         }
 
-        // create default criteria
-
-        Criteria::factory(7)->create();
+        $alternatives = Alternative::all();
+        foreach ($alternatives as $alternative) {
+            foreach ($criterias as $criteria) {
+                $alternative->criterias()->attach($criteria->id, ['value' => rand(1, 100)]);
+            }
+        }
 
 
         Job::factory(15)->create();

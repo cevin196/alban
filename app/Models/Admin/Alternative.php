@@ -20,4 +20,14 @@ class Alternative extends Model
     {
         return $this->belongsTo(Job::class);
     }
+
+    public function checkStatus()
+    {
+        $status = true;
+        foreach (Criteria::all() as $criteria) {
+            (AlternativeCriteria::where(['alternative_id' => $this->id, 'criteria_id' => $criteria->id])->first()) ? "" : $status = false;
+        }
+
+        return $status;
+    }
 }

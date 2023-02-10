@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('alternative_criteria', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('alternative_id')->constrained();
-            $table->foreignId('criteria_id')->constrained();
+            $table->foreignId('alternative_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('criteria_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->integer('value')->unsigned()->nullable();
             $table->timestamps();
         });

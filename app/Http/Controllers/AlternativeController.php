@@ -67,6 +67,7 @@ class AlternativeController extends Controller
 
     public function update(Request $request, Alternative $alternative)
     {
+
         $validated = $request->validate([
             'name' => 'required',
         ]);
@@ -75,11 +76,18 @@ class AlternativeController extends Controller
             'name' => $request->name,
         ]);
 
+        $alternative->criterias()->detach();
+        foreach (Criteria::all() as $criteria) {
+            $criteriaName = 'criteria' . $criteria->id;
+            $alternative->criterias()->attach([$criteria->id => ['value' => $request->$criteriaName]]);
+        }
 
         if ($request->job_id) {
             $alternative->job_id = $request->job_id;
-            $alternative->update();
+            // $alternative->update();
         }
+
+        $alternative->update();
 
         notify()->success('Alternative updated succesfully!');
         return redirect(route('alternative.index'));

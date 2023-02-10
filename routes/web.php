@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AlternativeController;
 use App\Http\Controllers\CriteriaController;
+use App\Http\Controllers\JobPriorityController;
 use App\Http\Controllers\NavigationController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
@@ -27,6 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::get('permission/', [PermissionController::class, 'index'])->name('permission.index');
     Route::resource('criteria', CriteriaController::class)->except(['show', 'destroy']);
     Route::resource('alternative', AlternativeController::class)->except('destroy');
+
+    Route::get('jobPriority', [JobPriorityController::class, 'index'])->name('jobPriority.index');
 });
 
 require __DIR__ . '/auth.php';

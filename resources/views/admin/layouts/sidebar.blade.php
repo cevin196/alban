@@ -1,3 +1,4 @@
+@inject('alternativeModel', 'App\Models\Admin\Alternative')
 <div class="w-full lg:w-1/6 hidden lg:block h-full lg:top-0 pt-10 lg:pt-5 shadow-md bg-white fixed transition-all ease-in-out 
     duration-500 bg-bottom bg-no-repeat bg-contain"
     style="background-image: url('{{ asset('images/public/layerSidebar.png') }}')" id="sideNav">
@@ -126,10 +127,18 @@
 
     </ul>
     <hr class="my-2">
+    @php
+        $status = true;
+        $alternatives = $alternativeModel->all();
+        // dd($alternatives->first());
+        foreach ($alternatives as $alternative) {
+            $alternative->checkStatus() ? '' : ($status = false);
+        }
+    @endphp
     <ul class="relative px-1">
         <li class="relative">
-            <a class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-amber-500 transition duration-300 ease-in-out"
-                href="#!" data-mdb-ripple="true" data-mdb-ripple-color="orange">
+            <a class="flex items-center {{ $status ? '' : 'bg-gray-400' }} text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-amber-500 transition duration-300 ease-in-out "
+                href="{{ route('jobPriority.index') }}" data-mdb-ripple="true" data-mdb-ripple-color="orange">
                 <span>Job Priority</span>
             </a>
         </li>

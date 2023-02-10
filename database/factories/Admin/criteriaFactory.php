@@ -20,7 +20,8 @@ class criteriaFactory extends Factory
             'name' => 'criteria ' . fake()->randomNumber,
             'weight' => rand(1, 5),
             'unit' => 'pcs',
-            'description' => fake()->paragraph(rand(2, 5))
+            'description' => fake()->paragraph(rand(2, 5)),
+            'type' => rand(0, 1)
         ];
     }
 }

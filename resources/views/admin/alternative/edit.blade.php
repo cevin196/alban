@@ -50,7 +50,6 @@
 
                 <hr class="col-span-2 my-2">
 
-
                 @foreach ($criterias as $criteria)
                     <div class="form-group mb-3">
                         <label for="inputName" class="form-label inline-block mb-2 text-gray-700">Criteria
@@ -59,7 +58,11 @@
                             <input type="number" name="{{ 'criteria' . $criteria->id }}"
                                 class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                 id="inputName" placeholder="Enter Name" required
-                                value="{{ $alternativeCriteria->where(['alternative_id' => $alternative->id, 'criteria_id' => $criteria->id])->first()->value }}">
+                                @php
+$criteriaData = $alternativeCriteria
+                                ->where(['alternative_id' => $alternative->id, 'criteria_id' => $criteria->id])
+                                ->first(); @endphp
+                                value="{{ $criteriaData ? $criteriaData->value : '' }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor"
                                 class="bi bi-info-circle text-blue-600 cursor-pointer hover:text-blue-500"
                                 viewBox="0 0 16 16" data-bs-toggle="popover" data-bs-title="Popover title"

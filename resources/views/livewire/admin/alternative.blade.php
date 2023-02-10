@@ -36,8 +36,11 @@
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                         {{ $alternative->name }}
                                     </td>
-                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                        Status
+                                    <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap ">
+                                        <span
+                                            class="{{ $alternative->checkStatus() ? 'bg-green-400' : 'bg-red-500' }} p-1 rounded ">
+                                            {{ $alternative->checkStatus() ? 'Ready' : 'Missing Data' }}
+                                        </span>
                                     </td>
                                     <td class="text-sm text-gray-900 font-light">
                                         <div class="flex justify-around">
