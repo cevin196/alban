@@ -12,9 +12,21 @@ class JobPriorityController extends Controller
     public function index()
     {
         $criterias = Criteria::all();
+        $totalPreferenceWeightCount = $criterias->sum('weight');
         $alternatives = Alternative::all();
         $alternativeCriterias = AlternativeCriteria::all();
 
-        return view('admin.jobPriority', compact('criterias', 'alternatives', 'alternativeCriterias'));
+        $vectorSTotal = 0;
+        foreach ($alternatives as $alternative) {
+            $vectorSTotal += $alternative->vectorS();
+        }
+
+        return view('admin.jobPriority', compact(
+            'criterias',
+            'alternatives',
+            'alternativeCriterias',
+            'totalPreferenceWeightCount',
+            'vectorSTotal'
+        ));
     }
 }

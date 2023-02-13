@@ -21,7 +21,7 @@
                     <label for="inputName" class="form-label inline-block mb-2 text-gray-700">Name</label>
                     <input type="text" name="name"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        id="inputName" placeholder="Enter Name">
+                        id="inputName" placeholder="Enter Name" value="{{ old('name') }}">
                     @error('name')
                         <small id="emailHelp" class="block mt-1 text-xs text-red-600">{{ $message }}</small>
                     @enderror
@@ -31,7 +31,7 @@
                     <label for="inputWeight" class="form-label inline-block mb-2 text-gray-700">Weight</label>
                     <input type="number" name="weight"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        id="inputWeight" placeholder="Enter Weight">
+                        id="inputWeight" placeholder="Enter Weight" value="{{ old('weight') }}">
                     <small id="emailHelp" class="block mt-1 text-xs text-gray-600">Weight must be integer between
                         1-5</small>
                     @error('weight')
@@ -43,7 +43,7 @@
                     <label for="inputUnit" class="form-label inline-block mb-2 text-gray-700">Unit Measurement</label>
                     <input type="text" name="unit"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        id="inputUnit" placeholder="Enter Unit measurement">
+                        id="inputUnit" placeholder="Enter Unit measurement" value="{{ old('unit') }}">
                     @error('unit')
                         <small id="emailHelp" class="block mt-1 text-xs text-red-600">{{ $message }}</small>
                     @enderror
@@ -53,8 +53,8 @@
                     <label for="role" class="form-label inline-block mb-2 text-gray-700">Type</label>
                     <select name="type"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
-                        <option value="0">Cost</option>
-                        <option value="1">Benefit</option>
+                        <option value="0" {{ old('type') == 0 ? 'selected' : '' }}>Cost</option>
+                        <option value="1" {{ old('type') == 1 ? 'selected' : '' }}>Benefit</option>
                     </select>
                     @error('roles')
                         <small class="block mt-1 text-xs text-red-600">{{ $message }}</small>

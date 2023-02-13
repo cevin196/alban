@@ -30,4 +30,15 @@ class Alternative extends Model
 
         return $status;
     }
+
+    public function vectorS()
+    {
+        $vectorS = 1;
+        foreach ($this->criterias as $alternativeCriteria) {
+            $value = $alternativeCriteria->pivot->value;
+            $pangkat = $alternativeCriteria->type == 'Cost' ? $alternativeCriteria->getNormalizedWeight() * -1 : $alternativeCriteria->getNormalizedWeight();
+            $vectorS *= pow($value, $pangkat);
+        }
+        return $vectorS;
+    }
 }

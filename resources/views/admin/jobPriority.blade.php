@@ -25,9 +25,6 @@
                     @foreach ($alternative->criterias as $alternativeCriteria)
                         <td class="px-4 py-1">{{ $alternativeCriteria->pivot->value }}</td>
                     @endforeach
-                    {{-- @foreach ($criterias->alternatives as $criteriaAlternative)
-                        <td>{{ $criteriaAlternative->pivot->value }}</td>
-                    @endforeach --}}
                 </tr>
             @endforeach
         </table>
@@ -53,7 +50,7 @@
                 @endforeach
 
                 <td>
-                    {{ $criterias->sum('weight') }}
+                    {{ $totalPreferenceWeightCount }}
                 </td>
             </tr>
         </table>
@@ -92,9 +89,6 @@
 
         <span class="block text-center mt-3 text-xl font-bold">Menentukan nilai vektor S</span>
         <table class="mx-auto">
-            @php
-                $vectorSTotal = 0;
-            @endphp
             @foreach ($alternatives as $alternative)
                 <tr>
                     <td>S{{ $loop->index + 1 }}</td>
@@ -107,22 +101,11 @@
                         @endforeach
                     </td>
 
-                    @php
-                        $vectorS = 1;
-                        foreach ($alternative->criterias as $alternativeCriteria) {
-                            $value = $alternativeCriteria->pivot->value;
-                            $pangkat = $alternativeCriteria->type == 'Cost' ? $alternativeCriteria->getNormalizedWeight() * -1 : $alternativeCriteria->getNormalizedWeight();
-                            $vectorS *= pow($value, $pangkat);
-                        }
-                    @endphp
+
                     <td>
-                        = {{ round($vectorS, 3) }}
+                        = {{ round($alternative->vectorS(), 3) }}
                     </td>
                 </tr>
-
-                @php
-                    $vectorSTotal += $vectorS;
-                @endphp
             @endforeach
         </table>
 
@@ -130,23 +113,15 @@
 
         <table class="mx-auto">
             @foreach ($alternatives as $alternative)
-                @php
-                    $vectorS = 1;
-                    foreach ($alternative->criterias as $alternativeCriteria) {
-                        $value = $alternativeCriteria->pivot->value;
-                        $pangkat = $alternativeCriteria->type == 'Cost' ? $alternativeCriteria->getNormalizedWeight() * -1 : $alternativeCriteria->getNormalizedWeight();
-                        $vectorS *= pow($value, $pangkat);
-                    }
-                @endphp
                 <tr>
                     <td class="px-2 py-1">V{{ $loop->index + 1 }}</td>
                     <td class="flex flex-col">
-                        <span>{{ round($vectorS, 3) }}</span>
+                        <span>{{ round($alternative->vectorS(), 3) }}</span>
                         <hr>
                         <span>{{ round($vectorSTotal, 3) }}</span>
                     </td>
                     <td class="px-2 py-1">=</td>
-                    <td class="px-2 py-1">{{ round($vectorS / $vectorSTotal, 3) }}</td>
+                    <td class="px-2 py-1">{{ round($alternative->vectorS() / $vectorSTotal, 3) }}</td>
                 </tr>
             @endforeach
         </table>

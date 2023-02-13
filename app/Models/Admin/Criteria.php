@@ -22,11 +22,6 @@ class Criteria extends Model
         return ($this->attributes['type'] == 0) ? 'Cost' : 'Benefit';
     }
 
-    public function totalPreferenceWeightCount()
-    {
-        return Criteria::all()->sum('weight');
-    }
-
     public function getNormalizedWeight()
     {
         $total = Criteria::sum('weight');

@@ -99,6 +99,17 @@ class DatabaseSeeder extends Seeder
         }
 
 
-        Job::factory(15)->create();
+        // Job::factory(15)->create();
+
+        for ($i = 0; $i < 7; $i++) {
+            Job::create([
+                'name' => 'Job ' . $i,
+                'unit_part_number' => 'KT008' . $i,
+                'unit_kilometer' => rand(100, 10000),
+                'date_in' => fake()->date('Y-m-d', 'now'),
+                'customer_name' => fake()->name(),
+                'status' => rand(0, 1) ? 'To Do' : 'Doing',
+            ]);
+        }
     }
 }
