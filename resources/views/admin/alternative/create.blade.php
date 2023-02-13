@@ -17,7 +17,7 @@
     </div>
 
     <div class="bg-white rounded p-5 mt-3 shadow-lg w-full">
-        <span class="text-[#444444] font-bold text-lg">Create New Role</span>
+        <span class="text-[#444444] font-bold text-lg">Create New Alternative</span>
 
         <form class="mt-3" method="POST" action="{{ route('alternative.store') }}">
             @csrf
@@ -55,12 +55,12 @@
                         <label for="inputName" class="form-label inline-block mb-2 text-gray-700">Criteria
                             <span class="text-amber-500">{{ $criteria->name }}</span></label>
                         <div class="flex items-center gap-2">
-                            <input type="number" name="{{ 'criteria' . $criteria->id }}"
+                            <input type="number" name="{{ 'criteria' . $criteria->id }}" step=".01"
                                 class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                 id="inputName" placeholder="Enter Name" required>
                             <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor"
                                 class="bi bi-info-circle text-blue-600 cursor-pointer hover:text-blue-500"
-                                viewBox="0 0 16 16" data-bs-toggle="popover" data-bs-title="Popover title"
+                                viewBox="0 0 16 16" data-bs-toggle="popover" data-bs-title="Criteria detail"
                                 data-bs-content="{{ $criteria->description }}">
                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                                 <path

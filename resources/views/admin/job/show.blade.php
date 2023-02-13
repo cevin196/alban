@@ -14,26 +14,19 @@
     <div class="bg-white rounded p-5 mt-3 shadow-lg md:w-2/3 mx-auto">
         <span class="text-[#444444] font-bold text-lg">Alternative Detail</span>
 
-        <div class="flex justify-between items-center mb-3">
-            <span>Name: {{ $alternative->name }}</span>
-            @if ($alternative->job)
-                <a href="{{ route('job.show', $alternative->job_id) }}"
-                    class="bg-amber-500 text-white rounded p-1 hover:bg-amber-600">Job Detail</a>
-            @endif
-        </div>
-
-        <div class="flex justify-center">
-            <span class="font-bold">Criterias value</span>
-        </div>
-
-        <table class="lg:w-1/2 mx-auto mb-3">
-            @foreach ($alternative->criterias as $alternativeCriteria)
-                <tr class="{{ $loop->even ? 'bg-gray-200' : '' }} border-y">
-                    <td>{{ $alternativeCriteria->name }} </td>
+        <table class="h-full">
+            <tr>
+                <td>Name</td>
+                <td>:</td>
+                <td>{{ $alternative->name }}</td>
+            </tr>
+            @if ($alternative->job_id)
+                <tr>
+                    <td>Job</td>
                     <td>:</td>
-                    <td>{{ $alternativeCriteria->pivot->value }}</td>
+                    <td>{{ $alternative->job->unit_part_number }}</td>
                 </tr>
-            @endforeach
+            @endif
         </table>
 
         <div class="flex justify-center">

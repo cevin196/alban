@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100);
-            $table->string('unit_part_number');
+            $table->string('serial_number');
             $table->integer('unit_kilometer');
             $table->date('date_in')->useCurrent();
             $table->date('date_out')->nullable();

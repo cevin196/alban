@@ -24,11 +24,9 @@ class AlternativeController extends Controller
 
     public function store(Request $request)
     {
-
-        // dd((new Criteria)->totalPreferenceWeightCount());
-
         $validated = $request->validate([
             'name' => 'required',
+
         ]);
 
         $alternative = Alternative::create([
@@ -79,13 +77,14 @@ class AlternativeController extends Controller
         $alternative->criterias()->detach();
         foreach (Criteria::all() as $criteria) {
             $criteriaName = 'criteria' . $criteria->id;
+            $validated = $request->validate([
+                $criteriaName => 'required|numeric',
+            ]);
             $alternative->criterias()->attach([$criteria->id => ['value' => $request->$criteriaName]]);
         }
 
-        if ($request->job_id) {
-            $alternative->job_id = $request->job_id;
-            // $alternative->update();
-        }
+        $alternative->job()->dissociate();
+        $alternative->job()->associate($request->job_id);
 
         $alternative->update();
 

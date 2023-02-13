@@ -49,7 +49,8 @@
             </ul>
         </li>
         <li class="relative" id="sidenavSecEx3">
-            <a class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-amber-500 transition duration-300 ease-in-out cursor-pointer"
+            <a href="{{ route('job.index') }}"
+                class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-amber-500 transition duration-300 ease-in-out cursor-pointer"
                 data-mdb-ripple="true" data-mdb-ripple-color="orange">
 
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

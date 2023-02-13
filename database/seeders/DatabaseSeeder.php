@@ -84,16 +84,57 @@ class DatabaseSeeder extends Seeder
 
 
         // create default criteria
-        $criterias = Criteria::factory(5)->create();
+        // $criterias = Criteria::factory(5)->create();
+        $criteriaDatas = [
+            [
+                'name' => 'Durasi Pengerjaan',
+                'weight' => 3,
+                'unit' => 'Hari',
+                'description' => 'Total estimasi pengerjaan unit hingga selesai (dalam satuan hari)',
+                'type' => 0
+            ],
+            [
+                'name' => 'Modal Pengerjaan',
+                'weight' => 4,
+                'unit' => 'Juta Rupiah',
+                'description' => 'Perkiraan biaya yang dibutuhkan untuk pengerjaan unit hingga selesai (dalam satuan juta rupiah)',
+                'type' => 1
+            ],
+            [
+                'name' => 'Nilai Pengerjaan',
+                'weight' => 3,
+                'unit' => 'Juta Rupiah',
+                'description' => 'Perkiraan keuntungan yang didapat untuk pengerjaan unit(dalam satuan juta rupiah)',
+                'type' => 0
+            ],
+            [
+                'name' => 'Tenaga Kerja yang Dibutuhkan',
+                'weight' => 2,
+                'unit' => 'Orang',
+                'description' => 'Jumlah karyawan yang dibutuhkan untuk mengerjakan unit',
+                'type' => 1
+            ],
+            [
+                'name' => 'Kesesuaian dengan jadwal',
+                'weight' => 4,
+                'unit' => 'Hari',
+                'description' => 'Selisih antara estimasi pengerjaan dan waktu pengerjaan unit (dalam satuan hari)',
+                'type' => 0
+            ]
+        ];
 
+
+        foreach ($criteriaDatas as $criteriaData) {
+            Criteria::create($criteriaData);
+        }
         // create alternative example
-        for ($i = 0; $i < 5; $i++) {
-            Alternative::create(['name' => 'alternative ' . $i]);
+        for ($i = 1; $i < 6; $i++) {
+            Alternative::create(['name' => 'Alternative ' . $i]);
         }
 
         $alternatives = Alternative::all();
         foreach ($alternatives as $alternative) {
-            foreach ($criterias as $criteria) {
+            foreach (Criteria::all() as $criteria) {
                 $alternative->criterias()->attach($criteria->id, ['value' => rand(1, 100)]);
             }
         }
@@ -101,10 +142,10 @@ class DatabaseSeeder extends Seeder
 
         // Job::factory(15)->create();
 
-        for ($i = 0; $i < 7; $i++) {
+        for ($i = 0; $i < 27; $i++) {
             Job::create([
                 'name' => 'Job ' . $i,
-                'unit_part_number' => 'KT008' . $i,
+                'serial_number' => 'KT008' . $i,
                 'unit_kilometer' => rand(100, 10000),
                 'date_in' => fake()->date('Y-m-d', 'now'),
                 'customer_name' => fake()->name(),

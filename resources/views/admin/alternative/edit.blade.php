@@ -55,7 +55,7 @@
                         <label for="inputName" class="form-label inline-block mb-2 text-gray-700">Criteria
                             <span class="text-amber-500">{{ $criteria->name }}</span></label>
                         <div class="flex items-center gap-2">
-                            <input type="number" name="{{ 'criteria' . $criteria->id }}"
+                            <input type="number" name="{{ 'criteria' . $criteria->id }}" step=".01"
                                 class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                 id="inputName" placeholder="Enter Name" required
                                 @php
@@ -72,6 +72,9 @@ $criteriaData = $alternativeCriteria
                                     d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
                             </svg>
                         </div>
+                        @error('criteria' . $criteria->id)
+                            <small class="block mt-1 text-xs text-red-600">{{ $message }}</small>
+                        @enderror
                     </div>
                 @endforeach
 
@@ -86,17 +89,25 @@ $criteriaData = $alternativeCriteria
                 <button type="submit"
                     class="px-6 py-2.5 bg-amber-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md 
                 hover:bg-amber-600 hover:shadow-lg focus:bg-amber-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-amber-700 
-                active:shadow-lg transition duration-150 ease-in-out">Submit</button>
+                active:shadow-lg transition duration-150 ease-in-out">Update</button>
             </div>
         </form>
     </div>
 @endsection
 @section('script')
+    <script src="https://unpkg.com/@popperjs/core@2.9.1/dist/umd/popper.min.js" charset="utf-8"></script>
     <script>
         $(document).ready(function() {
             $('.js-example-placeholder-single').select2({
-                placeholder: "Select Job Name",
+                placeholder: "Select Job by name",
                 allowClear: true
+            });
+
+            var popoverTriggerList = [].slice.call(
+                document.querySelectorAll('[data-bs-toggle="popover"]')
+            );
+            var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
+                return new Popover(popoverTriggerEl);
             });
         });
     </script>
