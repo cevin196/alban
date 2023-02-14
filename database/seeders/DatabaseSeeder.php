@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\admin\alternative;
 use App\Models\admin\criteria;
 use App\Models\Admin\Job;
+use App\Models\Admin\Service;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
@@ -151,6 +152,12 @@ class DatabaseSeeder extends Seeder
                 'customer_name' => fake()->name(),
                 'status' => rand(0, 1) ? 'To Do' : 'Doing',
             ]);
+        }
+
+        foreach (Job::all() as $job) {
+            // Service::factory(12)->create();
+            Service::factory()->count(rand(1, 5))->state(['job_id' => $job->id])->create();
+            // $job->services()->attach(['name' => 'service'. rand(1,5), 'qty'=> ])
         }
     }
 }

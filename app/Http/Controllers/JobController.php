@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\admin\job;
+use App\Models\Admin\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -56,7 +57,17 @@ class JobController extends Controller
 
     public function update(Request $request, job $job)
     {
-        //
+        $job->services()->delete();
+        foreach ($request->jobServices as $jobService) {
+            Service::create([
+                'name' => $jobService['name'],
+                'qty' => $jobService['qty'],
+                'ammount' => (float)  $jobService['ammount'],
+                'job_id' => $job->id,
+            ]);
+        }
+
+        return redirect()->back();
     }
 
     public function destroy(job $job)

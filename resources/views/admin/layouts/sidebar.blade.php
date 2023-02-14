@@ -3,7 +3,7 @@
     duration-500 bg-bottom bg-no-repeat bg-contain"
     style="background-image: url('{{ asset('images/public/layerSidebar.png') }}')" id="sideNav">
     <a href="{{ route('dashboard') }}" class="hidden lg:flex items-center gap-3 px-6">
-        <img src="{{ asset('images/public/Logo.png') }}" alt="Company Logo" class="w-12 lg:w-20 mx-auto">
+        <img src="{{ asset('images/public/Logo.png') }}" alt="Company Logo" class="w-12 lg:w-20 mx-auto ">
 
     </a>
     <ul class="relative px-1">

@@ -107,7 +107,7 @@
 
 
             </div>
-            @livewire('admin.job-edit', ['job' => $job])
+            @livewire('admin.job-service', ['job' => $job])
 
             <div class="flex justify-center gap-3">
                 <a href="{{ route('job.index') }}"

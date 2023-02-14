@@ -15,4 +15,9 @@ class Job extends Model
     {
         return $this->hasOne(Alternative::class);
     }
+
+    public function services()
+    {
+        return $this->hasMany(Service::class);
+    }
 }
