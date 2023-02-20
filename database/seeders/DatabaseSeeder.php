@@ -142,18 +142,17 @@ class DatabaseSeeder extends Seeder
 
 
         // Job::factory(15)->create();
-
-        for ($i = 0; $i < 27; $i++) {
+        $status = ['To Do', 'Doing', 'Cancelled', 'Done'];
+        for ($i = 0; $i < 100; $i++) {
             Job::create([
                 'name' => 'Job ' . $i,
                 'serial_number' => 'KT008' . $i,
                 'unit_kilometer' => rand(100, 10000),
-                'date_in' => fake()->date('Y-m-d', 'now'),
+                'date_in' => fake()->dateTimeBetween($startDate = '-6 months', $endDate = 'now'),
                 'customer_name' => fake()->name(),
-                'status' => rand(0, 1) ? 'To Do' : 'Doing',
+                'status' => collect($status)->random(),
             ]);
         }
-
         foreach (Job::all() as $job) {
             // Service::factory(12)->create();
             Service::factory()->count(rand(1, 5))->state(['job_id' => $job->id])->create();

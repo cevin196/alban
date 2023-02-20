@@ -46,7 +46,7 @@ class JobController extends Controller
 
     public function show(job $job)
     {
-        //
+        return view('admin.job.show', compact('job'));
     }
 
     public function edit(job $job)
@@ -57,6 +57,24 @@ class JobController extends Controller
 
     public function update(Request $request, job $job)
     {
+        $validated = $request->validate([
+            'name' => 'required',
+            'serial_number' => 'required',
+            'unit_kilometer' => 'required|integer',
+            'date_in' => 'required|date',
+            'customer_name' => 'required'
+        ]);
+
+        $job->update([
+            'name' => $request->name,
+            'serial_number' => $request->serial_number,
+            'unit_kilometer' => $request->unit_kilometer,
+            'date_in' => $request->date_in,
+            'date_out' => $request->date_out,
+            'customer_name' => $request->customer_name,
+            'status' => $request->status,
+        ]);
+
         $job->services()->delete();
         foreach ($request->jobServices as $jobService) {
             Service::create([
@@ -66,12 +84,7 @@ class JobController extends Controller
                 'job_id' => $job->id,
             ]);
         }
-
-        return redirect()->back();
-    }
-
-    public function destroy(job $job)
-    {
-        //
+        notify()->success('Job updated succesfully!');
+        return redirect(route('job.index'));
     }
 }

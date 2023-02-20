@@ -64,8 +64,8 @@
                                             case 'Done':
                                                 $color = 'bg-green-500';
                                                 break;
-                                            case 'Canceled':
-                                                $color = 'bg-amber-500';
+                                            case 'Cancelled':
+                                                $color = 'bg-red-500';
                                                 break;
                                             default:
                                                 $color = 'transparent';

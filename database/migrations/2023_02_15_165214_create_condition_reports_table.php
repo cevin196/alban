@@ -8,18 +8,17 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('services', function (Blueprint $table) {
+        Schema::create('condition_reports', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('qty');
-            $table->double('ammount')->nullable();
-            $table->foreignId('job_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->date('date');
+            $table->foreignId('job_id')->constrained();
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('services');
+        Schema::dropIfExists('condition_reports');
     }
 };

@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,5 +20,10 @@ class Job extends Model
     public function services()
     {
         return $this->hasMany(Service::class);
+    }
+
+    public function selectByMonth(int $monthNumber)
+    {
+        // return $this->;
     }
 }

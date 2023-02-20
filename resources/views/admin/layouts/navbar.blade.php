@@ -1,9 +1,5 @@
 <div class=" fixed w-5/6 mr-10 pr-10 text-right h-15">
     <div class="flex justify-between items-center px-5 py-2 bg-white border w-full lg:w-5/6 fixed right-0">
-        {{-- <a href="{{ route('dashboard') }}" class="flex items-center gap-3">
-            <img src="{{ asset('images/public/Logo.png') }}" alt="Company Logo" class="w-12 lg:w-16">
-            <span class="text-xl lg:text-2xl font-bakbakOne ">Alban Technik Mandiri</span>
-        </a> --}}
         <a href="#">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-list"
                 viewBox="0 0 16 16">
@@ -23,17 +19,13 @@
                 <img src="{{ asset('images/profiles/user1.jpg') }}" alt="Profile picture"
                     class="w-12 h-12 rounded-full bg-contain bg-center cursor-pointer">
             </button>
-            <ul class="dropdown-menu min-w-max absolute hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-xl mt-1 m-0 bg-clip-padding border-gray-400"
+            <ul class="dropdown-menu max-w-sm absolute hidden bg-white text-base z-50 float-left px-1 py-2 list-none text-left rounded-lg shadow-xl mt-1 m-0 bg-clip-padding border border-gray-100"
                 aria-labelledby="dropdownMenuButton1">
                 <li class="p-3 font-bold capitalize">{{ auth()->user()->name }}</li>
                 <li class="p-3 flex justify-between">
                     @foreach (auth()->user()->getRoleNames() as $role)
-                        <span>{{ $role }}</span>
+                        You log in as <span class="text-amber-500 pl-1">{{ $role }}</span>
                     @endforeach
-                </li>
-                <li>
-                    <a class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                        href="#">Profile</a>
                 </li>
                 <li>
                     <a href="#" type="button"

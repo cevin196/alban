@@ -1,16 +1,52 @@
 @extends('admin.layouts.app')
 
+@inject('jobs', 'App\Models\Admin\Job')
+@inject('carbon', 'Carbon\Carbon')
 @section('content')
+    @php
+        $jobDatas = '';
+        $months = [];
+        
+        for ($i = 1; $i < 7; $i++) {
+            $jobDatas .=
+                $jobs
+                    ->whereBetween('date_in', [
+                        $carbon
+                            ::now()
+                            ->startOfMonth()
+                            ->subMonth($i),
+                        $carbon
+                            ::now()
+                            ->startOfMonth()
+                            ->subMonth($i - 1),
+                    ])
+                    ->where('status', 'Done')
+                    ->orderBy('date_in')
+                    ->count() . ', ';
+            $months[] = $carbon
+                ::now()
+                ->startOfMonth()
+                ->subMonth($i)
+                ->format('F');
+        }
+        $months = array_reverse($months);
+    @endphp
     <h1 class="text-2xl lg:text-3xl font-bold">Dashboard</h1>
     <span class="capitalize text-xl text-[#444444]">Here what's doing in your business right now</span>
 
     <div class="grid grid-cols-2 gap-3 mt-3">
-        <div class="shadow-lg overflow-hidden col-span-2 max-h-[22rem] flex justify-center bg-white p-3 mb-3">
-            <canvas id="chartLine"></canvas>
+        {{-- <span class="font-bold text-[#444]">Sub Menu 1</span> --}}
+        <div class="bg-white p-3 mb-3 shadow-lg overflow-hidden col-span-2">
+            <div class="flex justify-center">
+                <span class="font-bold text-[#444] capitalize">comparison of income and expenses each month</span>
+            </div>
+            <div class=" flex justify-center max-h-[22rem]">
+                <canvas id="chartLine"></canvas>
+            </div>
         </div>
 
         <div class="p-3 bg-white shadow col-span-2 sm:col-span-1">
-            <span class="font-bold text-[#444]">Sub Menu 1</span>
+            <span class="font-bold text-[#444]">Job Done in Last Six Month</span>
             <canvas id="chartBar"></canvas>
         </div>
 
@@ -22,22 +58,32 @@
 
     </div>
 
-
-
     <!-- Required chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Chart line -->
+
     <script>
-        const labels = ["January", "February", "March", "April", "May", "June"];
+        const labels = [
+            @foreach ($months as $month)
+                "{{ $month }}",
+            @endforeach
+        ];
         const data = {
             labels: labels,
             datasets: [{
-                label: "My First dataset",
-                backgroundColor: "rgb(255, 139, 0)",
-                borderColor: "rgb(255, 139, 0)",
-                data: [0, 10, 5, 2, 20, 30, 45],
-            }, ],
+                    label: "Income",
+                    backgroundColor: "rgb(121, 217, 76)",
+                    borderColor: "rgb(121, 217, 76)",
+                    data: [20, 22, 27, 18, 17, 22],
+                },
+                {
+                    label: "Outcome",
+                    backgroundColor: "rgb(255, 139, 0)",
+                    borderColor: "rgb(255, 139, 0)",
+                    data: [18, 20, 25, 16, 15, 20],
+                },
+            ],
         };
 
         const configLineChart = {
@@ -51,23 +97,16 @@
             configLineChart
         );
 
-        // // // // // // // //
+        // // // // // // // // //
 
-        const labelsBarChart = [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-        ];
+
         const dataBarChart = {
-            labels: labelsBarChart,
+            labels: labels,
             datasets: [{
-                label: "My First dataset",
+                label: "Job",
                 backgroundColor: "rgb(255, 139, 0)",
                 borderColor: "rgb(255, 139, 0)",
-                data: [10, 10, 5, 2, 20, 30, 45],
+                data: [{{ $jobDatas }}],
             }, ],
         };
 

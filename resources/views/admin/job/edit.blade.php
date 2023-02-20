@@ -97,7 +97,7 @@
                         <option value="To Do" {{ $job->status == 'To Do' ? 'selected' : '' }}>To Do</option>
                         <option value="Doing" {{ $job->status == 'Doing' ? 'selected' : '' }}>Doing</option>
                         <option value="Done" {{ $job->status == 'Done' ? 'selected' : '' }}>Done</option>
-                        <option value="Canceled" {{ $job->status == 'Canceled' ? 'selected' : '' }}>Canceled</option>
+                        <option value="Cancelled" {{ $job->status == 'Cancelled' ? 'selected' : '' }}>Canceled</option>
                     </select>
                     <small id="emailHelp" class="block mt-1 text-xs text-gray-600">* Not required</small>
                     @error('status')
