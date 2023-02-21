@@ -22,8 +22,13 @@ class Job extends Model
         return $this->hasMany(Service::class);
     }
 
-    public function selectByMonth(int $monthNumber)
+    public function spareParts()
     {
-        // return $this->;
+        return $this->hasMany(SparePart::class);
+    }
+
+    public function conditionReports()
+    {
+        return $this->hasMany(ConditionReport::class);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\admin\job;
 use App\Models\Admin\Service;
+use App\Models\Admin\SparePart;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -84,7 +85,22 @@ class JobController extends Controller
                 'job_id' => $job->id,
             ]);
         }
+
+        $job->spareParts()->delete();
+        foreach ($request->jobSpareParts as $jobSparePart) {
+            SparePart::create([
+                'name' => $jobSparePart['name'],
+                'qty' => $jobSparePart['qty'],
+                'ammount' => (float)  $jobSparePart['ammount'],
+                'job_id' => $job->id,
+            ]);
+        }
         notify()->success('Job updated succesfully!');
         return redirect(route('job.index'));
+    }
+
+    public function print(Job $job)
+    {
+        return view('admin.job.print', compact('job'));
     }
 }

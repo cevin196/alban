@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('customer_name');
             $table->foreignId('user_id')->nullable()->constrained();
             $table->string('status', 20)->default('To Do');
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }

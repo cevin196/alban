@@ -1,10 +1,5 @@
 @extends('admin.layouts.app')
 
-@section('head')
-    <link rel="stylesheet" href="{{ asset('select2-4.1.0-rc.0/dist/css/select2.min.css') }}">
-    <script src="{{ asset('select2-4.1.0-rc.0/dist/js/select2.min.js') }}"></script>
-@endsection
-
 @section('content')
     <div class="flex gap-1 text-xl items-center text-[#444444]">
         <a href="{{ route('job.index') }}" class="font-bold">Job</a>
@@ -17,7 +12,7 @@
     </div>
 
     <div class="bg-white rounded p-5 mt-3 shadow-lg w-full">
-        <span class="text-[#444444] font-bold text-lg">Edit Job</span>
+        <span class="text-[#444444] font-bold text-lg">Job Detail</span>
 
         <form class="mt-3" method="POST" action="{{ route('job.update', $job) }}">
             @csrf @method('put')
@@ -107,7 +102,18 @@
 
 
             </div>
+            <hr class="my-3">
+            <span class="text-[#444444] font-bold text-lg">Services and Spare part used</span>
             @livewire('admin.job-service', ['job' => $job])
+            @livewire('admin.job-spare-part', ['job' => $job])
+
+
+            <hr class="my-3">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-[#444444] font-bold text-lg">Condition Report</span>
+            </div>
+
+            @livewire('admin.condition-report', ['job' => $job])
 
             <div class="flex justify-center gap-3">
                 <a href="{{ route('job.index') }}"
@@ -124,22 +130,4 @@
 
 
     </div>
-@endsection
-@section('script')
-    <script src="https://unpkg.com/@popperjs/core@2.9.1/dist/umd/popper.min.js" charset="utf-8"></script>
-    <script>
-        $(document).ready(function() {
-            $('.js-example-placeholder-single').select2({
-                placeholder: "Select Job by name",
-                allowClear: true
-            });
-
-            var popoverTriggerList = [].slice.call(
-                document.querySelectorAll('[data-bs-toggle="popover"]')
-            );
-            var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
-                return new Popover(popoverTriggerEl);
-            });
-        });
-    </script>
 @endsection

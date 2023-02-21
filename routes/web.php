@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AlternativeController;
+use App\Http\Controllers\ConditionReportController;
 use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\JobPriorityController;
@@ -31,6 +32,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('jobPriority', [JobPriorityController::class, 'index'])->name('jobPriority.index');
     Route::resource('job', JobController::class)->except('destroy');
+    Route::get('job/print/{job}', [JobController::class, 'print'])->name('job.print');
+
+    Route::resource('conditionReport', ConditionReportController::class)->except(['show', 'index', 'create']);
+    Route::get('condition/create/{job}', [ConditionReportController::class, 'create'])->name('conditionReport.create');
     // Route::resource('finance')
 });
 

@@ -5,9 +5,11 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\admin\alternative;
+use App\Models\Admin\ConditionReport;
 use App\Models\admin\criteria;
 use App\Models\Admin\Job;
 use App\Models\Admin\Service;
+use App\Models\Admin\SparePart;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
@@ -140,8 +142,6 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-
-        // Job::factory(15)->create();
         $status = ['To Do', 'Doing', 'Cancelled', 'Done'];
         for ($i = 0; $i < 100; $i++) {
             Job::create([
@@ -153,10 +153,12 @@ class DatabaseSeeder extends Seeder
                 'status' => collect($status)->random(),
             ]);
         }
+
+        // create job relation with services and spareparts
         foreach (Job::all() as $job) {
-            // Service::factory(12)->create();
             Service::factory()->count(rand(1, 5))->state(['job_id' => $job->id])->create();
-            // $job->services()->attach(['name' => 'service'. rand(1,5), 'qty'=> ])
+            SparePart::factory()->count(rand(1, 5))->state(['job_id' => $job->id])->create();
+            ConditionReport::factory()->count(rand(1, 3))->state(['job_id' => $job->id])->create();
         }
     }
 }

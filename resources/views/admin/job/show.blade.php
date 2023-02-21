@@ -50,10 +50,13 @@
                 </tr>
             </table>
         </div>
+
+        {{-- service --}}
+
         <div class="flex justify-center mt-3">
             <span class="font-bold">Services</span>
         </div>
-        <table class="mx-auto">
+        <table class="mx-auto w-3/4">
             <thead class="border-b bg-gray-50">
                 <tr>
                     <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4 w-1/12">
@@ -110,6 +113,85 @@
                 </tr>
             </tbody>
         </table>
+
+        {{-- service end --}}
+
+        {{-- sparepart --}}
+
+        <div class="flex justify-center mt-3">
+            <span class="font-bold">Spare Parts</span>
+        </div>
+        <table class="mx-auto w-3/4">
+            <thead class="border-b bg-gray-50">
+                <tr>
+                    <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4 w-1/12">
+                        #
+                    </th>
+                    <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4">
+                        Spare Part Name
+                    </th>
+                    <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4">
+                        Qty
+                    </th>
+                    <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4">
+                        Ammount
+                    </th>
+                    <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4">
+                        Sub Total
+                    </th>
+
+                </tr>
+            </thead class="border-b">
+            <tbody>
+                @php
+                    $totalSpareParts = 0;
+                @endphp
+                @foreach ($job->spareParts as $jobSparePart)
+                    @php
+                        $subTotal = $jobSparePart->qty * $jobSparePart->ammount;
+                        $totalSpareParts += $subTotal;
+                    @endphp
+                    <tr class="bg-white border-b">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                            {{ $loop->index + 1 }}</td>
+                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                            {{ $jobSparePart->name }}
+                        </td>
+                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
+                            {{ $jobSparePart->qty }}
+                        </td>
+                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-right">
+                            {{ rupiah($jobSparePart->ammount) }}
+                        </td>
+                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-right">
+                            {{ rupiah($subTotal) }}
+                        </td>
+                    </tr>
+                @endforeach
+                <tr>
+                    <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap text-right" colspan="4">
+                        Total Service
+                    </td>
+                    <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap text-right">
+                        {{ rupiah($totalSpareParts) }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        {{-- sparepart end --}}
+
+        <table class="mx-auto  w-3/4 border-t-4">
+            <tr>
+                <td class="text-lg text-gray-900 font-bold px-6 py-4 whitespace-nowrap text-center">
+                    Grand Total:
+                </td>
+                <td class="text-lg text-gray-900 font-bold px-6 py-4 whitespace-nowrap text-right">
+                    {{ rupiah($totalSpareParts + $totalServices) }}
+                </td>
+            </tr>
+        </table>
+
 
         <div class="flex justify-center gap-3 mt-5">
             <a href="{{ route('job.index') }}"

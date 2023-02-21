@@ -4,20 +4,15 @@ namespace Database\Factories\Admin;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Admin\SparePart>
- */
 class SparePartFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition()
     {
         return [
-            //
+            'name' => fake()->name(),
+            'qty' => rand(1, 5),
+            'ammount' => fake()->randomNumber(6),
+            'job_id' => 1,
         ];
     }
 }

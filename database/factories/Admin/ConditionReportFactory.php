@@ -9,15 +9,12 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ConditionReportFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition()
     {
         return [
-            //
+            'name' => fake()->name(),
+            'date' => fake()->dateTimeBetween($startDate = '-6 months', $endDate = 'now'),
+            'job_id' => 1,
         ];
     }
 }
