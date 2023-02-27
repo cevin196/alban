@@ -101,7 +101,6 @@
                         @endforeach
                     </td>
 
-
                     <td>
                         = {{ round($alternative->vectorS(), 3) }}
                     </td>

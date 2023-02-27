@@ -1,35 +1,8 @@
 @extends('admin.layouts.app')
 
-@inject('jobs', 'App\Models\Admin\Job')
-@inject('carbon', 'Carbon\Carbon')
 @section('content')
     @php
-        $jobDatas = '';
-        $months = [];
         
-        for ($i = 1; $i < 7; $i++) {
-            $jobDatas .=
-                $jobs
-                    ->whereBetween('date_in', [
-                        $carbon
-                            ::now()
-                            ->startOfMonth()
-                            ->subMonth($i),
-                        $carbon
-                            ::now()
-                            ->startOfMonth()
-                            ->subMonth($i - 1),
-                    ])
-                    ->where('status', 'Done')
-                    ->orderBy('date_in')
-                    ->count() . ', ';
-            $months[] = $carbon
-                ::now()
-                ->startOfMonth()
-                ->subMonth($i)
-                ->format('F');
-        }
-        $months = array_reverse($months);
     @endphp
     <h1 class="text-2xl lg:text-3xl font-bold">Dashboard</h1>
     <span class="capitalize text-xl text-[#444444]">Here what's doing in your business right now</span>
@@ -75,13 +48,13 @@
                     label: "Income",
                     backgroundColor: "rgb(121, 217, 76)",
                     borderColor: "rgb(121, 217, 76)",
-                    data: [20, 22, 27, 18, 17, 22],
+                    data: [{{ $financeDataIncome }}],
                 },
                 {
                     label: "Outcome",
                     backgroundColor: "rgb(255, 139, 0)",
                     borderColor: "rgb(255, 139, 0)",
-                    data: [18, 20, 25, 16, 15, 20],
+                    data: [{{ $financeDataOutcome }}],
                 },
             ],
         };
@@ -149,21 +122,3 @@
         );
     </script>
 @endsection
-{{-- old dashboard --}}
-{{-- <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-        </div>
-    </div>
-</x-app-layout> --}}

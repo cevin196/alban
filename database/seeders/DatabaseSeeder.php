@@ -150,7 +150,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Job ' . $i,
                 'serial_number' => 'KT008' . $i,
                 'unit_kilometer' => rand(100, 10000),
-                'date_in' => fake()->dateTimeBetween($startDate = '-6 months', $endDate = 'now'),
+                'date_in' => fake()->dateTimeBetween($startDate = '-7 months', $endDate = 'now'),
                 'customer_name' => fake()->name(),
                 'status' => collect($status)->random(),
             ]);
