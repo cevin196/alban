@@ -4,20 +4,14 @@ namespace Database\Factories\Admin;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Admin\Picture>
- */
 class PictureFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition()
     {
         return [
-            //
+            'description' => fake()->paragraph($nbSentences = rand(1, 4)),
+            'path' => 'images/conditionReport/conditionReportDefault.jpeg',
+            // 'condition_report_id' => 1,
         ];
     }
 }

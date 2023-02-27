@@ -14,4 +14,9 @@ class ConditionReport extends Model
     {
         return $this->belongsTo(Job::class);
     }
+
+    public function pictures()
+    {
+        return $this->hasMany(Picture::class);
+    }
 }

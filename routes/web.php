@@ -9,6 +9,8 @@ use App\Http\Controllers\NavigationController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Models\Admin\Job;
+use App\Models\Admin\Service;
 use Illuminate\Support\Facades\Route;
 
 
@@ -38,5 +40,6 @@ Route::middleware('auth')->group(function () {
     Route::get('condition/create/{job}', [ConditionReportController::class, 'create'])->name('conditionReport.create');
     // Route::resource('finance')
 });
+
 
 require __DIR__ . '/auth.php';

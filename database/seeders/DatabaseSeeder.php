@@ -7,7 +7,9 @@ namespace Database\Seeders;
 use App\Models\admin\alternative;
 use App\Models\Admin\ConditionReport;
 use App\Models\admin\criteria;
+use App\Models\Admin\Finance;
 use App\Models\Admin\Job;
+use App\Models\Admin\Picture;
 use App\Models\Admin\Service;
 use App\Models\Admin\SparePart;
 use App\Models\User;
@@ -160,5 +162,12 @@ class DatabaseSeeder extends Seeder
             SparePart::factory()->count(rand(1, 5))->state(['job_id' => $job->id])->create();
             ConditionReport::factory()->count(rand(1, 3))->state(['job_id' => $job->id])->create();
         }
+
+        $conditionReports = ConditionReport::all();
+        foreach ($conditionReports as $conditionReport) {
+            Picture::factory()->count(rand(1, 5))->state(['condition_report_id' => $conditionReport->id])->create();
+        }
+
+        Finance::factory(50)->create();
     }
 }

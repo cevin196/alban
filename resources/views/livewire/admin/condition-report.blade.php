@@ -30,7 +30,7 @@
 
                     <td class="text-sm text-gray-900 font-light">
                         <div class="flex justify-around">
-                            <a href="{{ route('job.edit', $jobConditionReport) }}" title="Edit">
+                            <a href="{{ route('conditionReport.edit', $jobConditionReport) }}" title="Edit">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                     fill="currentColor" class="bi bi-pencil-square text-amber-500" viewBox="0 0 16 16">
                                     <path
@@ -55,8 +55,11 @@
             <tr>
                 <td colspan="4">
                     <div class="p-2 flex justify-end">
-                        <a href="{{ route('conditionReport.create', $job->id) }}"
-                            class="bg-green-500 hover:bg-green-600 text-white rounded py-1 px-2">Add New</a>
+                        <a href="#" title="Create New" data-bs-toggle="modal"
+                            data-bs-target="#createConditionReportModal"
+                            class="bg-green-500 hover:bg-green-600 text-white rounded py-1 px-2">
+                            Add new
+                        </a>
                     </div>
                 </td>
             </tr>
@@ -95,6 +98,43 @@
                         class="px-6 py-2.5 bg-red-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1"
                         data-bs-dismiss="modal">
                         Confirm
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div wire:key="bar" wire:ignore.self
+        class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+        id="createConditionReportModal" tabindex="-1" aria-labelledby="createConditionReportModal" aria-hidden="true">
+        <div class="modal-dialog relative w-auto pointer-events-none">
+            <div
+                class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+                <div
+                    class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+                    <h5 class="text-xl font-medium leading-normal text-gray-800" id="createConditionReportModal">Create
+                        New
+                        Condition Report
+                    </h5>
+                    <button type="button"
+                        class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body relative p-4">
+                    <input type="text" wire:model="conditionReportName">
+                    <input type="date" wire:model="conditionReportDate">
+                </div>
+                <div
+                    class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+                    <button type="button"
+                        class="px-6 py-2.5 bg-gray-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out"
+                        data-bs-dismiss="modal">Close</button>
+                    <button type="button" wire:click.prevent="saveConditionReport()"
+                        class="px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out ml-1"
+                        data-bs-dismiss="modal">
+                        Submit
                     </button>
                 </div>
             </div>

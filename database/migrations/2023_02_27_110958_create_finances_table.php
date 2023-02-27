@@ -8,17 +8,17 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('pictures', function (Blueprint $table) {
+        Schema::create('finances', function (Blueprint $table) {
             $table->id();
-            $table->text('path');
-            $table->text('description')->nullable();
-            $table->foreignId('condition_report_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->boolean('type');
+            $table->double('ammount');
+            $table->date('date');
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('pictures');
+        Schema::dropIfExists('finances');
     }
 };
