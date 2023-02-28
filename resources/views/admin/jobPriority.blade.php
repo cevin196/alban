@@ -8,6 +8,25 @@
 
 
     <div class="shadow-lg overflow-hiddenbg-white p-3 mb-3 bg-white mt-3">
+        <div class="flex justify-center">
+            <span>Alternatif terbaik Berdasarkan Perhitungan Menggunakan Metode Weighted Product Adalah</span>
+        </div>
+        <table class="w-1/2 mx-auto">
+            <tr>
+                <th>Alias</th>
+                <th>Name</th>
+                <th>Vector V Point</th>
+                <th>Order</th>
+            </tr>
+            @foreach ($alternativeDatas as $index => $alternative)
+                <tr>
+                    <td class="text-center">{{ $alternative['alias'] }}</td>
+                    <td class="text-center">{{ $alternative['name'] }}</td>
+                    <td class="text-center">{{ $alternative['vectorV'] }}</td>
+                    <td class="text-center">{{ $loop->index + 1 }}</td>
+                </tr>
+            @endforeach
+        </table>
         <table class="mx-auto text-center">
             <tr class="border-b">
                 <td class="px-4 py-1" rowspan="2">Alternative</td>

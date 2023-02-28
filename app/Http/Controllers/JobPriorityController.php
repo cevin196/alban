@@ -14,24 +14,27 @@ class JobPriorityController extends Controller
 
         // alternatives
         $alternativeDatas = collect();
-        $alternativeModels = Alternative::all();
+        $alternatives = Alternative::all();
 
         // criterias
-        $criteriaModels = Criteria::all();
+        $criterias = Criteria::all();
         $criteriaDatas = collect();
+        $totalPreferenceWeightCount = $criterias->sum('weight');
 
+        // alternative criterias
+        $alternativeCriterias = AlternativeCriteria::all();
 
         // vector S
         $vectorSes = collect();
         $vectorSTotal = 0;
-        foreach ($alternativeModels as $alternative) {
+        foreach ($alternatives as $alternative) {
             $vectorSTotal += $alternative->vectorS();
         }
 
         // vector V
         $vectorVs = collect();
 
-        foreach ($alternativeModels as $index => $alternativeModel) {
+        foreach ($alternatives as $index => $alternativeModel) {
             $vectorS = $alternativeModel->vectorS();
             $vectorV = $vectorS / $vectorSTotal;
 
@@ -48,7 +51,7 @@ class JobPriorityController extends Controller
 
 
 
-        foreach ($criteriaModels as $index => $criteriaModel) {
+        foreach ($criterias as $index => $criteriaModel) {
             $criteriaDatas->push([
                 'name' => $criteriaModel->name,
                 'alias' => 'C' . $index + 1,
@@ -58,24 +61,24 @@ class JobPriorityController extends Controller
 
         $alternativeDatas = $alternativeDatas->sortBy('vectorV', SORT_REGULAR, $descending = true);
         $pertama  = $alternativeDatas->first();
-        dd('pilihan utama adalah ' . $pertama['name']);
 
         // $criterias = Criteria::all();
-        // $totalPreferenceWeightCount = $criterias->sum('weight');
+
         // $alternatives = Alternative::all();
-        // $alternativeCriterias = AlternativeCriteria::all();
+
 
         // $vectorSTotal = 0;
         // foreach ($alternatives as $alternative) {
         //     $vectorSTotal += $alternative->vectorS();
         // }
 
-        // return view('admin.jobPriority', compact(
-        //     'criterias',
-        //     'alternatives',
-        //     'alternativeCriterias',
-        //     'totalPreferenceWeightCount',
-        //     'vectorSTotal'
-        // ));
+        return view('admin.jobPriority', compact(
+            'criterias',
+            'alternatives',
+            'alternativeCriterias',
+            'totalPreferenceWeightCount',
+            'vectorSTotal',
+            'alternativeDatas'
+        ));
     }
 }
