@@ -9,5 +9,10 @@ class Finance extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['type', 'ammount', 'date'];
+    protected $fillable = ['description', 'type', 'ammount', 'date'];
+
+    public function getTypeAttribute()
+    {
+        return ($this->attributes['type'] == 0) ? 'Outcome' : 'Income';
+    }
 }

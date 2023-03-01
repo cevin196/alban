@@ -3,6 +3,7 @@
 use App\Http\Controllers\AlternativeController;
 use App\Http\Controllers\ConditionReportController;
 use App\Http\Controllers\CriteriaController;
+use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\JobPriorityController;
 use App\Http\Controllers\NavigationController;
@@ -38,7 +39,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('conditionReport', ConditionReportController::class)->except(['show', 'index', 'create']);
     Route::get('condition/create/{job}', [ConditionReportController::class, 'create'])->name('conditionReport.create');
-    // Route::resource('finance')
+    Route::resource('finance', FinanceController::class)->except(['show', 'destroy']);
 });
 
 

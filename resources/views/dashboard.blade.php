@@ -4,7 +4,7 @@
     @php
         
     @endphp
-    <h1 class="text-2xl lg:text-3xl font-bold">Dashboard</h1>
+    <h1 class="text-2xl lg:text-3xl font-bold">Home page</h1>
     <span class="capitalize text-xl text-[#444444]">Here what's doing in your business right now</span>
 
     <div class="grid grid-cols-2 gap-3 mt-3">

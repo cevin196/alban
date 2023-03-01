@@ -16,37 +16,16 @@
             </a>
         </li>
         <li class="relative" id="sidenavSecEx2">
-            <a class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-amber-500 transition duration-300 ease-in-out cursor-pointer"
-                data-mdb-ripple="true" data-mdb-ripple-color="orange" data-bs-toggle="collapse"
-                data-bs-target="#collapseSidenavSecEx2" aria-expanded="false" aria-controls="collapseSidenavSecEx2">
-
+            <a href="{{ route('finance.index') }}"
+                class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-amber-500 transition duration-300 ease-in-out cursor-pointer"
+                data-mdb-ripple="true" data-mdb-ripple-color="orange">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-5 h-5 mr-2 text-green-500">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
                 </svg>
-
                 <span>Finance</span>
-                <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-3 h-3 ml-auto" role="img"
-                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                    <path fill="currentColor"
-                        d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z">
-                    </path>
-                </svg>
             </a>
-            <ul class="relative accordion-collapse collapse" id="collapseSidenavSecEx2" aria-labelledby="sidenavSecEx2"
-                data-bs-parent="#sideNav">
-                <li class="relative">
-                    <a href="#!"
-                        class="flex items-center text-xs py-4 pl-12 pr-6 h-6 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-amber-500 transition duration-300 ease-in-out"
-                        data-mdb-ripple="true" data-mdb-ripple-color="orange">Link 1</a>
-                </li>
-                <li class="relative">
-                    <a href="#!"
-                        class="flex items-center text-xs py-4 pl-12 pr-6 h-6 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-amber-500 transition duration-300 ease-in-out"
-                        data-mdb-ripple="true" data-mdb-ripple-color="orange">Link 2</a>
-                </li>
-            </ul>
         </li>
         <li class="relative" id="sidenavSecEx3">
             <a href="{{ route('job.index') }}"
@@ -60,26 +39,7 @@
                 </svg>
 
                 <span>Jobs</span>
-                {{-- <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-3 h-3 ml-auto" role="img"
-                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                    <path fill="currentColor"
-                        d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z">
-                    </path>
-                </svg> --}}
             </a>
-            {{-- <ul class="relative accordion-collapse collapse" id="collapseSidenavSecEx3" aria-labelledby="sidenavSecEx3"
-                data-bs-parent="#sideNav">
-                <li class="relative">
-                    <a href="#!"
-                        class="flex items-center text-xs py-4 pl-12 pr-6 h-6 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-amber-500 transition duration-300 ease-in-out"
-                        data-mdb-ripple="true" data-mdb-ripple-color="orange">Link 3</a>
-                </li>
-                <li class="relative">
-                    <a href="#!"
-                        class="flex items-center text-xs py-4 pl-12 pr-6 h-6 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-amber-500 transition duration-300 ease-in-out"
-                        data-mdb-ripple="true" data-mdb-ripple-color="orange">Link 4</a>
-                </li>
-            </ul> --}}
         </li>
 
         <li class="relative" id="SideNavUser">

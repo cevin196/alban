@@ -10,6 +10,7 @@ return new class extends Migration
     {
         Schema::create('finances', function (Blueprint $table) {
             $table->id();
+            $table->string('description');
             $table->boolean('type');
             $table->double('ammount');
             $table->date('date');
