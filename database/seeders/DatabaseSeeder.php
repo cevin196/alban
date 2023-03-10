@@ -48,6 +48,11 @@ class DatabaseSeeder extends Seeder
             'permission_show',
             'permission_delete',
             'permission_access',
+            'finance_create',
+            'finance_edit',
+            'finance_show',
+            'finance_delete',
+            'finance_access',
         ];
         // create permissions
         foreach ($permissions as $permission) {
@@ -93,7 +98,7 @@ class DatabaseSeeder extends Seeder
         $criteriaDatas = [
             [
                 'name' => 'Durasi Pengerjaan',
-                'weight' => 3,
+                'weight' => 2,
                 'unit' => 'Hari',
                 'description' => 'Total estimasi pengerjaan unit hingga selesai (dalam satuan hari)',
                 'type' => 0
@@ -103,28 +108,28 @@ class DatabaseSeeder extends Seeder
                 'weight' => 4,
                 'unit' => 'Juta Rupiah',
                 'description' => 'Perkiraan biaya yang dibutuhkan untuk pengerjaan unit hingga selesai (dalam satuan juta rupiah)',
-                'type' => 1
+                'type' => 0
             ],
             [
                 'name' => 'Nilai Pengerjaan',
                 'weight' => 3,
                 'unit' => 'Juta Rupiah',
                 'description' => 'Perkiraan keuntungan yang didapat untuk pengerjaan unit(dalam satuan juta rupiah)',
-                'type' => 0
+                'type' => 1
             ],
             [
                 'name' => 'Tenaga Kerja yang Dibutuhkan',
                 'weight' => 2,
                 'unit' => 'Orang',
                 'description' => 'Jumlah karyawan yang dibutuhkan untuk mengerjakan unit',
-                'type' => 1
+                'type' => 0
             ],
             [
                 'name' => 'Kesesuaian dengan jadwal',
-                'weight' => 4,
+                'weight' => 5,
                 'unit' => 'Hari',
                 'description' => 'Selisih antara estimasi pengerjaan dan waktu pengerjaan unit (dalam satuan hari)',
-                'type' => 0
+                'type' => 1
             ]
         ];
 

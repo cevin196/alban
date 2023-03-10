@@ -1,22 +1,20 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    @php
-        
-    @endphp
     <h1 class="text-2xl lg:text-3xl font-bold">Home page</h1>
     <span class="capitalize text-xl text-[#444444]">Here what's doing in your business right now</span>
 
     <div class="grid grid-cols-2 gap-3 mt-3">
-        {{-- <span class="font-bold text-[#444]">Sub Menu 1</span> --}}
-        <div class="bg-white p-3 mb-3 shadow-lg overflow-hidden col-span-2">
-            <div class="flex justify-center">
-                <span class="font-bold text-[#444] capitalize">comparison of income and expenses each month</span>
+        @can('finance_show')
+            <div class="bg-white p-3 mb-3 shadow-lg overflow-hidden col-span-2">
+                <div class="flex justify-center">
+                    <span class="font-bold text-[#444] capitalize">comparison of income and expenses each month</span>
+                </div>
+                <div class=" flex justify-center max-h-[22rem]">
+                    <canvas id="chartLine"></canvas>
+                </div>
             </div>
-            <div class=" flex justify-center max-h-[22rem]">
-                <canvas id="chartLine"></canvas>
-            </div>
-        </div>
+        @endcan
 
         <div class="p-3 bg-white shadow col-span-2 sm:col-span-1">
             <span class="font-bold text-[#444]">Job Done in Last Six Month</span>
