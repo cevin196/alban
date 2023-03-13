@@ -43,7 +43,7 @@ class JobPriorityController extends Controller
             $vectorSTotal += $vectorS;
         }
 
-        foreach ($alternatives as  $alternative) {
+        foreach ($alternatives as  $index => $alternative) {
             // vector S
             $vectorS = 1;
 
@@ -91,7 +91,7 @@ class JobPriorityController extends Controller
 
         // dd($alternativeDatas);
         // $alternativeDatas = $alternativeDatas->sortBy('vectorV', SORT_REGULAR, $descending = true);
-        // $pertama  = $alternativeDatas->first();
+        $sortedAlternatives  = $alternativeDatas->sortBy('vector_v', SORT_REGULAR, $descending = true);
 
         return view('admin.jobPriority', compact(
             'alternativeDatas',
@@ -100,8 +100,7 @@ class JobPriorityController extends Controller
             // 'alternativeCriterias',
             'totalPreferenceWeightCount',
             'vectorSTotal',
-            // 'minValue',
-            // 'maxValue'
+            'sortedAlternatives'
         ));
     }
 

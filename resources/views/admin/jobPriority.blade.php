@@ -11,19 +11,19 @@
         <div class="flex justify-center mt-5">
             <span>Urutan prioritas alternative setelah menggunakan metode weighted product</span>
         </div>
-        <table class="max-w-screen-md mx-auto">
-            <tr>
-                <th>Alias</th>
-                <th>Name</th>
-                <th>Vector V Point</th>
-                <th>Order</th>
+        <table class=" mx-auto">
+            <tr class="border">
+                <th class="border">Alias</th>
+                <th class="border">Name</th>
+                <th class="border px-4">Vector V Point</th>
+                <th class="border">Order</th>
             </tr>
-            @foreach ($alternativeDatas as $index => $alternative)
-                <tr>
-                    <td class="text-center">{{ $alternative['alias'] }}</td>
-                    <td class="text-center">{{ $alternative['name'] }}</td>
-                    {{-- <td class="text-center">{{ $alternative['vectorV'] }}</td> --}}
-                    <td class="text-center">{{ $loop->index + 1 }}</td>
+            @foreach ($sortedAlternatives as $index => $alternative)
+                <tr class="border">
+                    <td class="text-center px-4 border">{{ $alternative['alias'] }}</td>
+                    <td class="text-center px-4">{{ $alternative['name'] }}</td>
+                    <td class="text-center px-4">{{ $alternative['vector_v'] }}</td>
+                    <td class="text-center px-4">{{ $loop->index + 1 }}</td>
                 </tr>
             @endforeach
         </table>
