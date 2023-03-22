@@ -6,3 +6,18 @@
     font-family: "bakbakOne";
     src: url("../../public/fonts/BakbakOne-Regular.ttf");
 }
+
+@layer components {
+    .bg-primary {
+        @apply bg-amber-500 text-white;
+
+    }
+
+    .text-primary {
+        @apply text-amber-500;
+    }
+
+    .border-primary {
+        @apply border border-amber-500
+    }
+}

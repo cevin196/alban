@@ -13,8 +13,12 @@ class JobPriorityController extends Controller
     public function index()
     {
 
+        $count = collect();
+        $alternatives = Alternative::all();
+
         // alternatives
-        $alternativeDatas = collect();
+        $normalAlternatives = collect();
+        $specialAlternatives = collect();
         $alternatives = Alternative::all();
 
         // criterias
@@ -29,78 +33,95 @@ class JobPriorityController extends Controller
         // // vector S
         $vectorSTotal = 0;
         foreach ($alternatives as $index => $alternative) {
-            // vector S
-            $vectorS = 1;
-
-            foreach ($alternative->criterias as $alternativeCriteria) {
-                $maxValue = AlternativeCriteria::where('criteria_id', $alternativeCriteria->id)->max('value');
-                $minValue = AlternativeCriteria::where('criteria_id', $alternativeCriteria->id)->min('value');
-
+            if ($alternative->normalCheck()) {
                 // vector S
-                $pangkat = $alternativeCriteria->getNormalizedWeight();
-                $vectorS *= pow($this->normalize($alternativeCriteria->pivot->value, $minValue, $maxValue, $alternativeCriteria->type), $pangkat);
+                $vectorS = 1;
+
+                foreach ($alternative->criterias as $alternativeCriteria) {
+                    if ($alternativeCriteria->pivot->value == 0) {
+                        continue;
+                    }
+                    $maxValue = AlternativeCriteria::where('criteria_id', $alternativeCriteria->id)->max('value');
+                    $minValue = AlternativeCriteria::where('criteria_id', $alternativeCriteria->id)->min('value');
+
+                    // vector S
+                    $pangkat = $alternativeCriteria->getNormalizedWeight();
+                    $vectorS *= pow($this->normalize($alternativeCriteria->pivot->value, $minValue, $maxValue, $alternativeCriteria->type), $pangkat);
+                }
+                $vectorSTotal += $vectorS;
             }
-            $vectorSTotal += $vectorS;
         }
 
         foreach ($alternatives as  $index => $alternative) {
-            // vector S
-            $vectorS = 1;
-
-            // criteria data
-            $criteriaDatas = collect();
-
-            foreach ($alternative->criterias as $alternativeCriteria) {
-                // normalization
-                $maxValue = AlternativeCriteria::where('criteria_id', $alternativeCriteria->id)->max('value');
-                $minValue = AlternativeCriteria::where('criteria_id', $alternativeCriteria->id)->min('value');
-
+            if ($alternative->normalCheck()) {
                 // vector S
-                $pangkat = $alternativeCriteria->getNormalizedWeight();
-                $vectorS *= pow(
-                    $this->normalize(
-                        $alternativeCriteria->pivot->value,
-                        $minValue,
-                        $maxValue,
-                        $alternativeCriteria->type
-                    ),
-                    $pangkat
-                );
+                $vectorS = 1;
 
-                // normalize alternative value
-                $criteriaDatas->push([
-                    'name' => $alternativeCriteria->name,
-                    'type' => $alternativeCriteria->type,
-                    'value' => $alternativeCriteria->pivot->value,
-                    'normalized_value' => $this->normalize($alternativeCriteria->pivot->value, $minValue, $maxValue, $alternativeCriteria->type),
-                    'normalized_weight' => $alternativeCriteria->getNormalizedWeight(),
+                // criteria data
+                $criteriaDatas = collect();
+
+                foreach ($alternative->criterias as $alternativeCriteria) {
+                    if ($alternativeCriteria->pivot->value == 0) {
+                        continue;
+                    }
+                    // normalization
+                    $maxValue = AlternativeCriteria::where('criteria_id', $alternativeCriteria->id)->max('value');
+                    $minValue = AlternativeCriteria::where('criteria_id', $alternativeCriteria->id)->min('value');
+
+                    // vector S
+                    $pangkat = $alternativeCriteria->getNormalizedWeight();
+                    $vectorS *= pow(
+                        $this->normalize(
+                            $alternativeCriteria->pivot->value,
+                            $minValue,
+                            $maxValue,
+                            $alternativeCriteria->type
+                        ),
+                        $pangkat
+                    );
+
+                    // normalize alternative value
+                    $criteriaDatas->push([
+                        'id' => $alternativeCriteria->id,
+                        'name' => $alternativeCriteria->name,
+                        'type' => $alternativeCriteria->type,
+                        'value' => $alternativeCriteria->pivot->value,
+                        'normalized_value' => $this->normalize($alternativeCriteria->pivot->value, $minValue, $maxValue, $alternativeCriteria->type),
+                        'normalized_weight' => $alternativeCriteria->getNormalizedWeight(),
+                    ]);
+                }
+
+                $vectorV =  $vectorS / $vectorSTotal;
+
+                $normalAlternatives->push([
+                    'id' => $alternative->id,
+                    'name' => $alternative->name,
+                    'alias' => 'A' . $index + 1,
+                    'criterias' => $criteriaDatas->toArray(),
+                    'vector_s' => $vectorS,
+                    'vector_v' => round($vectorV, 3),
+                ]);
+            } else {
+                $specialAlternativeCriteria = AlternativeCriteria::where(['alternative_id' => $alternative->id, 'criteria_id' => 5])->first();
+                $specialAlternatives->push([
+                    'id' => $alternative->id,
+                    'name' => $alternative->name,
+                    'alias' => 'A' . $index + 1,
+                    'value' => $specialAlternativeCriteria->value,
                 ]);
             }
-
-            $vectorV =  $vectorS / $vectorSTotal;
-
-            $alternativeDatas->push([
-                'name' => $alternative->name,
-                'alias' => 'A' . $index + 1,
-                'criterias' => $criteriaDatas->toArray(),
-                'vector_s' => $vectorS,
-                'vector_v' => round($vectorV, 3),
-            ]);
         }
 
-
-        // dd($alternativeDatas);
-        // $alternativeDatas = $alternativeDatas->sortBy('vectorV', SORT_REGULAR, $descending = true);
-        $sortedAlternatives  = $alternativeDatas->sortBy('vector_v', SORT_REGULAR, $descending = true);
+        $sortedNormalAlternatives  = $normalAlternatives->sortBy('vector_v', SORT_REGULAR, $descending = true);
+        $sortedSpecialAlternatives  = $specialAlternatives->sortBy('value', SORT_REGULAR, $descending = true);
 
         return view('admin.jobPriority', compact(
-            'alternativeDatas',
+            'normalAlternatives',
             'criterias',
-            // 'alternatives',
-            // 'alternativeCriterias',
             'totalPreferenceWeightCount',
             'vectorSTotal',
-            'sortedAlternatives'
+            'sortedNormalAlternatives',
+            'sortedSpecialAlternatives'
         ));
     }
 
@@ -116,9 +137,5 @@ class JobPriorityController extends Controller
         }
 
         return $hasil;
-    }
-
-    public function vectorS($criterias)
-    {
     }
 }

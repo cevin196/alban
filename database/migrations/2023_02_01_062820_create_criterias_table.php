@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('unit', 100);
             $table->text('description')->nullable();
             $table->boolean('type')->default('1');
+            $table->boolean('deletable')->default('1');
             $table->timestamps();
         });
     }

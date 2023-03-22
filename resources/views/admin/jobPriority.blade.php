@@ -1,57 +1,102 @@
 @extends('admin.layouts.app')
 @include('includes.jobPriority')
 @section('content')
-    <h1 class="text-2xl lg:text-3xl font-bold">
+    <h1 class="text-2xl lg:text-3xl font-bold mt-10 md:mt-0">
         Job Priority</h1>
     <span class="capitalize text-xl text-[#444444]">Showing job priority (alternative) using defined criterias with weighted
         product method</span>
 
 
-    <div class="shadow-lg overflow-hiddenbg-white p-3 mb-3 bg-white mt-3">
-        <div class="flex justify-center mt-5">
-            <span>Urutan prioritas alternative setelah menggunakan metode weighted product</span>
-        </div>
-        <table class=" mx-auto">
-            <tr class="border">
-                <th class="border">Alias</th>
-                <th class="border">Name</th>
-                <th class="border px-4">Vector V Point</th>
-                <th class="border">Order</th>
-            </tr>
-            @foreach ($sortedAlternatives as $index => $alternative)
-                <tr class="border">
-                    <td class="text-center px-4 border">{{ $alternative['alias'] }}</td>
-                    <td class="text-center px-4">{{ $alternative['name'] }}</td>
-                    <td class="text-center px-4">{{ $alternative['vector_v'] }}</td>
-                    <td class="text-center px-4">{{ $loop->index + 1 }}</td>
+    <div class="shadow-lg  p-3 mb-3 bg-white mt-3">
+        <div class="overflow-auto">
+            <div class="flex justify-center mt-5">
+                <span class="text-lg font-bold">Priority based on job delay or weighted product calculation</span>
+            </div>
+            <table class=" mx-auto">
+                <tr class="bg-primary border border-primary">
+                    <th class="px-2 py-1">Alias</th>
+                    <th class="px-2 py-1">Name</th>
+                    <th class="px-2 py-1">Value</th>
+                    <th class="px-2 py-1">Order</th>
                 </tr>
-            @endforeach
-        </table>
+                <tr>
+                    <td></td>
+                </tr>
+                @php
+                    $order = 0;
+                @endphp
+                @foreach ($sortedSpecialAlternatives as $index => $alternative)
+                    @php
+                        $order++;
+                    @endphp
+                    <tr class="border border-primary hover:bg-gray-100 cursor-pointer"
+                        onclick="window.location.href = '{{ route('alternative.edit', $alternative['id']) }}'">
+                        <td class="text-center px-4 py-1">{{ $alternative['alias'] }}</td>
+                        <td class="text-center px-4 py-1">{{ $alternative['name'] }}</td>
+                        <td class="text-center px-4 py-1">{{ $alternative['value'] }}</td>
+                        <td class="text-center px-4 py-1">{{ $order }}</td>
+                    </tr>
+                @endforeach
+                <tr>
+                    <td></td>
+                </tr>
+                @foreach ($sortedNormalAlternatives as $index => $alternative)
+                    @php
+                        $order++;
+                    @endphp
+                    <tr class="border border-green-500 hover:bg-gray-100 cursor-pointer"
+                        onclick="window.location.href = '{{ route('alternative.edit', $alternative['id']) }}'">
+                        <td class="text-center px-4">{{ $alternative['alias'] }}</td>
+                        <td class="text-center px-4">{{ $alternative['name'] }}</td>
+                        <td class="text-center px-4">{{ $alternative['vector_v'] }}</td>
+                        <td class="text-center px-4">{{ $order }}</td>
+                    </tr>
+                @endforeach
+            </table>
+            <div class="md:flex items-center justify-center gap-4 mt-0 md:mt-2">
+                <div class="flex justify-center items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-square-fill text-primary" viewBox="0 0 16 16">
+                        <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2z" />
+                    </svg>
+                    <span>Based on Job Late Duration</span>
+                </div>
+                <div class="flex justify-center items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-square-fill text-green-500" viewBox="0 0 16 16">
+                        <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2z" />
+                    </svg>
+                    <span>Based on WP Method</span>
+                </div>
+            </div>
+        </div>
 
         <div class="flex justify-center mt-5">
             <span class="text-xl font-bold">Detail Perhitungan</span>
         </div>
-
         {{-- detail perhitungan --}}
-        <div>
-            <div class="flex justify-center mt-5">
+        <div class="overflow-auto">
+            <div class="flex justify-center">
                 <span class="text-lg font-bold">Nilai alternatif pada tiap kriteria</span>
             </div>
-            <table class="mx-auto text-center border">
-                <tr class="border-b">
-                    <td class="px-4 py-1 border" rowspan="2">Alternative</td>
-                    <td class="px-4 py-1" colspan="{{ $criterias->count() }}">Criteria</td>
+            <table class="mx-auto text-center border border-white">
+                <tr class=" bg-primary">
+                    <td class="px-4 py-1 border border-white" rowspan="2">Alternative</td>
+                    <td class="px-4 py-1 border border-white" colspan="{{ $criterias->count() }}">Criteria</td>
                 </tr>
-                <tr class="border-b">
+                <tr class="border-b border-white bg-primary">
                     @foreach ($criterias as $criteria)
-                        <td class="px-4 py-1">{{ $criteria->name }}</td>
+                        @if ($criteria->id == 5)
+                            @continue
+                        @endif
+                        <td class="px-4 py-1 border border-white">{{ $criteria->name }}</td>
                     @endforeach
                 </tr>
 
-                @foreach ($alternativeDatas as $alternative)
-                    <tr>
-                        <td class="px-4 py-1">{{ 'A' . $loop->index + 1 }}</td>
-                        @foreach ($alternative['criterias'] as $key => $alternativeCriteria)
+                @foreach ($normalAlternatives as $alternative)
+                    <tr class="border-b border-white {{ $loop->even ? 'bg-gray-100' : '' }}">
+                        <td class="px-4 py-1 font-bold">{{ $alternative['alias'] }}</td>
+                        @foreach ($alternative['criterias'] as $alternativeCriteria)
                             <td class="px-4 py-1">{{ $alternativeCriteria['value'] }}</td>
                         @endforeach
                     </tr>
@@ -60,26 +105,29 @@
         </div>
 
         {{-- detail perhitungan setelah normalisasi --}}
-        <div>
+        <div class="overflow-auto">
             <div class="flex justify-center mt-5">
                 <span class="font-bold text-lg capitalize">Normalisasi nilai alternatif pada tiap kriteria</span>
             </div>
             <table class="mx-auto text-center">
-                <tr class="border-b">
-                    <td class="px-4 py-1" rowspan="2">Alternative</td>
+                <tr class="bg-primary border border-white">
+                    <td class="px-4 py-1 border border-white" rowspan="2">Alternative</td>
                     <td class="px-4 py-1" colspan="{{ $criterias->count() }}">Criteria</td>
                 </tr>
-                <tr class="border-b">
+                <tr class="bg-primary border border-white">
                     @foreach ($criterias as $criteria)
-                        <td class="px-4 py-1">{{ $criteria->name }}</td>
+                        @if ($criteria->id == 5)
+                            @continue
+                        @endif
+                        <td class="px-4 py-1 border border-white">{{ $criteria->name }}</td>
                     @endforeach
                 </tr>
 
-                @foreach ($alternativeDatas as $alternative)
-                    <tr>
-                        <td class="px-4 py-1">{{ 'A' . $loop->index + 1 }}</td>
+                @foreach ($normalAlternatives as $alternative)
+                    <tr class="border border-gray-100 {{ $loop->even ? 'bg-gray-100' : '' }}">
+                        <td class="px-4 py-1 font-bold">{{ $alternative['alias'] }}</td>
                         @foreach ($alternative['criterias'] as $alternativeCriteria)
-                            <td class="px-4 py-1">
+                            <td class="px-4 py-1 ">
                                 {{ round($alternativeCriteria['normalized_value'], 3) }}
                             </td>
                         @endforeach
@@ -90,19 +138,19 @@
 
         {{-- bobot preferensi --}}
         <hr class="my-4">
-        <div>
+        <div class="overflow-auto">
             <div class="flex justify-center mt-5">
                 <span class="font-bold text-lg capitalize">Bobot Preferensi Kriteria</span>
             </div>
             <table class="mx-auto text-center">
-                <tr class="border-b">
-                    <td class="px-4 py-1">Bobot Preferensi</td>
+                <tr class="border-b bg-primary">
+                    <td class="px-4 py-1 border border-white">Bobot Preferensi</td>
                     @foreach ($criterias as $criteria)
-                        <td>{{ 'C' . $loop->index + 1 }}</td>
+                        <td class="border border-white px-4">{{ 'C' . $loop->index + 1 }}</td>
                     @endforeach
-                    <td>Total</td>
+                    <td class="px-4">Total</td>
                 </tr>
-                <tr class="border-b">
+                <tr class="border border-gray-100">
                     <td>W = (
                         @foreach ($criterias->pluck('weight') as $criteria)
                             {{ $loop->last ? $criteria : $criteria . ', ' }}
@@ -113,7 +161,7 @@
                         <td class="px-4 py-1">{{ $criteria }}</td>
                     @endforeach
 
-                    <td>
+                    <td class="font-bold">
                         {{ $totalPreferenceWeightCount }}
                     </td>
                 </tr>
@@ -122,24 +170,25 @@
 
         {{-- normalisasi bobot --}}
         <hr class="my-4 mx-auto">
-        <div>
+        <div class="overflow-auto">
             <div class="flex justify-center mt-5">
                 <span class="font-bold text-lg capitalize">Normalisasi bobot kriteria</span>
             </div>
             <table class="mx-auto text-center">
-                <tr class="border-b">
+                <tr class="bg-primary">
                     <td class="px-4 py-1">Kriteria</td>
-                    <td>bobot</td>
+                    <td class="px-4 py-1">Bobot</td>
                 </tr>
                 @foreach ($criterias as $criteria)
-                    <tr>
-                        <td>{{ $criteria->name }}</td>
-                        <td>{{ $criteria->weight . '/' . $criterias->sum('weight') . '=' . round($criteria->getNormalizedWeight(), 3) }}
+                    <tr class="border border-gray-100 {{ $loop->even ? 'bg-gray-100' : '' }}">
+                        <td class="px-2 py-1">{{ $criteria->name }}</td>
+                        <td class="px-2 py-1">
+                            {{ $criteria->weight . '/' . $criterias->sum('weight') . '=' . round($criteria->getNormalizedWeight(), 3) }}
                         </td>
                     </tr>
                 @endforeach
 
-                <tr>
+                <tr class="border border-gray-200 font-bold">
                     <td>Normalisasi bobot</td>
                     <td class="px-4 py-1">
                         @php
@@ -158,27 +207,27 @@
         </div>
 
         {{-- menentukan vector s --}}
-        <div>
+        <div class="overflow-auto">
             <div class="flex justify-center mt-5">
                 <span class="font-bold text-lg capitalize">Menentukan Vector S</span>
             </div>
             <table class="mx-auto">
-                @foreach ($alternativeDatas as $alternative)
-                    <tr>
-                        <td>S{{ $loop->index + 1 }}</td>
-                        <td class="px-4 py-1">
+                @foreach ($normalAlternatives as $alternative)
+                    <tr class="align-top md:align-middle ">
+                        <td class="px-2 py-1">S{{ $loop->index + 1 }}</td>
+                        <td class="px-2 py-1">=</td>
+                        <td class="px-2 py-1">
                             @foreach ($alternative['criterias'] as $alternativeCriteria)
-                                ({{ round($alternativeCriteria['normalized_value'], 3) }}
-                                <sup>
-                                    {{-- {{ $alternativeCriteria['type'] == 'Cost' ? '-' : '' }} --}}
-                                    {{ round($alternativeCriteria['normalized_weight'], 3) }}
-                                </sup>)
-                                {{ $loop->last ? '' : '*' }}
+                                <span> ({{ round($alternativeCriteria['normalized_value'], 3) }}
+                                    <sup>
+                                        {{ round($alternativeCriteria['normalized_weight'], 3) }}
+                                    </sup>)
+                                    {{ $loop->last ? '' : '*' }}</span>
                             @endforeach
                         </td>
-
-                        <td>
-                            = {{ round($alternative['vector_s'], 3) }}
+                        <td class="px-2 py-1"> = </td>
+                        <td class="px-2 py-1">
+                            {{ round($alternative['vector_s'], 3) }}
                         </td>
                     </tr>
                 @endforeach
@@ -186,23 +235,24 @@
         </div>
 
         {{-- menentukan vecktor V --}}
-        <div>
+        <div class="overflow-auto">
             <span class="block text-center mt-3 text-xl font-bold">Menentukan nilai vektor V</span>
-            <table class="mx-auto">
-                @foreach ($alternativeDatas as $alternative)
+            <table class="mx-auto min-w-min">
+                @foreach ($normalAlternatives as $alternative)
                     <tr>
                         <td class="px-2 py-1">V{{ $loop->index + 1 }}</td>
-                        <td class="flex flex-col px-2 text-center">
+                        <td class="px-2 py-1">=</td>
+                        <td class="px-2 py-1 flex flex-col text-center ">
                             <span>{{ round($alternative['vector_s'], 3) }}</span>
                             <hr>
                             <span>
-                                @foreach ($alternativeDatas as $AD)
-                                    {{ round($AD['vector_s'], 3) }} +
+                                @foreach ($normalAlternatives as $AD)
+                                    {{ $loop->last ? round($AD['vector_s'], 3) : round($AD['vector_s'], 3) . ' +' }}
                                 @endforeach
                             </span>
                         </td>
-                        <td>=</td>
-                        <td class="flex flex-col px-2">
+                        <td class="px-2 py-1">=</td>
+                        <td class="flex flex-col px-2 py-1">
                             <span>{{ round($alternative['vector_s'], 3) }}</span>
                             <hr>
                             <span>{{ round($vectorSTotal, 3) }}</span>

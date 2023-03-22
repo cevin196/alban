@@ -129,7 +129,8 @@ class DatabaseSeeder extends Seeder
                 'weight' => 5,
                 'unit' => 'Hari',
                 'description' => 'Selisih antara estimasi pengerjaan dan waktu pengerjaan unit (dalam satuan hari)',
-                'type' => 1
+                'type' => 1,
+                'deletable' => 0,
             ]
         ];
 

@@ -13,12 +13,22 @@ class Alternative extends Model
 
     public function criterias()
     {
-        return $this->belongsToMany(Criteria::class, 'alternative_criteria')->withPivot('value')->withTimestamps();
+        return $this->belongsToMany(Criteria::class, 'alternative_criteria')
+            ->withPivot('value', 'criteria_id');
     }
+
 
     public function job()
     {
         return $this->belongsTo(Job::class);
+    }
+
+    public function normalCheck()
+    {
+        $status = true;
+        $alternativeCritera = AlternativeCriteria::where(['alternative_id' => $this->id, 'criteria_id' => 5])->first();
+        $alternativeCritera->value == 0 ? '' : $status = false;
+        return $status;
     }
 
     public function checkStatus()
