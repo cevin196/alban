@@ -170,9 +170,9 @@ class DatabaseSeeder extends Seeder
         }
 
         $conditionReports = ConditionReport::all();
-        foreach ($conditionReports as $conditionReport) {
-            Picture::factory()->count(rand(1, 5))->state(['condition_report_id' => $conditionReport->id])->create();
-        }
+        // foreach ($conditionReports as $conditionReport) {
+        //     Picture::factory()->count(rand(1, 5))->state(['condition_report_id' => $conditionReport->id])->create();
+        // }
 
         Finance::factory(50)->create();
     }

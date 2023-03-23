@@ -8,9 +8,9 @@
             (e.name = "opened", navbar.classList.remove('block'), navbar.classList.add('hidden'));
     }
 
-    window.onscroll = function() {
-        scrollFunction()
-    };
+    // window.onscroll = function() {
+    //     scrollFunction()
+    // };
 
     // function scrollFunction() {
     //     let navbar = document.getElementById('navbar');

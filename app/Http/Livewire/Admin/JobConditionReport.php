@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\Admin\Picture;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -10,45 +11,46 @@ class JobConditionReport extends Component
 {
     use WithFileUploads;
 
-    public $conditionReportPictures = [];
+    public $conditionReportDetails = [];
     public $conditionReport;
     public $newDescription = "";
-    public $newPicture = "";
+    public $newPicture;
+    public $selectedConditionReport;
 
     public function mount()
     {
         $pictures = Picture::where('condition_report_id', $this->conditionReport->id)->get();
         foreach ($pictures as $picture) {
-            $this->conditionReportPictures[] = ['path' => $picture->path, 'description' => $picture->qty];
+            $this->conditionReportDetails[] = ['id' => $picture->id, 'path' => $picture->path, 'description' => $picture->description];
         }
     }
 
-    public function updatedNewPicture()
-    {
-        // dd($this->newPicture);
-        // $this->photo->storeAs('photos');
-    }
-
-    public function updatedNewDescription()
-    {
-        dd($this->newDescription);
-    }
-
-    public function addRow()
-    {
-        // $this->jobServices[] = ['name' => '', 'qty' => '1', 'ammount' => ''];
-    }
-
-    public function updatedPhoto()
+    public function saveConditionReport()
     {
         $this->validate([
-            'photo' => 'image|max:1024',
+            'newPicture' => 'image',
         ]);
+        $imageName =  time() . '.' . $this->newPicture->extension();
+        $this->newPicture->storeAs('public/conditionReport', $imageName);
+        Picture::create([
+            'path' =>   $imageName,
+            'description' => $this->newDescription,
+            'condition_report_id' => $this->conditionReport->id,
+        ]);
+        notify()->success('Data added succesfully!');
+        return redirect(route('conditionReport.edit', $this->conditionReport));
     }
 
-    public function save()
+    public function confirmConditionReportDetailDeletion($conditionReport)
     {
-        // ...
+        $this->selectedConditionReport = Picture::find($conditionReport);
+    }
+    public function deleteConditionReport()
+    {
+        Storage::delete('public/conditionReport/' . $this->selectedConditionReport->path);
+        $this->selectedConditionReport->delete();
+        notify()->success('Data deleted succesfully!');
+        return redirect(route('conditionReport.edit', $this->conditionReport));
     }
 
     public function render()
