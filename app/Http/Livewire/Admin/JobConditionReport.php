@@ -30,6 +30,7 @@ class JobConditionReport extends Component
         $this->validate([
             'newPicture' => 'image',
         ]);
+        dd($this->newPicture);
         $imageName =  time() . '.' . $this->newPicture->extension();
         $this->newPicture->storeAs('public/conditionReport', $imageName);
         Picture::create([
@@ -37,6 +38,7 @@ class JobConditionReport extends Component
             'description' => $this->newDescription,
             'condition_report_id' => $this->conditionReport->id,
         ]);
+
         notify()->success('Data added succesfully!');
         return redirect(route('conditionReport.edit', $this->conditionReport));
     }
