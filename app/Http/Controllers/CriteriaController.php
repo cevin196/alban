@@ -19,8 +19,6 @@ class CriteriaController extends Controller
 
     public function store(Request $request)
     {
-
-
         $validated = $request->validate([
             'name' => 'required',
             'weight' => 'required|integer|between:1,5',

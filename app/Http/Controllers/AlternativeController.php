@@ -24,10 +24,17 @@ class AlternativeController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $criterias = Criteria::all();
+        $validations = [
             'name' => 'required',
-
-        ]);
+        ];
+        foreach ($criterias as $criteria) {
+            if ($criteria->id == 5) {
+                continue;
+            }
+            $validations['criteria' . $criteria->id] = 'required|numeric|gt:0';
+        }
+        $validated = $request->validate($validations);
 
         $alternative = Alternative::create([
             'name' => $request->name,
@@ -65,10 +72,17 @@ class AlternativeController extends Controller
 
     public function update(Request $request, Alternative $alternative)
     {
-
-        $validated = $request->validate([
+        $criterias = Criteria::all();
+        $validations = [
             'name' => 'required',
-        ]);
+        ];
+        foreach ($criterias as $criteria) {
+            if ($criteria->id == 5) {
+                continue;
+            }
+            $validations['criteria' . $criteria->id] = 'required|numeric|gt:0';
+        }
+        $validated = $request->validate($validations);
 
         $alternative->update([
             'name' => $request->name,

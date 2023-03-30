@@ -39,7 +39,7 @@
                         <option value="">-- Select One --</option>
                         @foreach ($jobs as $job)
                             <option value="{{ $job->id }}">
-                                {{ $job->unit_part_number }}
+                                {{ $job->name }}
                             </option>
                         @endforeach
                     </select>
@@ -57,7 +57,8 @@
                         <div class="flex items-center gap-2">
                             <input type="number" name="{{ 'criteria' . $criteria->id }}" step=".01"
                                 class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                id="inputName" placeholder="Enter Name" required>
+                                id="inputName" placeholder="Enter Name" required
+                                value="{{ old('criteria' . $criteria->id) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor"
                                 class="bi bi-info-circle text-blue-600 cursor-pointer hover:text-blue-500"
                                 viewBox="0 0 16 16" data-bs-toggle="popover" data-bs-title="Criteria detail"
@@ -67,6 +68,9 @@
                                     d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
                             </svg>
                         </div>
+                        @error('criteria' . $criteria->id)
+                            <small class="block mt-1 text-xs text-red-600">{{ $message }}</small>
+                        @enderror
                     </div>
                 @endforeach
             </div>

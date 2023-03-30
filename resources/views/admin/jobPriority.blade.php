@@ -74,8 +74,30 @@
         <div class="flex justify-center mt-5">
             <span class="text-xl font-bold">Detail Perhitungan</span>
         </div>
-        {{-- detail perhitungan --}}
+
+        {{-- Tabel Khusus --}}
         <div class="overflow-auto">
+            <div class="flex justify-center">
+                <span class="text-lg font-bold">Alternatif khusus dengan nilai keterlambatan</span>
+            </div>
+            <table class="mx-auto text-center border border-white">
+                <tr class=" bg-green-500 text-white">
+                    <td class="px-4 py-1 border border-white">Alternative</td>
+                    <td class="px-4 py-1 border border-white">Nilai keterlambatan</td>
+                </tr>
+
+                @foreach ($specialAlternatives as $alternative)
+                    <tr class="border-b border-white {{ $loop->even ? 'bg-gray-100' : '' }}">
+                        <td class="px-4 py-1 font-bold">{{ $alternative['alias'] }}</td>
+                        <td class="px-4 py-1">{{ $alternative['value'] }}</td>
+
+                    </tr>
+                @endforeach
+            </table>
+        </div>
+
+        {{-- detail perhitungan --}}
+        <div class="overflow-auto mt-5">
             <div class="flex justify-center">
                 <span class="text-lg font-bold">Nilai alternatif pada tiap kriteria</span>
             </div>

@@ -23,9 +23,9 @@
     @include('admin.layouts.sidebar')
     {{-- <div class="w-1/6 bg-red-400 p-10 h-full fixed">
     </div> --}}
-    <div class="lg:w-5/6 lg:absolute right-0 top-0 ">
-        <div id="navbar" class="py-3 bg-[#FEFFDB]  fixed w-5/6 mr-10 pr-10 text-right h-15 ">
-        </div>
+    <div class="w-full lg:w-5/6 lg:absolute right-0 top-0 " id="content-container">
+        {{-- <div id="navbar" class="py-3 bg-red-500  fixed w-5/6 mr-10 pr-10 text-right h-15 ">
+        </div> --}}
         @include('admin.layouts.navbar')
         <div class="lg:mt-16 p-3">
             @section('content')

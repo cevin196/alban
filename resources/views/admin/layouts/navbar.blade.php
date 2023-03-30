@@ -1,12 +1,13 @@
 <div class=" fixed w-5/6 mr-10 pr-10 text-right h-15">
-    <div class="flex justify-between items-center px-5 py-2 bg-white border w-full lg:w-5/6 fixed right-0">
-        <a href="#" class="hidden md:block">
+    <div class="flex justify-between items-center px-5 py-2 bg-white border w-full lg:w-5/6 fixed right-0 transition-all"
+        id="navbar">
+        <button href="#" class="hidden md:block" onclick="minimazeSideBar(this)" name="opened">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-list"
                 viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
                     d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
             </svg>
-        </a>
+        </button>
         <span class="text-xl lg:text-2xl space-y-0 font-bakbakOne ">Alban Technik Mandiri</span>
         <button class="block lg:hidden" onclick="menu(this)" name="opened">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -16,8 +17,8 @@
         </button>
         <div class="hidden lg:flex justify-between items-center gap-3">
             <button type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="{{ asset('images/profiles/user1.jpg') }}" alt="Profile picture"
-                    class="w-12 h-12 rounded-full bg-contain bg-center cursor-pointer">
+                <img src="{{ asset('images/profiles/user-default.png') }}" alt="Profile picture"
+                    class="w-12 h-12 rounded-full border bg-contain bg-center cursor-pointer">
             </button>
             <ul class="dropdown-menu max-w-sm absolute hidden bg-white text-base z-50 float-left px-1 py-2 list-none text-left rounded-lg shadow-xl mt-1 m-0 bg-clip-padding border border-gray-100"
                 aria-labelledby="dropdownMenuButton1">

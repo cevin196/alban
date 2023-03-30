@@ -8,6 +8,26 @@
             (e.name = "opened", navbar.classList.remove('block'), navbar.classList.add('hidden'));
     }
 
+    function minimazeSideBar(e) {
+        let sidebar = document.getElementById('sideNav');
+        let navbar = document.getElementById('navbar');
+        let content = document.getElementById('content-container');
+
+        e.name === 'opened' ?
+            (
+                e.name = "close",
+                sidebar.classList.add('-left-60'),
+                content.classList.remove('lg:w-5/6'),
+                navbar.classList.remove('lg:w-5/6')
+            ) :
+            (
+                e.name = "opened",
+                sidebar.classList.remove('-left-60'),
+                content.classList.add('lg:w-5/6'),
+                navbar.classList.add('lg:w-5/6')
+            );
+
+    }
     // window.onscroll = function() {
     //     scrollFunction()
     // };

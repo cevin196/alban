@@ -22,7 +22,7 @@ class JobPriorityController extends Controller
         $alternatives = Alternative::all();
 
         // criterias
-        $criterias = Criteria::all();
+        $criterias = Criteria::where('id', '!=', 5)->get();
         // $criteriaDatas = collect();
         $totalPreferenceWeightCount = $criterias->sum('weight');
 
@@ -117,6 +117,7 @@ class JobPriorityController extends Controller
 
         return view('admin.jobPriority', compact(
             'normalAlternatives',
+            'specialAlternatives',
             'criterias',
             'totalPreferenceWeightCount',
             'vectorSTotal',

@@ -24,7 +24,8 @@ class Criteria extends Model
 
     public function getNormalizedWeight()
     {
-        $total = Criteria::sum('weight');
+        $criterias = Criteria::where('id', '!=', 5);
+        $total = $criterias->sum('weight');
         return $this->weight / $total;
     }
 }
