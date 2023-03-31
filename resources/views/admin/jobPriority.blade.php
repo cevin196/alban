@@ -240,6 +240,9 @@
                         <td class="px-2 py-1">=</td>
                         <td class="px-2 py-1">
                             @foreach ($alternative['criterias'] as $alternativeCriteria)
+                                @if ($alternativeCriteria['normalized_value'] == 0)
+                                    @continue
+                                @endif
                                 <span> ({{ round($alternativeCriteria['normalized_value'], 3) }}
                                     <sup>
                                         {{ round($alternativeCriteria['normalized_weight'], 3) }}

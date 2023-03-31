@@ -80,7 +80,7 @@ class AlternativeController extends Controller
             if ($criteria->id == 5) {
                 continue;
             }
-            $validations['criteria' . $criteria->id] = 'required|numeric|gt:0';
+            $validations['criteria' . $criteria->id] = 'required|numeric';
         }
         $validated = $request->validate($validations);
 

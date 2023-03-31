@@ -91,30 +91,27 @@ class DatabaseSeeder extends Seeder
         User::find(2)->assignRole('admin');
         User::find(3)->assignRole('customer');
 
-
-
-        // create default criteria
-        // $criterias = Criteria::factory(5)->create();
         $criteriaDatas = [
+            // [
+            //     'name' => 'Kesesuaian dengan jadwal',
+            //     'weight' => 5,
+            //     'unit' => 'Hari',
+            //     'description' => 'Selisih antara estimasi pengerjaan dan waktu pengerjaan unit (dalam satuan hari)',
+            //     'type' => 1,
+            //     'deletable' => 0,
+            // ],
             [
                 'name' => 'Durasi Pengerjaan',
                 'weight' => 2,
                 'unit' => 'Hari',
-                'description' => 'Total estimasi pengerjaan unit hingga selesai (dalam satuan hari)',
-                'type' => 0
-            ],
-            [
-                'name' => 'Modal Pengerjaan',
-                'weight' => 4,
-                'unit' => 'Juta Rupiah',
-                'description' => 'Perkiraan biaya yang dibutuhkan untuk pengerjaan unit hingga selesai (dalam satuan juta rupiah)',
+                'description' => 'Total estimasi pengerjaan unit hingga selesai',
                 'type' => 0
             ],
             [
                 'name' => 'Nilai Pengerjaan',
                 'weight' => 3,
                 'unit' => 'Juta Rupiah',
-                'description' => 'Perkiraan keuntungan yang didapat untuk pengerjaan unit(dalam satuan juta rupiah)',
+                'description' => 'Perkiraan keuntungan yang didapat untuk pengerjaan unit',
                 'type' => 1
             ],
             [
@@ -125,12 +122,18 @@ class DatabaseSeeder extends Seeder
                 'type' => 0
             ],
             [
-                'name' => 'Kesesuaian dengan jadwal',
-                'weight' => 5,
-                'unit' => 'Hari',
-                'description' => 'Selisih antara estimasi pengerjaan dan waktu pengerjaan unit (dalam satuan hari)',
-                'type' => 1,
-                'deletable' => 0,
+                'name' => 'Jarak',
+                'weight' => 1,
+                'unit' => 'Kilometer',
+                'description' => 'Jarak pengerjaan unit dari bengkel ',
+                'type' => 0
+            ],
+            [
+                'name' => 'Total Kedatangan',
+                'weight' => 1,
+                'unit' => 'Kali',
+                'description' => 'Total kedatangan pelanggan dan unit dikerjakan',
+                'type' => 1
             ]
         ];
 
@@ -146,7 +149,7 @@ class DatabaseSeeder extends Seeder
         $alternatives = Alternative::all();
         foreach ($alternatives as $alternative) {
             foreach (Criteria::all() as $criteria) {
-                $alternative->criterias()->attach($criteria->id, ['value' => rand(1, 100)]);
+                $alternative->criterias()->attach($criteria->id, ['value' => 1]);
             }
         }
 
