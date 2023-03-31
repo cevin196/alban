@@ -92,14 +92,6 @@ class DatabaseSeeder extends Seeder
         User::find(3)->assignRole('customer');
 
         $criteriaDatas = [
-            // [
-            //     'name' => 'Kesesuaian dengan jadwal',
-            //     'weight' => 5,
-            //     'unit' => 'Hari',
-            //     'description' => 'Selisih antara estimasi pengerjaan dan waktu pengerjaan unit (dalam satuan hari)',
-            //     'type' => 1,
-            //     'deletable' => 0,
-            // ],
             [
                 'name' => 'Durasi Pengerjaan',
                 'weight' => 2,
@@ -109,14 +101,14 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Nilai Pengerjaan',
-                'weight' => 3,
+                'weight' => 4,
                 'unit' => 'Juta Rupiah',
                 'description' => 'Perkiraan keuntungan yang didapat untuk pengerjaan unit',
                 'type' => 1
             ],
             [
                 'name' => 'Tenaga Kerja yang Dibutuhkan',
-                'weight' => 2,
+                'weight' => 3,
                 'unit' => 'Orang',
                 'description' => 'Jumlah karyawan yang dibutuhkan untuk mengerjakan unit',
                 'type' => 0
@@ -130,7 +122,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Total Kedatangan',
-                'weight' => 1,
+                'weight' => 3,
                 'unit' => 'Kali',
                 'description' => 'Total kedatangan pelanggan dan unit dikerjakan',
                 'type' => 1
@@ -160,6 +152,7 @@ class DatabaseSeeder extends Seeder
                 'serial_number' => 'KT008' . $i,
                 'unit_kilometer' => rand(100, 10000),
                 'date_in' => fake()->dateTimeBetween($startDate = '-7 months', $endDate = 'now'),
+                'work_estimation' => rand(5, 30),
                 'customer_name' => fake()->name(),
                 'status' => collect($status)->random(),
             ]);

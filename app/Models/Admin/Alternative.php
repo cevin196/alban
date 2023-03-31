@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,12 +24,21 @@ class Alternative extends Model
         return $this->belongsTo(Job::class);
     }
 
-    public function normalCheck()
+    public function lateCheck()
     {
-        $status = true;
-        $alternativeCritera = AlternativeCriteria::where(['alternative_id' => $this->id, 'criteria_id' => 5])->first();
-        $alternativeCritera->value == 0 ? '' : $status = false;
-        return $status;
+        if ($this->job) {
+            $estimateDay = Carbon::create($this->job->date_in)->addDays($this->job->work_estimation);
+            if ((Carbon::now()->diffInDays($estimateDay, false)) < 1) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function lateValue()
+    {
+        // dd(Carbon::now()->diffInDays(Carbon::create($this->job->date_in)->addDays($this->job->work_estimation)));
+        return Carbon::now()->diffInDays(Carbon::create($this->job->date_in)->addDays($this->job->work_estimation));
     }
 
     public function checkStatus()

@@ -22,7 +22,7 @@ class JobPriorityController extends Controller
         $alternatives = Alternative::all();
 
         // criterias
-        $criterias = Criteria::where('id', '!=', 5)->get();
+        $criterias = Criteria::all();
         // $criteriaDatas = collect();
         $totalPreferenceWeightCount = $criterias->sum('weight');
 
@@ -33,7 +33,7 @@ class JobPriorityController extends Controller
         // // vector S
         $vectorSTotal = 0;
         foreach ($alternatives as $index => $alternative) {
-            if ($alternative->normalCheck()) {
+            if (!$alternative->lateCheck()) {
                 // vector S
                 $vectorS = 1;
 
@@ -56,7 +56,7 @@ class JobPriorityController extends Controller
         }
 
         foreach ($alternatives as  $index => $alternative) {
-            if ($alternative->normalCheck()) {
+            if (!$alternative->lateCheck()) {
                 // vector S
                 $vectorS = 1;
 
@@ -64,9 +64,6 @@ class JobPriorityController extends Controller
                 $criteriaDatas = collect();
 
                 foreach ($alternative->criterias as $alternativeCriteria) {
-                    if ($alternativeCriteria->id == 5) {
-                        continue;
-                    }
 
                     if ($alternativeCriteria->pivot->value != 0) {
                         // normalization
@@ -124,12 +121,12 @@ class JobPriorityController extends Controller
                     'vector_v' => round($vectorV, 3),
                 ]);
             } else {
-                $specialAlternativeCriteria = AlternativeCriteria::where(['alternative_id' => $alternative->id, 'criteria_id' => 5])->first();
+                // $specialAlternativeCriteria = AlternativeCriteria::where(['alternative_id' => $alternative->id, 'criteria_id' => 5])->first();
                 $specialAlternatives->push([
                     'id' => $alternative->id,
                     'name' => $alternative->name,
                     'alias' => 'A' . $index + 1,
-                    'value' => $specialAlternativeCriteria->value,
+                    'value' => $alternative->lateValue(),
                 ]);
             }
         }

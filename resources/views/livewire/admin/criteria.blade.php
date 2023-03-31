@@ -34,10 +34,16 @@
                             </tr>
                         </thead class="border-b">
                         <tbody>
+                            <tr class="bg-white border-b">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap" colspan="5">
+                                    Durasi Keterlambatan
+                                </td>
+                            </tr>
                             @foreach ($criterias as $criteria)
                                 <tr class="bg-white border-b">
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                        {{ $loop->index + 1 }}</td>
+                                        {{ $loop->index + 2 }}</td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                         {{ $criteria->name }}
                                     </td>

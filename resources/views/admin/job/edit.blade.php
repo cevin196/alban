@@ -74,12 +74,11 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="inputName" class="form-label inline-block mb-2 text-gray-700">Date Out</label>
-                    <input type="date" name="date_out"
+                    <label for="role" class="form-label inline-block mb-2 text-gray-700">Work Estimation</label>
+                    <input type="number" name="work_estimation"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        id="inputName" placeholder="Enter Serial Number" value="{{ $job->date_out }}">
-                    <small id="emailHelp" class="block mt-1 text-xs text-gray-600">* Not required</small>
-                    @error('date_out')
+                        id="inputName" placeholder="Enter Customer Name" value="{{ $job->work_estimation }}">
+                    @error('work_estimation')
                         <small id="emailHelp" class="block mt-1 text-xs text-red-600">{{ $message }}</small>
                     @enderror
                 </div>

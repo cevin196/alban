@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('serial_number');
             $table->integer('unit_kilometer');
             $table->date('date_in')->useCurrent();
+            $table->integer('work_estimation')->default(30);
             $table->date('date_out')->nullable();
             $table->string('customer_name');
             $table->foreignId('user_id')->nullable()->constrained();

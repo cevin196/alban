@@ -18,7 +18,7 @@
             <span>Name: {{ $alternative->name }}</span>
             @if ($alternative->job)
                 <a href="{{ route('job.show', $alternative->job_id) }}"
-                    class="bg-amber-500 text-white rounded p-1 hover:bg-amber-600">Job Detail</a>
+                    class="bg-primary text-white rounded p-1 hover:bg-amber-600">Job Detail</a>
             @endif
         </div>
 
@@ -36,8 +36,12 @@
             @endforeach
         </table>
 
-        <div class="flex justify-center">
-            <a href="{{ route('alternative.index') }}" class="px-4 py-1 rounded bg-gray-500 text-white">Back</a>
+        <div class="flex justify-center gap-2">
+            <a href="{{ route('alternative.index') }}"
+                class="px-4 py-1 rounded bg-gray-500 hover:bg-gray-600 text-white">Back</a>
+            <a href="{{ route('alternative.edit', $alternative) }}"
+                class="px-4 py-1 rounded bg-primary hover:bg-amber-600 text-white">Edit
+                Value</a>
         </div>
     </div>
 @endsection

@@ -6,6 +6,7 @@ use App\Models\admin\job;
 use App\Models\Admin\Service;
 use App\Models\Admin\SparePart;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
@@ -28,6 +29,7 @@ class JobController extends Controller
             'serial_number' => 'required',
             'unit_kilometer' => 'required|integer',
             'date_in' => 'required|date',
+            'work_estimation' => 'required|integer|gt:0',
             'customer_name' => 'required'
         ]);
 
@@ -63,6 +65,7 @@ class JobController extends Controller
             'serial_number' => 'required',
             'unit_kilometer' => 'required|integer',
             'date_in' => 'required|date',
+            'work_estimation' => 'required|integer|gt:0',
             'customer_name' => 'required'
         ]);
 
@@ -71,10 +74,14 @@ class JobController extends Controller
             'serial_number' => $request->serial_number,
             'unit_kilometer' => $request->unit_kilometer,
             'date_in' => $request->date_in,
-            'date_out' => $request->date_out,
+            'work_estimation' => $request->work_estimation,
             'customer_name' => $request->customer_name,
             'status' => $request->status,
         ]);
+
+        if ($request->status == "Done") {
+            $job->update(['date_out' => Carbon::now()]);
+        }
 
         $job->services()->delete();
         foreach ($request->jobServices as $jobService) {

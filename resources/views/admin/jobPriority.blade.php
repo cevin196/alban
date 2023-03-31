@@ -30,7 +30,7 @@
                         $order++;
                     @endphp
                     <tr class="border border-primary hover:bg-gray-100 cursor-pointer"
-                        onclick="window.location.href = '{{ route('alternative.edit', $alternative['id']) }}'">
+                        onclick="window.location.href = '{{ route('alternative.show', $alternative['id']) }}'">
                         <td class="text-center px-4 py-1">{{ $alternative['alias'] }}</td>
                         <td class="text-center px-4 py-1">{{ $alternative['name'] }}</td>
                         <td class="text-center px-4 py-1">{{ $alternative['value'] }}</td>
@@ -45,7 +45,7 @@
                         $order++;
                     @endphp
                     <tr class="border border-green-500 hover:bg-gray-100 cursor-pointer"
-                        onclick="window.location.href = '{{ route('alternative.edit', $alternative['id']) }}'">
+                        onclick="window.location.href = '{{ route('alternative.show', $alternative['id']) }}'">
                         <td class="text-center px-4">{{ $alternative['alias'] }}</td>
                         <td class="text-center px-4">{{ $alternative['name'] }}</td>
                         <td class="text-center px-4">{{ $alternative['vector_v'] }}</td>
@@ -108,9 +108,6 @@
                 </tr>
                 <tr class="border-b border-white bg-primary">
                     @foreach ($criterias as $criteria)
-                        @if ($criteria->id == 5)
-                            @continue
-                        @endif
                         <td class="px-4 py-1 border border-white">{{ $criteria->name }}</td>
                     @endforeach
                 </tr>
@@ -138,9 +135,6 @@
                 </tr>
                 <tr class="bg-primary border border-white">
                     @foreach ($criterias as $criteria)
-                        @if ($criteria->id == 5)
-                            @continue
-                        @endif
                         <td class="px-4 py-1 border border-white">{{ $criteria->name }}</td>
                     @endforeach
                 </tr>

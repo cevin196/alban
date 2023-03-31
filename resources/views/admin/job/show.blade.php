@@ -38,11 +38,19 @@
                     <td>:</td>
                     <td>{{ $job->date_in }}</td>
                 </tr>
-                <tr>
-                    <td>Date Out</td>
-                    <td>:</td>
-                    <td>{{ $job->date_out }}</td>
-                </tr>
+                @if ($job->date_out)
+                    <tr>
+                        <td>Date Out</td>
+                        <td>:</td>
+                        <td>{{ $job->date_out }}</td>
+                    </tr>
+                @else
+                    <tr>
+                        <td>Work Estimation</td>
+                        <td>:</td>
+                        <td>{{ $job->work_estimation }} Days</td>
+                    </tr>
+                @endif
                 <tr>
                     <td>Customer Name</td>
                     <td>:</td>
@@ -198,6 +206,8 @@
                 class="px-6 py-2.5 bg-gray-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md 
             hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 
             active:shadow-lg transition duration-150 ease-in-out">Back</a>
+            <a href="{{ route('job.edit', $job) }}" class="px-4 py-1 rounded bg-primary hover:bg-amber-600 text-white">Edit
+                Value</a>
 
         </div>
     </div>
