@@ -115,7 +115,7 @@ class JobPriorityController extends Controller
                 $normalAlternatives->push([
                     'id' => $alternative->id,
                     'name' => $alternative->name,
-                    'alias' => 'A' . $index + 1,
+                    'alias' =>  $index + 1,
                     'criterias' => $criteriaDatas->toArray(),
                     'vector_s' => $vectorS,
                     'vector_v' => round($vectorV, 3),
@@ -125,7 +125,7 @@ class JobPriorityController extends Controller
                 $specialAlternatives->push([
                     'id' => $alternative->id,
                     'name' => $alternative->name,
-                    'alias' => 'A' . $index + 1,
+                    'alias' =>  $index + 1,
                     'value' => $alternative->lateValue(),
                 ]);
             }

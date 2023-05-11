@@ -6,6 +6,12 @@
         e.name === 'opened' ?
             (e.name = "close", navbar.classList.add('block'), navbar.classList.remove('hidden')) :
             (e.name = "opened", navbar.classList.remove('block'), navbar.classList.add('hidden'));
+
+        let sidebar = {
+            name: "close"
+        };
+
+        minimazeSideBar(sidebar);
     }
 
     function minimazeSideBar(e) {

@@ -31,7 +31,7 @@
                     @endphp
                     <tr class="border border-primary hover:bg-gray-100 cursor-pointer"
                         onclick="window.location.href = '{{ route('alternative.show', $alternative['id']) }}'">
-                        <td class="text-center px-4 py-1">{{ $alternative['alias'] }}</td>
+                        <td class="text-center px-4 py-1">{{ 'A' . $alternative['alias'] }}</td>
                         <td class="text-center px-4 py-1">{{ $alternative['name'] }}</td>
                         <td class="text-center px-4 py-1">{{ $alternative['value'] }}</td>
                         <td class="text-center px-4 py-1">{{ $order }}</td>
@@ -46,7 +46,7 @@
                     @endphp
                     <tr class="border border-green-500 hover:bg-gray-100 cursor-pointer"
                         onclick="window.location.href = '{{ route('alternative.show', $alternative['id']) }}'">
-                        <td class="text-center px-4">{{ $alternative['alias'] }}</td>
+                        <td class="text-center px-4">{{ 'A' . $alternative['alias'] }}</td>
                         <td class="text-center px-4">{{ $alternative['name'] }}</td>
                         <td class="text-center px-4">{{ $alternative['vector_v'] }}</td>
                         <td class="text-center px-4">{{ $order }}</td>
@@ -88,7 +88,7 @@
 
                 @foreach ($specialAlternatives as $alternative)
                     <tr class="border-b border-white {{ $loop->even ? 'bg-gray-100' : '' }}">
-                        <td class="px-4 py-1 font-bold">{{ $alternative['alias'] }}</td>
+                        <td class="px-4 py-1 font-bold">{{ 'A' . $alternative['alias'] }}</td>
                         <td class="px-4 py-1">{{ $alternative['value'] }}</td>
 
                     </tr>
@@ -114,7 +114,7 @@
 
                 @foreach ($normalAlternatives as $alternative)
                     <tr class="border-b border-white {{ $loop->even ? 'bg-gray-100' : '' }}">
-                        <td class="px-4 py-1 font-bold">{{ $alternative['alias'] }}</td>
+                        <td class="px-4 py-1 font-bold">{{ 'A' . $alternative['alias'] }}</td>
                         @foreach ($alternative['criterias'] as $alternativeCriteria)
                             <td class="px-4 py-1">{{ $alternativeCriteria['value'] }}</td>
                         @endforeach
@@ -141,7 +141,7 @@
 
                 @foreach ($normalAlternatives as $alternative)
                     <tr class="border border-gray-100 {{ $loop->even ? 'bg-gray-100' : '' }}">
-                        <td class="px-4 py-1 font-bold">{{ $alternative['alias'] }}</td>
+                        <td class="px-4 py-1 font-bold">{{ 'A' . $alternative['alias'] }}</td>
                         @foreach ($alternative['criterias'] as $alternativeCriteria)
                             <td class="px-4 py-1 ">
                                 {{ round($alternativeCriteria['normalized_value'], 3) }}
@@ -230,7 +230,7 @@
             <table class="mx-auto">
                 @foreach ($normalAlternatives as $alternative)
                     <tr class="align-top md:align-middle ">
-                        <td class="px-2 py-1">S{{ $loop->index + 1 }}</td>
+                        <td class="px-2 py-1">S{{ $alternative['alias'] }}</td>
                         <td class="px-2 py-1">=</td>
                         <td class="px-2 py-1">
                             @foreach ($alternative['criterias'] as $alternativeCriteria)
@@ -259,7 +259,7 @@
             <table class="mx-auto min-w-min">
                 @foreach ($normalAlternatives as $alternative)
                     <tr>
-                        <td class="px-2 py-1">V{{ $loop->index + 1 }}</td>
+                        <td class="px-2 py-1">V{{ $alternative['alias'] }}</td>
                         <td class="px-2 py-1">=</td>
                         <td class="px-2 py-1 flex flex-col text-center ">
                             <span>{{ round($alternative['vector_s'], 3) }}</span>

@@ -75,11 +75,10 @@ class NavigationController extends Controller
         // alternative criterias
         $alternativeCriterias = AlternativeCriteria::all();
 
-
         // vector S
         $vectorSTotal = 0;
         foreach ($alternatives as $index => $alternative) {
-            if ($alternative->normalCheck()) {
+            if ($alternative->lateCheck()) {
                 // vector S
                 $vectorS = 1;
 
@@ -88,7 +87,10 @@ class NavigationController extends Controller
                         continue;
                     }
                     $maxValue = AlternativeCriteria::where('criteria_id', $alternativeCriteria->id)->max('value');
-                    $minValue = AlternativeCriteria::where('criteria_id', $alternativeCriteria->id)->min('value');
+                    $minValue = AlternativeCriteria::where([
+                        ['value', '!=', 0],
+                        ['criteria_id', $alternativeCriteria->id]
+                    ])->min('value');
 
                     // vector S
                     $pangkat = $alternativeCriteria->getNormalizedWeight();
@@ -99,7 +101,7 @@ class NavigationController extends Controller
         }
 
         foreach ($alternatives as  $index => $alternative) {
-            if ($alternative->normalCheck()) {
+            if ($alternative->lateCheck()) {
                 // vector S
                 $vectorS = 1;
 
@@ -109,7 +111,10 @@ class NavigationController extends Controller
                     }
                     // normalization
                     $maxValue = AlternativeCriteria::where('criteria_id', $alternativeCriteria->id)->max('value');
-                    $minValue = AlternativeCriteria::where('criteria_id', $alternativeCriteria->id)->min('value');
+                    $minValue = AlternativeCriteria::where([
+                        ['value', '!=', 0],
+                        ['criteria_id', $alternativeCriteria->id]
+                    ])->min('value');
 
                     // vector S
                     $pangkat = $alternativeCriteria->getNormalizedWeight();

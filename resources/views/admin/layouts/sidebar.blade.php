@@ -26,13 +26,13 @@
                         d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                 </svg>
 
-                <span class="font-bold">Dashboard</span>
+                <span class="font-bold">Beranda</span>
             </a>
         </li>
     </ul>
     <ul class="relative px-1 mt-3 border-b">
         <li class=" px-6 text-sm  text-gray-700 font-bold ">
-            Job Priority
+            Prioritas Pekerjaan
         </li>
         <li class="relative">
             <a class="flex items-center {{ $status ? '' : 'bg-gray-400 hover:text-gray-700' }} {{ request()->routeIs('jobPriority.index') ? 'text-amber-500' : 'text-gray-700' }} text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-amber-500 transition duration-300 ease-in-out "
@@ -45,7 +45,7 @@
                     <path
                         d="M1.713 11.865v-.474H2c.217 0 .363-.137.363-.317 0-.185-.158-.31-.361-.31-.223 0-.367.152-.373.31h-.59c.016-.467.373-.787.986-.787.588-.002.954.291.957.703a.595.595 0 0 1-.492.594v.033a.615.615 0 0 1 .569.631c.003.533-.502.8-1.051.8-.656 0-1-.37-1.008-.794h.582c.008.178.186.306.422.309.254 0 .424-.145.422-.35-.002-.195-.155-.348-.414-.348h-.3zm-.004-4.699h-.604v-.035c0-.408.295-.844.958-.844.583 0 .96.326.96.756 0 .389-.257.617-.476.848l-.537.572v.03h1.054V9H1.143v-.395l.957-.99c.138-.142.293-.304.293-.508 0-.18-.147-.32-.342-.32a.33.33 0 0 0-.342.338v.041zM2.564 5h-.635V2.924h-.031l-.598.42v-.567l.629-.443h.635V5z" />
                 </svg>
-                <span>Calculation Detail</span>
+                <span>Detail Perhitungan</span>
             </a>
         </li>
 
@@ -60,7 +60,7 @@
                         d="M6 6.878V6a2.25 2.25 0 012.25-2.25h7.5A2.25 2.25 0 0118 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 004.5 9v.878m13.5-3A2.25 2.25 0 0119.5 9v.878m0 0a2.246 2.246 0 00-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0121 12v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6c0-.98.626-1.813 1.5-2.122" />
                 </svg>
 
-                <span>Alternatives</span>
+                <span>Alternatif</span>
             </a>
         </li>
         <li class="relative" id="sidenavXxEx3">
@@ -75,7 +75,7 @@
                 </svg>
 
 
-                <span>Criterias</span>
+                <span>Kriteria</span>
 
             </a>
 
@@ -84,7 +84,7 @@
 
     <ul class="relative px-1 mt-3">
         <li class=" px-6 text-sm  text-gray-700 font-bold ">
-            Management
+            Managemen
         </li>
         <li class="relative" id="sidenavSecEx2">
             <a href="{{ route('finance.index') }}"
@@ -95,7 +95,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
                 </svg>
-                <span>Finance</span>
+                <span>Keuangan</span>
             </a>
         </li>
         <li class="relative" id="sidenavSecEx3">
@@ -109,7 +109,7 @@
                         d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" />
                 </svg>
 
-                <span>Jobs</span>
+                <span>Pekerjaan</span>
             </a>
         </li>
 
@@ -125,7 +125,7 @@
                         d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
                 </svg>
 
-                <span>User</span>
+                <span>Pengguna</span>
                 <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-3 h-3 ml-auto" role="img"
                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                     <path fill="currentColor"
@@ -138,7 +138,7 @@
                 <li class="relative">
                     <a href="{{ route('user.index') }}"
                         class="flex items-center text-xs py-4 pl-12 pr-6 h-6 overflow-hidden {{ request()->routeIs('user.index') ? 'text-amber-500' : 'text-gray-700' }} text-ellipsis whitespace-nowrap rounded hover:text-amber-500 transition duration-300 ease-in-out"
-                        data-mdb-ripple="true" data-mdb-ripple-color="orange">Users</a>
+                        data-mdb-ripple="true" data-mdb-ripple-color="orange">Pengguna</a>
                 </li>
                 <li class="relative">
                     <a href="{{ route('role.index') }}"

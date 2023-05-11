@@ -26,7 +26,7 @@
                     <label for="inputName" class="form-label inline-block mb-2 text-gray-700">Name</label>
                     <input type="text" name="name"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        id="inputName" placeholder="Enter Name">
+                        id="inputName" placeholder="Enter Name" value="{{ old('name') }}">
                     @error('name')
                         <small id="emailHelp" class="block mt-1 text-xs text-red-600">{{ $message }}</small>
                     @enderror

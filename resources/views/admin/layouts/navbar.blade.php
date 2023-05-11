@@ -1,7 +1,7 @@
 <div class=" fixed w-5/6 mr-10 pr-10 text-right h-15">
     <div class="flex justify-between items-center px-5 py-2 bg-white border w-full lg:w-5/6 fixed right-0 transition-all"
         id="navbar">
-        <button href="#" class="hidden md:block" onclick="minimazeSideBar(this)" name="opened">
+        <button href="#" class="hidden lg:block" onclick="minimazeSideBar(this)" name="opened">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-list"
                 viewBox="0 0 16 16">
                 <path fill-rule="evenodd"

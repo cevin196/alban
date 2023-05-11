@@ -6,21 +6,21 @@
         <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="w-100" src="{{ asset('template/user/img/carousel-bg-1.jpg') }}" alt="Image">
+                    <img class="w-100" src="https://www.bossalatberat.com/wp-content/uploads/2021/06/self-loader-bg-min.jpg"
+                        alt="Image">
                     <div class="carousel-caption d-flex align-items-center">
                         <div class="container">
                             <div class="row align-items-center justify-content-center justify-content-lg-start">
                                 <div class="col-10 col-lg-7 text-center text-lg-start">
-                                    <h6 class="text-white text-uppercase mb-3 animated slideInDown">// Car Servicing //
+                                    {{-- <h6 class="text-white text-uppercase mb-3 animated slideInDown">// Car Servicing // --}}
                                     </h6>
-                                    <h1 class="display-3 text-white mb-4 pb-3 animated slideInDown">Qualified Car
-                                        Repair Service Center</h1>
-                                    <a href="" class="btn btn-primary py-3 px-5 animated slideInDown">Learn
-                                        More<i class="fa fa-arrow-right ms-3"></i></a>
+                                    <h1 class="display-3 text-white mb-4 pb-3 animated slideInDown">Bengkel Alat Berat
+                                        Berpengalaman dan Terpercaya</h1>
+                                    <a href="" class="btn btn-primary py-3 px-5 animated slideInDown">Lebih Lanjut<i
+                                            class="fa fa-arrow-right ms-3"></i></a>
                                 </div>
                                 <div class="col-lg-5 d-none d-lg-flex animated zoomIn">
-                                    <img class="img-fluid" src="{{ asset('template/user/img/carousel-1.png') }}"
-                                        alt="">
+                                    <img class="img-fluid" src="{{ asset('images\public\Unit1.png') }}" alt="">
                                 </div>
                             </div>
                         </div>
