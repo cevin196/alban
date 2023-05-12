@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin\ConditionReport;
+use App\Models\Admin\Job;
+use App\Models\Admin\Picture;
 use Illuminate\Http\Request;
 
 class ConditionReportController extends Controller
 {
-    public function create($jobId)
-    {
-    }
-
     public function store(Request $request)
     {
         dd($request);
@@ -32,13 +30,11 @@ class ConditionReportController extends Controller
         return view('admin.conditionReport.edit', compact('conditionReport'));
     }
 
-    public function update(Request $request, ConditionReport $conditionReport)
+    public function print(ConditionReport $conditionReport)
     {
-        //
-    }
+        $job = Job::find($conditionReport->job_id);
+        $pictures = Picture::where('condition_report_id', $conditionReport->id)->get();
 
-    public function destroy(ConditionReport $conditionReport)
-    {
-        //
+        return view('admin.conditionReport.print', compact('conditionReport', 'job', 'pictures'));
     }
 }

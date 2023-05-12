@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="flex gap-1 text-xl items-center text-[#444444]">
-        <a href="{{ route('alternative.index') }}" class="font-bold">Condition Report</a>
+        <a href="#" class="font-bold">Condition Report</a>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right"
             viewBox="0 0 16 16">
             <path fill-rule="evenodd"

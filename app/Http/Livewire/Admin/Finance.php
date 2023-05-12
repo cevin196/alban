@@ -47,7 +47,7 @@ class Finance extends Component
                     ->orWhere('type', 'like', '%' . $this->search . '%')
                     ->orWhere('date', 'like', '%' . $this->search . '%');
             });
-        })->get();
+        })->orderBy('date', 'desc')->get();
 
         $finances = $query->paginate(10);
 
@@ -66,6 +66,15 @@ class Finance extends Component
         $this->selectedFinance = $finance;
     }
 
+    public function confirmFinanceEdit(FinanceModel $finance)
+    {
+        $this->selectedFinance = $finance;
+        $this->inputDescription = $finance->description;
+        $this->inputAmmount = $finance->ammount;
+        $this->inputType = $finance->type;
+        $this->inputDate = $finance->date;
+    }
+
     public function saveFinance()
     {
         $validatedData = $this->validate();
@@ -79,10 +88,24 @@ class Finance extends Component
         return redirect(route('finance.index'));
     }
 
+    public function updateFinance()
+    {
+        $validatedData = $this->validate();
+        $this->selectedFinance->update([
+            'description' => $validatedData['inputDescription'],
+            'ammount' => $validatedData['inputAmmount'],
+            'type' => $validatedData['inputType'],
+            'date' => $validatedData['inputDate'],
+        ]);
+        notify()->success('Finance record updated succesfully!');
+        return redirect(route('finance.index'));
+    }
+
     public function deleteJob()
     {
         $this->selectedFinance->delete();
         $this->selectedFinance = "";
-        $this->resetPage();
+        notify()->success('Finance record deleted succesfully!');
+        return redirect(route('finance.index'));
     }
 }

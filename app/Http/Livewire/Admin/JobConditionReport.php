@@ -30,7 +30,7 @@ class JobConditionReport extends Component
         $this->validate([
             'newPicture' => 'image',
         ]);
-        dd($this->newPicture);
+        // dd($this->newPicture);
         $imageName =  time() . '.' . $this->newPicture->extension();
         $this->newPicture->storeAs('public/conditionReport', $imageName);
         Picture::create([

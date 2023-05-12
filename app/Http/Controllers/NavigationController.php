@@ -23,7 +23,16 @@ class NavigationController extends Controller
         $financeDataIncome = '';
         $financeDataOutcome = '';
 
-        for ($i = 1; $i < 7; $i++) {
+
+        // for ($i = 6; $i > 0; $i--) {
+        //     // get months name
+        //     $months[] = Carbon::now()
+        //         ->startOfMonth()
+        //         ->subMonth($i)
+        //         ->format('F');
+        // }
+
+        for ($i = 6; $i > 0; $i--) {
             // get months name
             $months[] = Carbon::now()
                 ->startOfMonth()
