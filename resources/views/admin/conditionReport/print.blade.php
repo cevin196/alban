@@ -12,7 +12,7 @@
 @inject('carbon', 'Carbon\Carbon')
 @include('includes.formater')
 
-<body class="font-sans" {{-- onload="print()" --}}>
+<body class="font-sans" onload="print()">
     <div class="flex justify-between">
         <img src="{{ asset('images/public/headerNota.jpg') }}" alt="Header Nota" class="w-96">
         {{-- <div>{{ $carbon::now()->format('d F Y') }}</div> --}}
