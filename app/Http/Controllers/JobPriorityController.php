@@ -13,7 +13,7 @@ class JobPriorityController extends Controller
     public function index()
     {
 
-        $count = collect();
+        // $count = collect();
         $alternatives = Alternative::all();
 
         // alternatives

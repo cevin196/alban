@@ -10,6 +10,7 @@ use App\Http\Controllers\NavigationController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WhatsappController;
 use App\Models\Admin\Job;
 use App\Models\Admin\Service;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('finance', FinanceController::class)->except(['show', 'destroy']);
 });
+
+Route::get('testRequest', [WhatsappController::class, 'testRequest']);
 
 
 require __DIR__ . '/auth.php';
