@@ -2,9 +2,9 @@
     <div class="flex justify-between items-center">
         <input type="search" wire:model.debounce.500ms="search"
             class="form-control block w-1/3 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            id="exampleSearch" placeholder="Search Something..." />
-        <a href="{{ route('user.create') }}" class="px-2 py-1 rounded bg-green-500 text-white hover:bg-green-600">Add
-            New</a>
+            id="exampleSearch" placeholder="Cari Sesuatu..." />
+        <a href="{{ route('user.create') }}" class="px-2 py-1 rounded bg-green-500 text-white hover:bg-green-600">Tambah
+            Baru</a>
     </div>
     <div class="flex flex-col">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -17,16 +17,16 @@
                                     #
                                 </th>
                                 <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4">
-                                    Name
+                                    Nama
                                 </th>
                                 <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4">
                                     Email
                                 </th>
                                 <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4">
-                                    Role
+                                    Peran
                                 </th>
                                 <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4 w-1/8">
-                                    Action
+                                    Aksi
                                 </th>
                             </tr>
                         </thead class="border-b">
@@ -101,24 +101,25 @@
                 class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
                 <div
                     class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                    <h5 class="text-xl font-medium leading-normal text-gray-800" id="deleteUserModal">Delete User</h5>
+                    <h5 class="text-xl font-medium leading-normal text-gray-800" id="deleteUserModal">Hapus Pengguna
+                    </h5>
                     <button type="button"
                         class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
                         data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body relative p-4">
-                    Are you sure want to delete <span
-                        class="text-amber-500">{{ $selectedUser ? $selectedUser->name : '' }}</span> from users table?
+                    Apakah anda yakin ingin menghapus data pengguna <span
+                        class="text-amber-500">{{ $selectedUser ? $selectedUser->name : '' }}</span> dari database?
                 </div>
                 <div
                     class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
                     <button type="button"
                         class="px-6 py-2.5 bg-gray-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out"
-                        data-bs-dismiss="modal">Close</button>
+                        data-bs-dismiss="modal">Tutup</button>
                     <button type="button" wire:click.prevent="deleteUser()"
                         class="px-6 py-2.5 bg-red-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1"
                         data-bs-dismiss="modal">
-                        Confirm
+                        Hapus
                     </button>
                 </div>
             </div>

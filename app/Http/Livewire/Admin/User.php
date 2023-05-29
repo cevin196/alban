@@ -48,6 +48,7 @@ class User extends Component
     {
         $this->selectedUser->delete();
         $this->selectedUser = "";
-        $this->resetPage();
+        notify()->success('Data user berhasil dihapus!');
+        return redirect(route('user.index'));
     }
 }
