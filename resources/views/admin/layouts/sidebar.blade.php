@@ -84,7 +84,7 @@
 
     <ul class="relative px-1 mt-3">
         <li class=" px-6 text-sm  text-gray-700 font-bold ">
-            Managemen
+            Manajemen
         </li>
         <li class="relative" id="sidenavSecEx2">
             <a href="{{ route('finance.index') }}"

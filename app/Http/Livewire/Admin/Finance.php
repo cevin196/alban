@@ -84,7 +84,7 @@ class Finance extends Component
             'type' => $validatedData['inputType'],
             'date' => $validatedData['inputDate'],
         ]);
-        notify()->success('Finance record added succesfully!');
+        notify()->success('Data keuangan berhasil ditambahkan!');
         return redirect(route('finance.index'));
     }
 
@@ -97,7 +97,7 @@ class Finance extends Component
             'type' => $validatedData['inputType'],
             'date' => $validatedData['inputDate'],
         ]);
-        notify()->success('Finance record updated succesfully!');
+        notify()->success('Data keuangan berhasil diupdate!');
         return redirect(route('finance.index'));
     }
 
@@ -105,7 +105,7 @@ class Finance extends Component
     {
         $this->selectedFinance->delete();
         $this->selectedFinance = "";
-        notify()->success('Finance record deleted succesfully!');
+        notify()->success('Data keuangan berhasil dihapus!');
         return redirect(route('finance.index'));
     }
 }

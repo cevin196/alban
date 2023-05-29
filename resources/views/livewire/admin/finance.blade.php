@@ -3,10 +3,10 @@
     <div class="flex justify-between items-center">
         <input type="search" wire:model.debounce.500ms="search"
             class="form-control block w-1/3 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            id="exampleSearch" placeholder="Search Something..." />
+            id="exampleSearch" placeholder="Cari Sesuatu..." />
         <a href="#" title="Create New" data-bs-toggle="modal" data-bs-target="#createFinanceModal"
             class="px-2 py-1 rounded bg-green-500 text-white hover:bg-green-600">
-            Add New
+            Tambah Baru
         </a>
 
     </div>
@@ -21,19 +21,19 @@
                                     #
                                 </th>
                                 <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4 ">
-                                    Description
+                                    Deskripsi
                                 </th>
                                 <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4">
-                                    Ammount
+                                    Total
                                 </th>
                                 <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4">
-                                    Date
+                                    Tanggal
                                 </th>
                                 <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4">
-                                    Type
+                                    Tipe
                                 </th>
                                 <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4 w-2/12">
-                                    Action
+                                    Aksi
                                 </th>
                             </tr>
                         </thead class="border-b">
@@ -108,8 +108,8 @@
                 class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
                 <div
                     class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                    <h5 class="text-xl font-medium leading-normal text-gray-800" id="createFinanceModal">Create Finance
-                        Record
+                    <h5 class="text-xl font-medium leading-normal text-gray-800" id="createFinanceModal">Tambah Data
+                        Keuangan
                     </h5>
                     <button type="button"
                         class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
@@ -118,28 +118,30 @@
                 </div>
                 <div class="modal-body relative p-4">
                     <div class="flex flex-col mb-3">
-                        <label for="description">Description:</label>
-                        <input type="text" wire:model="inputDescription" id="description" class="rounded">
+                        <label for="description">Deskripsi:</label>
+                        <input type="text" wire:model="inputDescription" id="description" class="rounded"
+                            placeholder="Ex: Beli sparepart exa">
                         @error('inputDescription')
                             <span class="text-sm text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="flex flex-col mb-3">
-                        <label for="ammount">Ammount:</label>
-                        <input type="text" wire:model="inputAmmount" id="ammount" class="rounded">
+                        <label for="ammount">Total:</label>
+                        <input type="text" wire:model="inputAmmount" id="ammount" class="rounded"
+                            placeholder="Ex: 500000">
                         @error('inputAmmount')
                             <span class="text-sm text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="flex flex-col mb-3">
-                        <label for="date">Date:</label>
+                        <label for="date">Tanggal:</label>
                         <input type="date" wire:model="inputDate" id="date" class="rounded">
                         @error('inputDate')
                             <span class="text-sm text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="flex flex-col">
-                        <label for="type">Type:</label>
+                        <label for="type">Tipe:</label>
                         <select wire:model="inputType" id="type" class="rounded w-1/2">
                             <option value="">-- Select One --</option>
                             <option value="0">Income</option>
@@ -154,9 +156,9 @@
                     class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
                     <button type="button"
                         class="px-6 py-2.5 bg-gray-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out"
-                        data-bs-dismiss="modal">Close</button>
+                        data-bs-dismiss="modal">Tutup</button>
                     <button type="button" wire:click.prevent="saveFinance()"
-                        class="px-6 py-2.5 bg-red-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1">Save</button>
+                        class="px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out ml-1">Simpan</button>
                 </div>
             </div>
         </div>
@@ -172,8 +174,8 @@
                 class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
                 <div
                     class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                    <h5 class="text-xl font-medium leading-normal text-gray-800" id="editFinanceModal">update Finance
-                    </h5>
+                    <h5 class="text-xl font-medium leading-normal text-gray-800" id="editFinanceModal">Update Data
+                        Keuangan</h5>
                     <button type="button"
                         class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
                         data-bs-dismiss="modal" aria-label="Close"></button>
@@ -181,28 +183,28 @@
                 <div class="modal-body relative p-4">
                     @if ($selectedFinance)
                         <div class="flex flex-col mb-3">
-                            <label for="description">Description:</label>
+                            <label for="description">Deskripsi:</label>
                             <input type="text" wire:model="inputDescription" id="description" class="rounded">
                             @error('inputDescription')
                                 <span class="text-sm text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="flex flex-col mb-3">
-                            <label for="ammount">Ammount:</label>
+                            <label for="ammount">Total:</label>
                             <input type="text" wire:model="inputAmmount" id="ammount" class="rounded">
                             @error('inputAmmount')
                                 <span class="text-sm text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="flex flex-col mb-3">
-                            <label for="date">Date:</label>
+                            <label for="date">Tanggal:</label>
                             <input type="date" wire:model="inputDate" id="date" class="rounded">
                             @error('inputDate')
                                 <span class="text-sm text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="flex flex-col">
-                            <label for="type">Type:</label>
+                            <label for="type">Tipe:</label>
                             <select wire:model="inputType" id="type" class="rounded w-1/2">
                                 <option value="">-- Select One --</option>
                                 <option value="1">Income</option>
@@ -218,11 +220,11 @@
                     class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
                     <button type="button"
                         class="px-6 py-2.5 bg-gray-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out"
-                        data-bs-dismiss="modal">Close</button>
+                        data-bs-dismiss="modal">Tutup</button>
                     <button type="button" wire:click.prevent="updateFinance()"
                         class="px-6 py-2.5 bg-red-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1"
                         data-bs-dismiss="modal">
-                        Confirm
+                        Update
                     </button>
                 </div>
             </div>
@@ -238,7 +240,8 @@
                 class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
                 <div
                     class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                    <h5 class="text-xl font-medium leading-normal text-gray-800" id="deleteJobModal">Delete Finance
+                    <h5 class="text-xl font-medium leading-normal text-gray-800" id="deleteJobModal">Hapus Data
+                        Keuangan
                     </h5>
                     <button type="button"
                         class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
@@ -246,20 +249,20 @@
                 </div>
                 <div class="modal-body relative p-4">
                     @if ($selectedFinance)
-                        Are you sure want to delete this data?
+                        Apakah anda yakin menghapus data keuangan dari database?
                         <table>
                             <tr class="align-top">
-                                <td>Description</td>
+                                <td>Deskripsi</td>
                                 <td>:</td>
                                 <td>{{ $selectedFinance->description }}</td>
                             </tr>
                             <tr>
-                                <td>Ammount</td>
+                                <td>Total</td>
                                 <td>:</td>
                                 <td>Rp.{{ rupiah($selectedFinance->ammount) }}</td>
                             </tr>
                             <tr>
-                                <td>Type</td>
+                                <td>Tipe</td>
                                 <td>:</td>
                                 <td>
                                     <span
@@ -275,11 +278,11 @@
                     class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
                     <button type="button"
                         class="px-6 py-2.5 bg-gray-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out"
-                        data-bs-dismiss="modal">Close</button>
+                        data-bs-dismiss="modal">Tutup</button>
                     <button type="button" wire:click.prevent="deleteJob()"
                         class="px-6 py-2.5 bg-red-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1"
                         data-bs-dismiss="modal">
-                        Confirm
+                        Hapus
                     </button>
                 </div>
             </div>
