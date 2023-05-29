@@ -15,16 +15,16 @@ class WhatsappController extends Controller
         $client = new Client();
         $headers = [
             'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer EAAC4R0lXjZBABAN6ilL4UyP6jKcHB1XtmbZCz01x6CB9gYw3AF4zzr2pNT1ZBTOX63UXxhM64zIrICi2rjBZBt95Y8PB904sQPBzEqG2xP60t8mxwBCUH5FA1VYcArlw1GFz9fZC1NrdBZBbMY3NpOuJudaZBnOResBtdbcqVOpr9y5d1Dn2fYHVR1ZAEI4ZAIeTIEjYfblcUhyLlDaWglM8j'
+            'Authorization' => 'Bearer EAAC4R0lXjZBABAOZBoTzQZBfRbkq3ffuyNI6WLmjPHzN0wn5YZAT08bXDuFVZCvJ37dzzZA76cV44oFPMjuZC0twc8mL3Ws4i0igQVIbhZBOSQhjXAmX1IyhcDP495ev14JJRts78tJ1hRSZBGK7wlZAhBxU173QFFaMHC9GEoo8NiLXqF3fpNZAmuUJYTp2rS9CKZBRZCJCMgONdZAPiOUgsd4r2e'
         ];
         $body = '{
                     "messaging_product": "whatsapp",
                     "to": "628112650159",
                     "type": "template",
                     "template": {
-                        "name": "informasi_pengerjaan_unit",
+                        "name": "condition_report_user",
                         "language": {
-                        "code": "id"
+                        "code": "en"
                         },
                         "components": [
                         {
@@ -35,7 +35,19 @@ class WhatsappController extends Controller
                                 "text": "www.alban-technik-mandiri.com"
                             }
                             ]
+                        },
+                        {
+                            "type":"button",
+                            "sub_type": "url",
+                            "index": 1,
+                            "parameters": [
+                                {
+                                    "type": "text",
+                                    "text": "http://localhost:8000/condition/print/2"
+                                }
+                            ]
                         }
+                        
                         ]
                     }
                 }';

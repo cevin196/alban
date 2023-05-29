@@ -7,7 +7,7 @@
 @inject('alternativeCriteria', 'App\Models\Admin\AlternativeCriteria')
 @section('content')
     <div class="flex gap-1 text-xl items-center text-[#444444]">
-        <a href="{{ route('alternative.index') }}" class="font-bold">Alternative</a>
+        <a href="{{ route('alternative.index') }}" class="font-bold">Alternatif</a>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right"
             viewBox="0 0 16 16">
             <path fill-rule="evenodd"
@@ -17,26 +17,26 @@
     </div>
 
     <div class="bg-white rounded p-5 mt-3 shadow-lg w-full">
-        <span class="text-[#444444] font-bold text-lg">Edit Alternative</span>
+        <span class="text-[#444444] font-bold text-lg">Edit Alternatif</span>
 
         <form class="mt-3" method="POST" action="{{ route('alternative.update', $alternative) }}">
             @csrf @method('put')
             <div class="grid grid-cols-2 gap-x-3">
                 <div class="form-group mb-3">
-                    <label for="inputName" class="form-label inline-block mb-2 text-gray-700">Name</label>
+                    <label for="name" class="form-label inline-block mb-2 text-gray-700">Nama</label>
                     <input type="text" name="name"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        id="inputName" placeholder="Enter Name" value="{{ $alternative->name }}">
+                        id="name" placeholder="Enter Name" value="{{ $alternative->name }}">
                     @error('name')
                         <small id="emailHelp" class="block mt-1 text-xs text-red-600">{{ $message }}</small>
                     @enderror
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="role" class="form-label inline-block mb-2 text-gray-700">Permission</label>
+                    <label for="role" class="form-label inline-block mb-2 text-gray-700">ID Pekerjaan</label>
                     <select name="job_id"
                         class="js-example-placeholder-single  form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
-                        <option value="" {{ $alternative->job_id ? '' : 'selected' }}>Please Select</option>
+                        <option value="" {{ $alternative->job_id ? '' : 'selected' }}>PIlih Pekerjaan</option>
                         @foreach ($jobs as $job)
                             <option value="{{ $job->id }}" {{ $alternative->job_id == $job->id ? 'selected' : '' }}>
                                 {{ $job->name }}
@@ -52,7 +52,7 @@
 
                 @foreach ($criterias as $criteria)
                     <div class="form-group mb-3">
-                        <label for="inputName" class="form-label inline-block mb-2 text-gray-700">Criteria
+                        <label for="inputName" class="form-label inline-block mb-2 text-gray-700">Kriteria
                             <span class="text-amber-500">{{ $criteria->name }}</span></label>
                         <div class="flex items-center gap-2">
                             <input type="number" name="{{ 'criteria' . $criteria->id }}" step=".01"
@@ -65,7 +65,7 @@ $criteriaData = $alternativeCriteria
                                 value="{{ $criteriaData ? $criteriaData->value : '' }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor"
                                 class="bi bi-info-circle text-blue-600 cursor-pointer hover:text-blue-500"
-                                viewBox="0 0 16 16" data-bs-toggle="popover" data-bs-title="Popover title"
+                                viewBox="0 0 16 16" data-bs-toggle="popover" data-bs-title="Keterangan Kriteria"
                                 data-bs-content="{{ $criteria->description }}">
                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                                 <path

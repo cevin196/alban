@@ -29,7 +29,7 @@ class Job extends Component
                     ->orWhere('date_in', 'like', '%' . $this->search . '%')
                     ->orWhere('status', 'like', '%' . $this->search . '%');
             });
-        })->get();
+        })->orderBy('updated_at', 'desc')->get();
 
         $jobs = $query->paginate(10);
 

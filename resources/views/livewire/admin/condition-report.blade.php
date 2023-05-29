@@ -32,10 +32,17 @@
                         <div class="flex justify-around">
                             <a href="{{ route('conditionReport.print', $jobConditionReport) }}" title="print">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                    fill="currentColor" class="bi bi-printer text-blue-500" viewBox="0 0 16 16">
+                                    fill="currentColor" class="bi bi-printer text-gray-500" viewBox="0 0 16 16">
                                     <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
                                     <path
                                         d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z" />
+                                </svg>
+                            </a>
+                            <a href="{{ route('conditionReport.send', $jobConditionReport) }}" title="send">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                    fill="currentColor" class="bi bi-send-fill text-blue-500" viewBox="0 0 16 16">
+                                    <path
+                                        d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z" />
                                 </svg>
                             </a>
                             <a href="{{ route('conditionReport.edit', $jobConditionReport) }}" title="Edit">
@@ -122,7 +129,8 @@
                 class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
                 <div
                     class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                    <h5 class="text-xl font-medium leading-normal text-gray-800" id="createConditionReportModal">Create
+                    <h5 class="text-xl font-medium leading-normal text-gray-800" id="createConditionReportModal">
+                        Create
                         New
                         Condition Report
                     </h5>

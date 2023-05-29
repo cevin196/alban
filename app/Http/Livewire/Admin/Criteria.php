@@ -47,9 +47,10 @@ class Criteria extends Component
 
     public function deleteCriteria()
     {
-
         $this->selectedCriteria->delete();
         $this->selectedCriteria = "";
-        $this->resetPage();
+        // $this->resetPage();
+        notify()->success('Job created succesfully!');
+        return redirect(route('criteria.index'));
     }
 }

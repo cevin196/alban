@@ -29,7 +29,7 @@
                     @php
                         $order++;
                     @endphp
-                    <tr class="border border-primary hover:bg-gray-100 cursor-pointer"
+                    <tr class="border border-green-500 hover:bg-gray-100 cursor-pointer"
                         onclick="window.location.href = '{{ route('alternative.show', $alternative['id']) }}'">
                         <td class="text-center px-4 py-1">{{ 'A' . $alternative['alias'] }}</td>
                         <td class="text-center px-4 py-1">{{ $alternative['name'] }}</td>
@@ -44,7 +44,7 @@
                     @php
                         $order++;
                     @endphp
-                    <tr class="border border-green-500 hover:bg-gray-100 cursor-pointer"
+                    <tr class="border border-primary hover:bg-gray-100 cursor-pointer"
                         onclick="window.location.href = '{{ route('alternative.show', $alternative['id']) }}'">
                         <td class="text-center px-4">{{ 'A' . $alternative['alias'] }}</td>
                         <td class="text-center px-4">{{ $alternative['name'] }}</td>
@@ -56,14 +56,14 @@
             <div class="md:flex items-center justify-center gap-4 mt-0 md:mt-2">
                 <div class="flex justify-center items-center gap-1">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-square-fill text-primary" viewBox="0 0 16 16">
+                        class="bi bi-square-fill text-green-500" viewBox="0 0 16 16">
                         <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2z" />
                     </svg>
                     <span>Based on Job Late Duration</span>
                 </div>
                 <div class="flex justify-center items-center gap-1">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-square-fill text-green-500" viewBox="0 0 16 16">
+                        class="bi bi-square-fill text-primary" viewBox="0 0 16 16">
                         <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2z" />
                     </svg>
                     <span>Based on WP Method</span>

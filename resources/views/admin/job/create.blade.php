@@ -23,42 +23,42 @@
             @csrf
             <div class="grid grid-cols-3 gap-x-4 gap-y-2">
                 <div class="form-group">
-                    <label for="inputName" class="form-label inline-block mb-2 text-gray-700">Name</label>
+                    <label for="inputName" class="form-label inline-block mb-2 text-gray-700">Nama Pekerjaan</label>
                     <input type="text" name="name"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        id="inputName" placeholder="Enter Name" value="{{ old('name') }}">
+                        id="inputName" placeholder="ex: Unit C32" value="{{ old('name') }}">
                     @error('name')
-                        <small id="emailHelp" class="block mt-1 text-xs text-red-600">{{ $message }}</small>
+                        <small class="block mt-1 text-xs text-red-600">{{ $message }}</small>
                     @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="inputName" class="form-label inline-block mb-2 text-gray-700">Serial Number</label>
+                    <label for="serialNumber" class="form-label inline-block mb-2 text-gray-700">Serial Number</label>
                     <input type="text" name="serial_number"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        id="inputName" placeholder="Enter Serial Number" value="{{ old('serial_number') }}">
+                        id="serialNumber" placeholder="ex: 38S23577" value="{{ old('serial_number') }}">
                     @error('serial_number')
-                        <small id="emailHelp" class="block mt-1 text-xs text-red-600">{{ $message }}</small>
+                        <small class="block mt-1 text-xs text-red-600">{{ $message }}</small>
                     @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="role" class="form-label inline-block mb-2 text-gray-700">Unit Kilometer</label>
+                    <label for="unitKilometer" class="form-label inline-block mb-2 text-gray-700">Unit Kilometer</label>
                     <input type="number" name="unit_kilometer"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        id="inputName" placeholder="Enter Customer Name" value="{{ old('unit_kilometer') }}">
+                        id="unitKilometer" placeholder="ex: 1728" value="{{ old('unit_kilometer') }}">
                     @error('unit_kilometer')
-                        <small id="emailHelp" class="block mt-1 text-xs text-red-600">{{ $message }}</small>
+                        <small class="block mt-1 text-xs text-red-600">{{ $message }}</small>
                     @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="inputName" class="form-label inline-block mb-2 text-gray-700">Customer Name</label>
+                    <label for="customerName" class="form-label inline-block mb-2 text-gray-700">Nama Customer</label>
                     <input type="text" name="customer_name" list="customers"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        id="inputName" placeholder="Enter Customer Name" value="{{ old('customer_name') }}">
+                        id="customerName" placeholder="Ex: Bpk. Cevin" value="{{ old('customer_name') }}">
                     @error('customer_name')
-                        <small id="emailHelp" class="block mt-1 text-xs text-red-600">{{ $message }}</small>
+                        <small class="block mt-1 text-xs text-red-600">{{ $message }}</small>
                     @enderror
 
                     <datalist id="customers">
@@ -69,34 +69,42 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="inputName" class="form-label inline-block mb-2 text-gray-700">Date In</label>
+                    <label for="dateIn" class="form-label inline-block mb-2 text-gray-700">Date In</label>
                     <input type="date" name="date_in"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        id="inputName" placeholder="Enter Serial Number" value="{{ old('date_in') }}">
+                        id="dateIn" value="{{ old('date_in') }}">
                     @error('date_in')
-                        <small id="emailHelp" class="block mt-1 text-xs text-red-600">{{ $message }}</small>
+                        <small class="block mt-1 text-xs text-red-600">{{ $message }}</small>
                     @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="inputName" class="form-label inline-block mb-2 text-gray-700">Date Out</label>
+                    <label for="workEstimation" class="form-label inline-block mb-2 text-gray-700">Estimasi Pengerjaan
+                        (Hari)</label>
+                    <input type="number" name="work_estimation"
+                        class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        id="workEstimation" placeholder="ex: 25" value="{{ old('work_estimation') }}">
+                    @error('work_estimation')
+                        <small class="block mt-1 text-xs text-red-600">{{ $message }}</small>
+                    @enderror
+                    {{-- <label for="inputName" class="form-label inline-block mb-2 text-gray-700">Date Out</label>
                     <input type="date" name="date_out"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         id="inputName" placeholder="Enter Serial Number" value="{{ old('date_out') }}">
                     <small id="emailHelp" class="block mt-1 text-xs text-gray-600">* Not required</small>
                     @error('date_out')
                         <small id="emailHelp" class="block mt-1 text-xs text-red-600">{{ $message }}</small>
-                    @enderror
+                    @enderror --}}
                 </div>
 
                 <div class="form-group">
-                    <label for="inputName" class="form-label inline-block mb-2 text-gray-700">Status</label>
-                    <select name="status"
+                    <label for="status" class="form-label inline-block mb-2 text-gray-700">Status</label>
+                    <select id="status" name="status"
                         class="form-control w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
                         <option value="">-- Select One --</option>
                         <option value="To Do" {{ old('status') == 'To Do' ? 'selected' : '' }}>To Do</option>
                         <option value="Doing" {{ old('status') == 'Doing' ? 'selected' : '' }}>Doing</option>
-                        <option value="Done" {{ old('status') == 'Done' ? 'selected' : '' }}>Done</option>
+                        {{-- <option value="Done" {{ old('status') == 'Done' ? 'selected' : '' }}>Done</option> --}}
                         <option value="Cancelled" {{ old('status') == 'Cancelled' ? 'selected' : '' }}>Canceled</option>
                     </select>
                     <small id="emailHelp" class="block mt-1 text-xs text-gray-600">* Not required</small>

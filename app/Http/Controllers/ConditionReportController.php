@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Admin\ConditionReport;
 use App\Models\Admin\Job;
 use App\Models\Admin\Picture;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Psr7\Request as Psr7Request;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
 
 class ConditionReportController extends Controller
@@ -36,5 +40,48 @@ class ConditionReportController extends Controller
         $pictures = Picture::where('condition_report_id', $conditionReport->id)->get();
 
         return view('admin.conditionReport.print', compact('conditionReport', 'job', 'pictures'));
+    }
+
+    public function send()
+    {
+
+        $client = new Client();
+        $headers = [
+            'Content-Type' => 'application/json',
+            'Authorization' => 'Bearer EAAC4R0lXjZBABAOZBoTzQZBfRbkq3ffuyNI6WLmjPHzN0wn5YZAT08bXDuFVZCvJ37dzzZA76cV44oFPMjuZC0twc8mL3Ws4i0igQVIbhZBOSQhjXAmX1IyhcDP495ev14JJRts78tJ1hRSZBGK7wlZAhBxU173QFFaMHC9GEoo8NiLXqF3fpNZAmuUJYTp2rS9CKZBRZCJCMgONdZAPiOUgsd4r2e'
+        ];
+        $body = '{
+                    "messaging_product": "whatsapp",
+                    "to": "628112650159",
+                    "type": "template",
+                    "template": {
+                        "name": "condition_report_user",
+                        "language": {
+                        "code": "en"
+                        },
+                        "components": [
+                        {
+                            "type": "header",
+                            "parameters": [
+                            {
+                                "type": "text",
+                                "text": "unit c3s"
+                            }
+                            ]
+                        },
+                        ]
+                    }
+                }';
+        try {
+            $request = new Psr7Request('POST', 'https://graph.facebook.com/v16.0/117461978013918/messages', $headers, $body);
+            $res = $client->sendAsync($request)->wait();
+            notify()->success('Message Sended');
+            return redirect()->back();
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $responseBodyAsString = $response->getBody()->getContents();
+            notify()->error($responseBodyAsString);
+            return redirect()->back();
+        }
     }
 }
