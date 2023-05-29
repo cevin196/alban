@@ -7,17 +7,17 @@
 
 @section('content')
     <div class="flex gap-1 text-xl items-center text-[#444444]">
-        <a href="{{ route('job.index') }}" class="font-bold">Job</a>
+        <a href="{{ route('job.index') }}" class="font-bold">Pekerjaan</a>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right"
             viewBox="0 0 16 16">
             <path fill-rule="evenodd"
                 d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
         </svg>
-        <a href="#">Create</a>
+        <a href="#">Tambah Baru</a>
     </div>
 
     <div class="bg-white rounded p-5 mt-3 shadow-lg w-full">
-        <span class="text-[#444444] font-bold text-lg">Create New Job</span>
+        <span class="text-[#444444] font-bold text-lg">Tambah Data Pekerjaan Baru</span>
 
         <form class="mt-3" method="POST" action="{{ route('job.store') }}">
             @csrf
@@ -69,7 +69,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="dateIn" class="form-label inline-block mb-2 text-gray-700">Date In</label>
+                    <label for="dateIn" class="form-label inline-block mb-2 text-gray-700">Tanggal Masuk</label>
                     <input type="date" name="date_in"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         id="dateIn" value="{{ old('date_in') }}">
@@ -101,7 +101,7 @@
                     <label for="status" class="form-label inline-block mb-2 text-gray-700">Status</label>
                     <select id="status" name="status"
                         class="form-control w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
-                        <option value="">-- Select One --</option>
+                        <option value="">-- Pilih salah satu --</option>
                         <option value="To Do" {{ old('status') == 'To Do' ? 'selected' : '' }}>To Do</option>
                         <option value="Doing" {{ old('status') == 'Doing' ? 'selected' : '' }}>Doing</option>
                         {{-- <option value="Done" {{ old('status') == 'Done' ? 'selected' : '' }}>Done</option> --}}

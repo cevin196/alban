@@ -2,22 +2,22 @@
 @include('includes.formater')
 @section('content')
     <div class="flex gap-1 text-xl items-center text-[#444444]">
-        <a href="{{ route('job.index') }}" class="font-bold">Job</a>
+        <a href="{{ route('job.index') }}" class="font-bold">Pekerjaan</a>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right"
             viewBox="0 0 16 16">
             <path fill-rule="evenodd"
                 d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
         </svg>
-        <a href="#">Show</a>
+        <a href="#">Detail Pekerjaan</a>
     </div>
 
     <div class="bg-white rounded p-5 mt-3 shadow-lg w-full">
-        <span class="text-[#444444] font-bold text-lg">Showing Job</span>
+        <span class="text-[#444444] font-bold text-lg">Detail Pekerjaan</span>
 
         <div class="grid grid-cols-2 gap-x-10">
             <table>
                 <tr>
-                    <td>Name</td>
+                    <td>Nama</td>
                     <td>:</td>
                     <td>{{ $job->name }}</td>
                 </tr>
@@ -27,32 +27,32 @@
                     <td>{{ $job->serial_number }}</td>
                 </tr>
                 <tr>
-                    <td>Unit Kilometer</td>
+                    <td>Kilometer Unit</td>
                     <td>:</td>
                     <td>{{ $job->unit_kilometer }}</td>
                 </tr>
             </table>
             <table>
                 <tr>
-                    <td>Date In</td>
+                    <td>Tanggal Masuk</td>
                     <td>:</td>
                     <td>{{ $job->date_in }}</td>
                 </tr>
                 @if ($job->date_out)
                     <tr>
-                        <td>Date Out</td>
+                        <td>Tanggal Keluar</td>
                         <td>:</td>
                         <td>{{ $job->date_out }}</td>
                     </tr>
                 @else
                     <tr>
-                        <td>Work Estimation</td>
+                        <td>Estimasi Pengerjaan</td>
                         <td>:</td>
                         <td>{{ $job->work_estimation }} Days</td>
                     </tr>
                 @endif
                 <tr>
-                    <td>Customer Name</td>
+                    <td>Nama Customer</td>
                     <td>:</td>
                     <td>{{ $job->customer_name }}</td>
                 </tr>
@@ -71,13 +71,13 @@
                         #
                     </th>
                     <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4">
-                        Name
+                        Nama
                     </th>
                     <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4">
                         Qty
                     </th>
                     <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4">
-                        Ammount
+                        Biaya
                     </th>
                     <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4">
                         Sub Total
@@ -136,13 +136,13 @@
                         #
                     </th>
                     <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4">
-                        Spare Part Name
+                        Nama Spare Part
                     </th>
                     <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4">
                         Qty
                     </th>
                     <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4">
-                        Ammount
+                        Harga
                     </th>
                     <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4">
                         Sub Total
@@ -178,7 +178,7 @@
                 @endforeach
                 <tr>
                     <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap text-right" colspan="4">
-                        Total Service
+                        Total Spare parts
                     </td>
                     <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap text-right">
                         {{ rupiah($totalSpareParts) }}
@@ -205,9 +205,9 @@
             <a href="{{ route('job.index') }}"
                 class="px-6 py-2.5 bg-gray-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md 
             hover:bg-gray-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 
-            active:shadow-lg transition duration-150 ease-in-out">Back</a>
-            <a href="{{ route('job.edit', $job) }}" class="px-4 py-1 rounded bg-primary hover:bg-amber-600 text-white">Edit
-                Value</a>
+            active:shadow-lg transition duration-150 ease-in-out">Kembali</a>
+            <a href="{{ route('job.edit', $job) }}" class="px-4 py-1 rounded bg-primary hover:bg-amber-600 text-white">Ubah
+                Nilai</a>
 
         </div>
     </div>

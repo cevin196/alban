@@ -13,7 +13,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('qty');
             $table->double('ammount')->nullable();
-            $table->foreignId('job_id')->constrained();
+            $table->foreignId('job_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

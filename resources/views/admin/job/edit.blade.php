@@ -98,7 +98,7 @@
                     <label for="status" class="form-label inline-block mb-2 text-gray-700">Status</label>
                     <select id="status" name="status"
                         class="form-control w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
-                        <option value="">-- Select One --</option>
+                        <option value="">-- Pilih Satu --</option>
                         <option value="To Do" {{ $job->status == 'To Do' ? 'selected' : '' }}>To Do</option>
                         <option value="Doing" {{ $job->status == 'Doing' ? 'selected' : '' }}>Doing</option>
                         {{-- <option value="Done" {{ $job->status == 'Done' ? 'selected' : '' }}>Done</option> --}}

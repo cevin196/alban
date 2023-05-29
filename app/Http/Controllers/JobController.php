@@ -44,7 +44,7 @@ class JobController extends Controller
             'work_estimation' => 'required|integer|gt:0',
         ]);
 
-        notify()->success('Job created succesfully!');
+        notify()->success('Data pekerjaan berhasil ditambahkan!');
         return redirect(route('job.index'));
     }
 
@@ -83,8 +83,8 @@ class JobController extends Controller
             'status' => $status,
         ]);
 
+        $job->services()->delete();
         if ($request->jobServices) {
-            $job->services()->delete();
             foreach ($request->jobServices as $jobService) {
                 Service::create([
                     'name' => $jobService['name'],
@@ -95,8 +95,8 @@ class JobController extends Controller
             }
         }
 
+        $job->spareParts()->delete();
         if ($request->jobSpareParts) {
-            $job->spareParts()->delete();
             foreach ($request->jobSpareParts as $jobSparePart) {
                 SparePart::create([
                     'name' => $jobSparePart['name'],
@@ -106,7 +106,7 @@ class JobController extends Controller
                 ]);
             }
         }
-        notify()->success('Job updated succesfully!');
+        notify()->success('Data pekerjaan berhasil diupdate!');
         return redirect(route('job.index'));
     }
 

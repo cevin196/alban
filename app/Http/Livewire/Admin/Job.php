@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\Admin\Alternative;
 use App\Models\Admin\Job as AdminJob;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -15,6 +16,7 @@ class Job extends Component
     public $sortBy = 'id';
     public $sortAsc = true;
     public $selectedJob = null;
+    public $selectedJobRelationStatus = false;
 
     public function render()
     {
@@ -46,14 +48,23 @@ class Job extends Component
     public function confirmJobDeletion(AdminJob $job)
     {
         $this->selectedJob = $job;
+        if ($job->alternative()->exists() || $job->services()->exists() || $job->spareParts()->exists() || $job->conditionReports()->exists()) {
+            $this->selectedJobRelationStatus = true;
+        } else {
+            $this->selectedJobRelationStatus = false;
+        }
     }
 
 
     public function deleteJob()
     {
-
+        if ($this->selectedJob->alternative()->exists()) {
+            $alternative = Alternative::where('job_id', $this->selectedJob->id)->first();
+            $alternative->update(['job_id' => null]);
+        }
         $this->selectedJob->delete();
         $this->selectedJob = "";
-        $this->resetPage();
+        notify()->success('Data pekerjaan berhasil dihapus!');
+        return redirect(route('job.index'));
     }
 }
