@@ -12,3 +12,4 @@
 
 <!-- Template Javascript -->
 <script src="{{ asset('template/user/js/main.js') }}"></script>
+<script></script>

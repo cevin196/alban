@@ -14,6 +14,7 @@ class NavigationController extends Controller
 {
     public function dashboard()
     {
+        $this->authorize('user_access');
         $months = [];
 
         // job done

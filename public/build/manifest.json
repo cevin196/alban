@@ -1,0 +1,16 @@
+{
+  "public/fonts/BakbakOne-Regular.ttf": {
+    "file": "assets/BakbakOne-Regular.d187facf.ttf",
+    "src": "public/fonts/BakbakOne-Regular.ttf"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app.3f2f4540.js",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  },
+  "resources/css/app.css": {
+    "file": "assets/app.dc103a84.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  }
+}

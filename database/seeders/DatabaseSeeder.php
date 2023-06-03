@@ -53,6 +53,7 @@ class DatabaseSeeder extends Seeder
             'finance_show',
             'finance_delete',
             'finance_access',
+            'dashboard_access',
         ];
         // create permissions
         foreach ($permissions as $permission) {
