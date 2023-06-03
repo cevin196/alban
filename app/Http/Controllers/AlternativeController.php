@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\admin\Alternative;
+use App\Models\Admin\Alternative;
 use App\Models\Admin\AlternativeCriteria;
 use App\Models\Admin\Criteria;
 use App\Models\Admin\Job;

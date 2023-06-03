@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\admin\alternative;
+use App\Models\Admin\Alternative;
 use App\Models\Admin\ConditionReport;
-use App\Models\admin\criteria;
+use App\Models\Admin\Criteria;
 use App\Models\Admin\Finance;
 use App\Models\Admin\Job;
 use App\Models\Admin\Picture;

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\admin\job;
+use App\Models\Admin\Job;
 use App\Models\Admin\Service;
 use App\Models\Admin\SparePart;
 use App\Models\User;
