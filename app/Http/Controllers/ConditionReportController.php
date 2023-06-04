@@ -48,7 +48,7 @@ class ConditionReportController extends Controller
         $client = new Client();
         $headers = [
             'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer EAAC4R0lXjZBABAOZBoTzQZBfRbkq3ffuyNI6WLmjPHzN0wn5YZAT08bXDuFVZCvJ37dzzZA76cV44oFPMjuZC0twc8mL3Ws4i0igQVIbhZBOSQhjXAmX1IyhcDP495ev14JJRts78tJ1hRSZBGK7wlZAhBxU173QFFaMHC9GEoo8NiLXqF3fpNZAmuUJYTp2rS9CKZBRZCJCMgONdZAPiOUgsd4r2e'
+            'Authorization' => 'Bearer TOKEN'
         ];
         $body = '{
                     "messaging_product": "whatsapp",
