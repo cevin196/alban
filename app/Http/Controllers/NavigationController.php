@@ -64,7 +64,7 @@ class NavigationController extends Controller
                 Carbon::now()->startOfMonth()->subMonth($i),
                 Carbon::now()->startOfMonth()->subMonth($i - 1)
             ])
-                ->where('type', 0)
+                ->where('type', 1)
                 ->sum('ammount') . ', ';
 
             // outcome
@@ -72,7 +72,7 @@ class NavigationController extends Controller
                 Carbon::now()->startOfMonth()->subMonth($i),
                 Carbon::now()->startOfMonth()->subMonth($i - 1)
             ])
-                ->where('type', 1)
+                ->where('type', 0)
                 ->sum('ammount') . ', ';
         }
 
