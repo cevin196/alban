@@ -36,7 +36,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('jobPriority', [JobPriorityController::class, 'index'])->name('jobPriority.index');
     Route::resource('job', JobController::class)->except('destroy');
-    Route::get('job/print/{job}', [JobController::class, 'print'])->name('job.print');
 
     Route::resource('conditionReport', ConditionReportController::class)->only(['store', 'edit']);
 
@@ -47,6 +46,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('condition/print/{conditionReport}', [ConditionReportController::class, 'print'])->name('conditionReport.print');
+Route::get('job/print/{job}', [JobController::class, 'print'])->name('job.print');
 
 // Route::get('testRequest', [WhatsappController::class, 'testRequest']);
 

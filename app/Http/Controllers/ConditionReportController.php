@@ -42,9 +42,8 @@ class ConditionReportController extends Controller
         return view('admin.conditionReport.print', compact('conditionReport', 'job', 'pictures'));
     }
 
-    public function send()
+    public function send(ConditionReport $conditionReport)
     {
-
         $client = new Client();
         $headers = [
             'Content-Type' => 'application/json',
@@ -76,7 +75,7 @@ class ConditionReportController extends Controller
                             "parameters": [
                                 {
                                     "type": "text",
-                                    "text": "job/print/1"
+                                    "text": "condition/print/' . $conditionReport->id . '"
                                 }
                             ]
                         },
