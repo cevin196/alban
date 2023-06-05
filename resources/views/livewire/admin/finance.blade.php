@@ -184,15 +184,14 @@
                     @if ($selectedFinance)
                         <div class="flex flex-col mb-3">
                             <label for="description">Deskripsi:</label>
-                            <input type="text" wire:model.lazy="inputDescription" id="description"
-                                class="rounded">
+                            <input type="text" wire:model="inputDescription" id="description" class="rounded">
                             @error('inputDescription')
                                 <span class="text-sm text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="flex flex-col mb-3">
                             <label for="ammount">Total:</label>
-                            <input type="text" wire:model.lazy="inputAmmount" id="ammount" class="rounded">
+                            <input type="text" wire:model="inputAmmount" id="ammount" class="rounded">
                             @error('inputAmmount')
                                 <span class="text-sm text-red-500">{{ $message }}</span>
                             @enderror
