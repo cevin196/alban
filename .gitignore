@@ -16,3 +16,6 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+# to prevent api saved on git
+app/Http/Controllers/ConditionReportController.php

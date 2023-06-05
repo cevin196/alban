@@ -13,7 +13,8 @@
                                 <div class="col-10 col-lg-7 text-center text-lg-start">
                                     <h1 class="display-3 text-white mb-4 pb-3 animated slideInDown">Bengkel Alat Berat
                                         Berpengalaman dan Terpercaya</h1>
-                                    <a href="#" class="btn btn-primary py-3 px-5 animated slideInDown">Lebih Lanjut<i
+                                    <a href="{{ route('monitoring') }}"
+                                        class="btn btn-primary py-3 px-5 animated slideInDown">Lebih Lanjut<i
                                             class="fa fa-arrow-right ms-3"></i>
                                     </a>
                                 </div>
@@ -32,8 +33,9 @@
                                 <div class="col-10 col-lg-7 text-center text-lg-start">
                                     <h1 class="display-3 text-white mb-4 pb-3 animated slideInDown">Pengerjaan Unit engan
                                         Standart Dealer dan Garansi Hasil Pengerjaan</h1>
-                                    <a href="#" class="btn btn-primary py-3 px-5 animated slideInDown">Learn
-                                        More<i class="fa fa-arrow-right ms-3"></i></a>
+                                    <a href="{{ route('monitoring') }}"
+                                        class="btn btn-primary py-3 px-5 animated slideInDown">Lebih Lanjut<i
+                                            class="fa fa-arrow-right ms-3"></i></a>
                                 </div>
                                 <div class="col-lg-5 d-none d-lg-flex animated zoomIn">
                                     <img class="img-fluid" src="{{ asset('images\public\Unit2.png') }}" alt="">
@@ -332,7 +334,7 @@
     <div id="contact" class="container-fluid bg-secondary booking my-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
             <div class="row gx-5">
-                <div class="col-lg-6 py-5">
+                <div class="col-lg-12 py-5 text-center text-capitalize">
                     <div class="py-5">
                         <h1 class="text-white mb-4">Pastikan anda memilih tempat yang tepat untuk perbaikan unit alat berat
                             anda</h1>
@@ -342,7 +344,7 @@
                             ut dolores magna sit. Sea dolore sanctus sed et. Takimata takimata sanctus sed.</p> --}}
                     </div>
                 </div>
-                <div class="col-lg-6">
+                {{-- <div class="col-lg-6">
                     <div class="bg-primary h-100 d-flex flex-column justify-content-center text-center p-5 wow zoomIn"
                         data-wow-delay="0.6s">
                         <h1 class="text-white mb-4">Kontak Kami</h1>
@@ -380,7 +382,7 @@
                             </div>
                         </form>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

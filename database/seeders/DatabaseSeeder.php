@@ -147,6 +147,14 @@ class DatabaseSeeder extends Seeder
         }
 
         $status = ['To Do', 'Doing', 'Cancelled', 'Done'];
+        $doings = [
+            'Pembersihan unit',
+            'Pengecetan',
+            'Menunggu Spare Parts',
+            'Siap diambil',
+            'Menunggu Antrian',
+            'Finishing',
+        ];
         for ($i = 0; $i < 100; $i++) {
             Job::create([
                 'name' => 'Job ' . $i,
@@ -156,6 +164,7 @@ class DatabaseSeeder extends Seeder
                 'work_estimation' => rand(5, 30),
                 'customer_name' => fake()->name(),
                 'status' => collect($status)->random(),
+                'doing' => collect($doings)->random(),
             ]);
         }
 

@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::get('/test', function () {
     notify()->success('Laravel Notify is awesome!');
@@ -47,6 +47,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('condition/print/{conditionReport}', [ConditionReportController::class, 'print'])->name('conditionReport.print');
 Route::get('job/print/{job}', [JobController::class, 'print'])->name('job.print');
+Route::get('monitoring/', [NavigationController::class, 'monitoring'])->name('monitoring');
 
 // Route::get('testRequest', [WhatsappController::class, 'testRequest']);
 

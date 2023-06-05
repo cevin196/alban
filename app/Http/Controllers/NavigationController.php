@@ -225,4 +225,10 @@ class NavigationController extends Controller
 
         return $hasil;
     }
+
+    public function monitoring()
+    {
+        $jobs = Job::orderBy('updated_at', 'desc')->take(10)->get();
+        return view('user.monitoring', compact('jobs'));
+    }
 }
