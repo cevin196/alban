@@ -48,25 +48,36 @@ class ConditionReportController extends Controller
         $client = new Client();
         $headers = [
             'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer TOKEN'
+            'Authorization' => 'Bearer token'
         ];
         $body = '{
                     "messaging_product": "whatsapp",
                     "to": "628112650159",
                     "type": "template",
                     "template": {
-                        "name": "condition_report_user",
+                        "name": "laporan_unit",
                         "language": {
-                        "code": "en"
+                        "code": "id"
                         },
                         "components": [
                         {
-                            "type": "header",
+                            "type": "body",
                             "parameters": [
                             {
                                 "type": "text",
-                                "text": "unit c3s"
+                                "text": "C3576"
                             }
+                            ]
+                        },
+                        {
+                            "type":"button",
+                            "sub_type": "url",
+                            "index": 0,
+                            "parameters": [
+                                {
+                                    "type": "text",
+                                    "text": "job/print/1"
+                                }
                             ]
                         },
                         ]
@@ -75,7 +86,7 @@ class ConditionReportController extends Controller
         try {
             $request = new Psr7Request('POST', 'https://graph.facebook.com/v16.0/117461978013918/messages', $headers, $body);
             $res = $client->sendAsync($request)->wait();
-            notify()->success('Message Sended');
+            notify()->success('Pesan berhasil dikirim!');
             return redirect()->back();
         } catch (ClientException $e) {
             $response = $e->getResponse();

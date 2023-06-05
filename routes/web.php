@@ -39,12 +39,14 @@ Route::middleware('auth')->group(function () {
     Route::get('job/print/{job}', [JobController::class, 'print'])->name('job.print');
 
     Route::resource('conditionReport', ConditionReportController::class)->only(['store', 'edit']);
-    Route::get('condition/print/{conditionReport}', [ConditionReportController::class, 'print'])->name('conditionReport.print');
+
     Route::get('condition/send/{conditionReport}', [ConditionReportController::class, 'send'])->name('conditionReport.send');
     Route::get('condition/create/{job}', [ConditionReportController::class, 'create'])->name('conditionReport.create');
 
     Route::resource('finance', FinanceController::class)->except(['show', 'destroy']);
 });
+
+Route::get('condition/print/{conditionReport}', [ConditionReportController::class, 'print'])->name('conditionReport.print');
 
 // Route::get('testRequest', [WhatsappController::class, 'testRequest']);
 
